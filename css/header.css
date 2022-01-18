@@ -1,8 +1,9 @@
-*{
+* {
     padding: 0;
     margin: 0;
     font-family: 'Belleza', sans-serif;
 }
+
 
 /*  HEADER */
 
@@ -37,6 +38,7 @@ header .sesion {
 .sesion:hover {
     color: #f99804;
 }
+
 
 /* NAV */
 
