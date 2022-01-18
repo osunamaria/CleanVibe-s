@@ -5,3 +5,73 @@
 }
 
 /*  HEADER */
+
+header {
+    height: 6.5em;
+    width: 100%;
+    display: block;
+    /* top: 0; */
+    /* padding: 0%; */
+    border-bottom: 0.2em solid #6f7484;
+}
+
+.logo {
+    width: 15em;
+    margin-left: 5em;
+}
+
+header .sesion {
+    font-size: 1.2em;
+    float: right;
+    margin: 1em 10em;
+    color: #6f7484;
+    background: none;
+    border: 0.2em solid;
+    padding: 0.8em 1.3em;
+    transition: 0.4s;
+    border-radius: 2em;
+    cursor: pointer;
+}
+
+.sesion:hover {
+    color: #f99804;
+}
+
+/* NAV */
+
+nav {
+    display: flex;
+    height: 1.8em;
+    cursor: pointer;
+    /* margin: -4em 0 0 55em; */
+    font-size: 1.1em;
+    width: 40em;
+    border: 1px solid black;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    border: 1px solid black;
+}
+
+nav li {
+    display: inline-block;
+    position: relative;
+    margin-left: 1em;
+    width: 9em;
+    border: 1px solid black;
+}
+
+nav a {
+    color: #6f7484;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    transition: all ease-in-out 400ms;
+    border: 1px solid black;
+}
+
+nav a:hover {
+    color: orange;
+}
