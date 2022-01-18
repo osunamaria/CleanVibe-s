@@ -11,20 +11,95 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- links css -->
-    <link rel="stylesheet" href="css/inicio.css">
-    <title>Inicio</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/publicaciones.css">
+
+    <title>Publicaciones</title>
 </head>
 <body>
-    <header>
+    <script src="../js/evento.js"></script>
 
+    <header>
+        <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
+        <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
     </header>
+
     <nav>
+        <ul>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Reservas</a></li>
+            <li><a href="#">Publicaciones</a></li>
+            <li><a href="#">Estadísticas</a></li>
+            <li><a href="#">Contabilidad</a></li>
+            <li><a href="#">Gestión de cuentas</a></li>
+        </ul>
     </nav>
     <article>
+        <h1>Publicaciones</h1>
+        <hr>
+        <button onclick="crearEvento()">Crear Evento</button>
+        <br><br>
+
+        <section>
+            <form action="" id="publicacion" class="publicaciones">
+                <!-- Nombre de la instalacion -->
+                <table>
+                    <tr>
+                        <td>T&iacute;tulo del evento<input type="text" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Miembros que pueden participar:</p>
+                            <select id="tipoMiembro">
+                                <option value="usuario">Usuario</option>
+                                <option value="presidente">Presidente</option>
+                                <option value="administrador">Administrador</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <input onclick="cerrarEvento()" class="guardar" type="submit" value="Guardar">
+            </form>
+        </section>
+
+        <section>
+            <div class="eventos">
+                <div></div>
+                <div></div>
+            </div>
+            
+        </section>
+        
+        
 
     </article>
     <footer>
-
+        <div class="redes">
+            <h3>Redes sociales</h3>
+            <ul>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-facebook-square"></i></li>
+            </ul>
+        </div>
+        <div class="nosotros">
+            <h3>Sobre nosotros</h3>
+            <p>somos unos crackens</p>
+        </div>
+        <div class="avisos">
+            <h3>Avisos legales</h3>
+            <ul>
+                <li>FAQ</li>
+                <li>Condiciones de uso</li>
+                <li>Otras cosas</li>
+            </ul>
+        </div><br>
+        <hr>
+        <p class="copy">Copyright &copy; 2021 Todos los derechos reservados ClearVibe's S.A.</p>
     </footer>
 </body>
+
 </html>
