@@ -1,2 +1,9 @@
-
+.nombreInstalacion{
+    visibility: hidden;
+}
+.guardar{
+    background-color: transparent;
+    border: solid 1px #f99804;
+    border-radius: 10%;
+}
 
