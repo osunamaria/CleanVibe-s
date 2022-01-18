@@ -7,7 +7,7 @@
 /*  HEADER */
 
 header {
-    height: 6.5em;
+    height: 8em;
     width: 100%;
     display: block;
     /* top: 0; */
@@ -18,12 +18,13 @@ header {
 .logo {
     width: 15em;
     margin-left: 5em;
+    margin-top: 0.7em;
 }
 
 header .sesion {
     font-size: 1.2em;
     float: right;
-    margin: 1em 10em;
+    margin: 1.8em 5em;
     color: #6f7484;
     background: none;
     border: 0.2em solid;
@@ -43,24 +44,20 @@ nav {
     display: flex;
     height: 1.8em;
     cursor: pointer;
-    /* margin: -4em 0 0 55em; */
+    margin: -3em 20em;
     font-size: 1.1em;
     width: 40em;
-    border: 1px solid black;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    border: 1px solid black;
 }
 
 nav li {
     display: inline-block;
     position: relative;
-    margin-left: 1em;
-    width: 9em;
-    border: 1px solid black;
+    width: 10em;
 }
 
 nav a {
@@ -69,7 +66,6 @@ nav a {
     font-size: 1em;
     padding: 0.5em 1em;
     transition: all ease-in-out 400ms;
-    border: 1px solid black;
 }
 
 nav a:hover {
