@@ -1,3 +1,5 @@
+*{padding: 0; margin: 0;}
+
 .nombreInstalacion{
     visibility: hidden;
 }
@@ -24,7 +26,6 @@ hr{
 }
 
 table {
-    border: 2px solid black;
     width: 20%;
     margin-left: 40%;
     margin-top: 3%;
