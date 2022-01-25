@@ -55,7 +55,7 @@
 
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id_insalacion,DISTINCT fecha,hora_inicio,hora_fin FROM reservas WHERE usuario=:usuario AND contrasena=:contrasena");
+        $sql = $con->prepare("SELECT id_instalacion,DISTINCT fecha,hora_inicio,hora_fin FROM reservas WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
         $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
