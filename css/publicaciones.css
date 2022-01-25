@@ -1,6 +1,6 @@
 *{padding: 0; margin: 0;}
 
-.nombreInstalacion{
+.publicaciones{
     visibility: hidden;
 }
 .guardar{
@@ -14,6 +14,7 @@
     border-radius: 10%;
     color: #f99804;
 }
+
 article{
     margin-top: 5%;
     text-align: center;
@@ -34,4 +35,10 @@ table {
 
 td {
     padding: 3%;
+}
+/* HACER ARTICULOS DE EVENTO */
+.eventos{
+    height: 20%;
+    width: 20%;
+    border: solid 1x black;
 }

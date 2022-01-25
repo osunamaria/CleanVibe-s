@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,28 +12,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- links css -->
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/instalaciones.css">
-    <title>instalaciones</title>
+    <title>Instalaciones</title>
 </head>
+
 <body>
 
-    <script src=""></script>
+    <script src="../js/instalaciones.js"></script>
 
     <header>
-        <!-- MENU -->
+        <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
+        <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
     </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Reservas</a></li>
+            <li><a href="#">Publicaciones</a></li>
+            <li><a href="#">Estadísticas</a></li>
+            <li><a href="#">Contabilidad</a></li>
+            <li><a href="#">Gestión de cuentas</a></li>
+        </ul>
+    </nav>
 
     <article>
         <h1>Instalaciones</h1>
         <hr>
         <button onclick="crearInstalacion()">Crear Instalaci&oacute;n</button>
         <br><br>
-        <div class="localizacion">
-            <iframe id="localizacion" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d101459.56498403578!2d-5.9550582499999996!3d37.37537075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1642525776407!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        <form action="" id="nombreInstalacion" class="nombreInstalacion">
+            <!-- Nombre de la instalacion -->
+            <table>
+                <tr>
+                    <td>Nombre de la instalaci&oacute;n<input type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Rival <input type="radio" value="rival"> Propia <input type="radio" value="propia" checked></td>
+                </tr>
+                <tr>
+                    <td>Introduzca la localización <input type="text" required></td>
+                </tr>
+            </table>
+            <br>
+            <input onclick="cerrarInstalacion()" class="guardar" type="submit" value="Guardar">
+        </form>
+
     </article>
     <footer>
-
+        <div class="redes">
+            <h3>Redes sociales</h3>
+            <ul>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-facebook-square"></i></li>
+            </ul>
+        </div>
+        <div class="nosotros">
+            <h3>Sobre nosotros</h3>
+            <p>somos unos crackens</p>
+        </div>
+        <div class="avisos">
+            <h3>Avisos legales</h3>
+            <ul>
+                <li>FAQ</li>
+                <li>Condiciones de uso</li>
+                <li>Otras cosas</li>
+            </ul>
+        </div><br>
+        <hr>
+        <p class="copy">Copyright &copy; 2021 Todos los derechos reservados ClearVibe's S.A.</p>
     </footer>
 </body>
+
 </html>
