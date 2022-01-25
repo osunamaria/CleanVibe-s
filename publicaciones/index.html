@@ -51,18 +51,28 @@
                     </tr>
                     <tr>
                         <td>
-                            <p>Miembros que pueden participar:</p>
+                            <!-- <p>Miembros que pueden participar:</p>
                             <select id="tipoMiembro">
                                 <option value="usuario">Usuario</option>
                                 <option value="presidente">Presidente</option>
                                 <option value="administrador">Administrador</option>
-                            </select>
+                            </select> -->
+                            Publica <input type="radio" value="rival"> Privada <input type="radio" value="propia" checked>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Articulo:</p>
+                            <textarea id="publicacionContenido"></textarea>
                         </td>
                     </tr>
                 </table>
                 <br>
                 <input onclick="cerrarEvento()" class="guardar" type="submit" value="Guardar">
             </form>
+            <br>
+            <h2>Administracion de Noticias</h2>
+            
         </section>
 
         <section>
