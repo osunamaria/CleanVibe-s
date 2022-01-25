@@ -1,6 +1,6 @@
 <?php 
 $servidor = "localhost";
-$baseDatos = "phpmyadmin";
+$baseDatos = "clean_vibes";
 $usuario = "root";
 $pass = "root";
 
