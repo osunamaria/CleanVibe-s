@@ -26,6 +26,18 @@
 </head>
 
 <body>
+    <?php include_once "operacionesGeneralesUsuarios.php";
+                $error = "";
+                if (count($_POST) > 0) {
+                    $id = insertaUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+                    if ($id != 0) {
+                        header("Location: ../index.html");
+                        exit();
+                    } else {
+                        $error = "Datos incorrectos";
+                    }
+                }
+            ?>
     <header>
         <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
     </header>
@@ -48,7 +60,7 @@
             </div>
         </article>
         <article>
-            <form action="../index.html" method="POST" enctype="multipart/form-data" id="formRegistro">
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" id="formRegistro">
                 <table>
                     <tr>
                         <td>
@@ -129,18 +141,6 @@
                     </tr>
                 </table>
             </form>
-            <?php include_once "operacionesGeneralesUsuarios.php";
-                $error = "";
-                if (count($_POST) > 0) {
-                    $id = insertaUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
-                    if ($id != 0) {
-                        header("Location: ../index.html?varId=$id");
-                        exit();
-                    } else {
-                        $error = "Datos incorrectos";
-                    }
-                }
-            ?>
         </article>
         <article>
             <form action="" id="formInicio" class="oculto">
