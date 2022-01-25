@@ -18,7 +18,7 @@
     <title>Publicaciones</title>
 </head>
 <body>
-    <script src="../js/evento.js"></script>
+    <script src="../js/publicacion.js"></script>
 
     <header>
         <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
@@ -39,51 +39,65 @@
     <article>
         <h1>Publicaciones</h1>
         <hr>
-        <button onclick="crearEvento()">Crear Evento</button>
+        <button onclick="crearPublicacion()">Crear Publicacion</button>
         <br><br>
-
+        <!-- Crear -->
         <section>
-            <form action="" id="publicacion" class="publicaciones">
+            <form method="post" action="crearPublicacion.php" id="eventoNoticia" class="publicaciones">
                 <!-- Nombre de la instalacion -->
                 <table>
                     <tr>
-                        <td>T&iacute;tulo del evento<input type="text" required></td>
+                        <td>T&iacute;tulo del evento<input name="titulo" id="titulo" type="text"></td>
                     </tr>
-                    <tr>
-                        <td>
                             <!-- <p>Miembros que pueden participar:</p>
                             <select id="tipoMiembro">
                                 <option value="usuario">Usuario</option>
                                 <option value="presidente">Presidente</option>
                                 <option value="administrador">Administrador</option>
                             </select> -->
-                            Publica <input type="radio" value="rival"> Privada <input type="radio" value="propia" checked>
+                    <tr>
+                        <td>
+                            Publica<input name="tipo" id="tipo" type="radio" value="publica">
+                            Privada<input name="tipo" id="tipo" type="radio" value="privada">
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                            <form>Noticia <input name="publicacion" id="publicacion" type="radio" value="noticia"> Evento <input name="publicacion" id="publicacion" type="radio" value="evento"></form>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <p>Articulo:</p>
-                            <textarea id="publicacionContenido"></textarea>
+                            <textarea name="contenido" id="contenido"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Fecha:</p>
+                            <input name="fecha" type="date" id="fecha"></input>
                         </td>
                     </tr>
                 </table>
                 <br>
-                <input onclick="cerrarEvento()" class="guardar" type="submit" value="Guardar">
+                <input class="guardar" type="submit" value="Guardar">
             </form>
             <br>
-            <h2>Administracion de Noticias</h2>
             
         </section>
 
+        <!-- EDITAR -->
         <section>
-            <div class="eventos">
-                <div></div>
-                <div></div>
-            </div>
-            
+            <h2>Administracion de Publicacion</h2>
+            <a href="../php/editarPublicacion.php">Administracion de Publicacion</a>
         </section>
         
-        
+        <!-- ELIMINAR -->
+        <section>
+            <h2>Eliminar Publicacion</h2>
+            <a href="../php/eliminarPublicacion.php">Eliminar Publicacion</a>
+        </section>
 
     </article>
     <footer>

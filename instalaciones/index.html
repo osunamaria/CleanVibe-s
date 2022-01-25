@@ -44,21 +44,24 @@
         <hr>
         <button onclick="crearInstalacion()">Crear Instalaci&oacute;n</button>
         <br><br>
-        <form action="" id="nombreInstalacion" class="nombreInstalacion">
+        <form method="post" action="insertarInstalacion.php" id="nombreInstalacion" class="nombreInstalacion">
             <!-- Nombre de la instalacion -->
             <table>
                 <tr>
-                    <td>Nombre de la instalaci&oacute;n<input type="text" required></td>
+                    <td>Nombre de la instalaci&oacute;n<input id="nombre" name="nombre" type="text"></td>
                 </tr>
                 <tr>
-                    <td>Rival <input type="radio" value="rival"> Propia <input type="radio" value="propia" checked></td>
+                    <td>
+                        Rival <input name="tipo" id="tipo" type="radio" value="rival"> 
+                        Propia <input name="tipo" id="tipo" type="radio" value="propia"> 
+                    </td>
                 </tr>
                 <tr>
-                    <td>Introduzca la localización <input type="text" required></td>
+                    <td>Introduzca la localización <input name="localizacion" id="localizacion" type="text"></td>
                 </tr>
             </table>
             <br>
-            <input onclick="cerrarInstalacion()" class="guardar" type="submit" value="Guardar">
+            <input class="guardar" type="submit" value="Guardar">
         </form>
 
     </article>
