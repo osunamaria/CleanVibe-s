@@ -41,7 +41,7 @@
     </nav>
 
     <article class="container">
-      <form action="../php/contabilidad.php" method="POST" class="row justify-content-center mb-3 bg-secondary p-2">
+      <form action="../php/contabilidad.php" class="row justify-content-center mb-3 bg-secondary p-2">
         <label for="cuentas" class="col-1">Cuentas: </label>
         <div class="col-9 text-start">
           <select name="cuentas" id="cuentas">
@@ -68,25 +68,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+        <!-- php ----------------------------- -->
+        <?php 
+            include "databaseManagement.inc.php";//php con metodos
+            $cuentas = $_POST["cuentas"];
+            function obtenerCuentas(){
+                try {
+                    $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                    if($cuentas == "total"){
+                        $cuentas = "*";
+                    }//Fin Si
+                    $sql = $con->prepare("SELECT ".$cuentas." from contabilidad;");
+                    $sql->execute();
+                    $miArray = [];
+                    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+                        $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+                    }
+                    $con = null;
+                } catch (PDOException $e) {
+                    echo $e;
+                }
+                return $miArray;
+            }
+            $listaCuentas = obtenerCuentas();
+            for ($i=0;$i<sizeof($listaCuentas);$i++){
+                echo "<tr>";
+                echo "<td>".$listaCuentas[$i]."</td>";
+                echo "</tr>";
+            }//Fin Para
+
+            ?>
         </tbody>
-      </table>
+        </table>
     </article>
 
     <footer>
