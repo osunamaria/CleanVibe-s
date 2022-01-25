@@ -48,7 +48,7 @@
             </div>
         </article>
         <article>
-            <form action="" id="formRegistro">
+            <form action="../index.html" method="POST" enctype="multipart/form-data" id="formRegistro">
                 <table>
                     <tr>
                         <td>
@@ -129,6 +129,18 @@
                     </tr>
                 </table>
             </form>
+            <?php include_once "operacionesGeneralesUsuarios.php";
+                $error = "";
+                if (count($_POST) > 0) {
+                    $id = insertaUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+                    if ($id != 0) {
+                        header("Location: ../index.html?varId=$id");
+                        exit();
+                    } else {
+                        $error = "Datos incorrectos";
+                    }
+                }
+            ?>
         </article>
         <article>
             <form action="" id="formInicio" class="oculto">
@@ -156,6 +168,7 @@
                     </tr>
                 </table>
             </form>
+            <div id="errores"><?php echo $error; ?></div>
         </article>
     </section>
     <footer>
