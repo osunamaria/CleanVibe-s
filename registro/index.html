@@ -48,14 +48,14 @@
             </div>
         </article>
         <article>
-            <form action="" id="formRegistro">
+            <form action="insertaUsuario.php" method="POST" enctype="multipart/form-data" id="formRegistro">
                 <table>
                     <tr>
                         <td>
                             <label for="usuario">Usuario</label>
                         </td>
                         <td>
-                            <input type="text" name="usuario" id="usuario">
+                            <input type="text" name="usuario" id="usuario" required>
                         </td>
                     </tr>
                     <tr>
@@ -63,7 +63,7 @@
                             <label for="contrasena">Contrase&ntilde;a</label>
                         </td>
                         <td>
-                            <input type="text" name="contrasena" id="contrasena">
+                            <input type="password" name="contrasena" id="contrasena" required>
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +71,7 @@
                             <label for="nombre">Nombre</label>
                         </td>
                         <td>
-                            <input type="text" name="nombre" id="nombre">
+                            <input type="text" name="nombre" id="nombre" required>
                         </td>
                     </tr>
                     <tr>
@@ -79,7 +79,7 @@
                             <label for="apellidos">Apellidos</label>
                         </td>
                         <td>
-                            <input type="text" name="apellidos" id="apellidos">
+                            <input type="text" name="apellidos" id="apellidos" required>
                         </td>
                     </tr>
                     <tr>
@@ -87,7 +87,7 @@
                             <label for="dni">DNI</label>
                         </td>
                         <td>
-                            <input type="text" name="dni" id="dni">
+                            <input type="text" name="dni" id="dni" required>
                         </td>
                     </tr>
                     <tr>
@@ -95,7 +95,7 @@
                             <label for="correo">Correo</label>
                         </td>
                         <td>
-                            <input type="email" name="correo" id="correo">
+                            <input type="email" name="correo" id="correo" required>
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +103,7 @@
                             <label for="telefono">Telefono</label>
                         </td>
                         <td>
-                            <input type="tel" name="telefono" id="telefono">
+                            <input type="tel" name="telefono" id="telefono" length="9" required>
                         </td>
                     </tr>
                     <tr>
@@ -111,7 +111,7 @@
                             <label for="fecnac">Fecha de nacimiento</label>
                         </td>
                         <td>
-                            <input type="date" name="fecnac" id="fecnac">
+                            <input type="date" name="fecnac" id="fecnac" required>
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +119,7 @@
                             <label for="num_miembros">Miembros de la familia</label>
                         </td>
                         <td>
-                            <input type="number" name="num_miembros" id="num_miembros">
+                            <input type="number" name="num_miembros" id="num_miembros" min="1" required>
                         </td>
                     </tr>
                     <tr>
@@ -131,7 +131,7 @@
             </form>
         </article>
         <article>
-            <form action="" id="formInicio" class="oculto">
+            <form action="iniciarSesion.php" method="POST" enctype="multipart/form-data" id="formInicio" class="oculto">
                 <table>
                     <tr>
                         <td>
