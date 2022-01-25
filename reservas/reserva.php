@@ -19,8 +19,8 @@
     <!-- links css -->
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/publicaciones.css">
-    <title>Publicaciones</title>
+    <link rel="stylesheet" href="../css/reservas.css">
+    <title>Reservas</title>
 </head>
 <body>
     <header>
@@ -28,7 +28,7 @@
         <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
     </header>
 
-    <nav class="menu">
+    <nav>
         <ul>
             <li><a href="#">Acerca de</a></li>
             <li><a href="#">Instalaciones</a></li>
@@ -40,26 +40,11 @@
         </ul>
     </nav>
 
-    <article class="container">
-        <div class="tablon">
-            <h2>TABLÓN DE ANUNCIOS</h2>
-            <div class="row">
-                <div class="col-3">
-                    <select class="filtro" name="tema" id="tema">
-                        <option value="0">Filtrar</option>
-                        <option value="evento">Eventos</option>
-                        <option value="noticia">Noticias</option>
-                    </select>
-                </div>
-                <div class="col-2">
-                    <input type="submit" class="anadirAnuncio" value="Buscar"></input>
-                </div>
-                <div class="col-7 justify-content-end">
-                    <a href="form.html" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nueva publicación</a>
-                </div>
-            </div>
-        </div>
-    </article>
+    <!-- php -------------------------------- -->
+    <?php
+    include 
+
+    ?>
 
     <footer>
         <div class="redes">
