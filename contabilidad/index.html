@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- links css -->
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/headerContabilidad.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/contabilidad.css">
     <title>Contabilidad</title>
@@ -28,7 +28,7 @@
         <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
     </header>
 
-    <nav>
+    <nav class="menu">
         <ul>
             <li><a href="#">Acerca de</a></li>
             <li><a href="#">Instalaciones</a></li>
@@ -40,45 +40,66 @@
         </ul>
     </nav>
 
-    <article>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Navbar</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                      </li>
-                    </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                  </div>
-                </div>
-              </nav>
+    <article class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Cuentas</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Gasto eventos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Gasto instalaciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Gasto otros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ingreso cuotas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ingreso reservas</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <button class="btn btn-outline-success"  action="" method="POST" type="submit">Search</button>
+            </form>
+          </div>
         </div>
+      </nav>
+      <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
     </article>
 
     <footer>

@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+.menu{
+    margin-bottom: 5em;
+}
+
 footer{
     position: absolute;
 }
