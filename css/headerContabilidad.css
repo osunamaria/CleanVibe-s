@@ -30,10 +30,9 @@ header .sesion {
     color: #f99804;
 }
 
-
 /* NAV */
 
-nav {
+.menu {
     display: flex;
     height: 1.8em;
     cursor: pointer;
@@ -42,18 +41,18 @@ nav {
     width: 40em;
 }
 
-nav ul {
+.menu ul {
     list-style: none;
     display: flex;
 }
 
-nav li {
+.menu li {
     display: inline-block;
     position: relative;
-    width: 10.5em;
+    width: 10em;
 }
 
-nav a {
+.menu a {
     color: #6f7484;
     text-decoration: none;
     font-size: 1em;
@@ -61,6 +60,6 @@ nav a {
     transition: all ease-in-out 400ms;
 }
 
-nav a:hover {
+.menu a:hover {
     color: orange;
 }
