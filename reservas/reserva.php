@@ -42,7 +42,29 @@
 
     <!-- php -------------------------------- -->
     <?php
-    include 
+    //Conectar base de datos
+    // include 
+
+    $instalacion = $POST['instalacion'];
+
+    //Consulto base datos de instalaciones, y me traigo su id
+    //Poner id de la pista como value??
+    //Luego en la tabla de reservas, me traigo las hora inicio/hora fin, distinguiendo las fechas
+    //Desde la misma consulta, y seis dias mas
+    //Tabla de 7 columnas, distinguiendo horarios disponibles
+
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT id_insalacion,DISTINCT fecha,hora_inicio,hora_fin FROM reservas WHERE usuario=:usuario AND contrasena=:contrasena");
+        $sql->bindParam(":usuario", $usuario);
+        $sql->bindParam(":contrasena", $contrasena);
+        $sql->execute();
+        $id = "SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena";
+        $con = null; //Cerramos la conexión
+        echo $id;
+    } catch (PDOException $e) {
+        echo $e;
+    }
 
     ?>
 
