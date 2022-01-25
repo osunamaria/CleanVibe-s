@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    margin-bottom: 5em;
+}
+
+.tablon {
+    width: 70em;
+    height: auto;
+    background-color: white;
+    border: 0.1em solid rgb(180, 180, 180);
+    margin: 3em 0 0 10em;
+    padding: 2em;
+}
+
+.tablon h2 {
+    font-size: xx-large;
+    margin-bottom: 1.7em;
+}
+
+.tablon .filtro {
+    padding: 0.5em 1em;
+    margin-left: 1em;
+    width: 10em;
+    padding-left: 1em;
+    border-radius: 0.5em;
+    font-size: 1em;
+}
+
+.tablon .anadirAnuncio {
+    float: right;
+    background-color: orange;
+    padding: 0.5em 1em;
+    transition: 0.4s;
+    border-radius: 2em;
+    cursor: pointer;
+    margin-right: 5em;
+    font-size: 1em;
+    color: white;
+    border: 0.2em solid orange;
+    text-decoration: none;
+}
+
+.anadirAnuncio:hover {
+    opacity: 0.6;
+}
