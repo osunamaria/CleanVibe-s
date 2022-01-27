@@ -56,12 +56,33 @@
         $sql = $con->prepare("SELECT fecha,hora_inicio,hora_fin FROM reservas WHERE id_instalacion=:id_instalacion");
         $sql->bindParam(":id_instalacion", $id_instalacion);
         $sql->execute();
-        $ = "SELECT DISTINCT fecha,hora_inicio,hora_fin FROM reservas WHERE id_instalacion=:id_instalacion";
+        //Array de los dias con sus fechas, 7 dias
+        $horarios = []; 
+        $horarios = "SELECT fecha,hora_inicio,hora_fin 
+            FROM reservas 
+            WHERE id_instalacion=:id_instalacion 
+            AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(fecha,'DD'))+6) 
+            AND TO_NUMBER(TO_CHAR(fecha,'DD')) => TO_NUMBER(TO_CHAR(GETDATE('DD'))";
+
+        // while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+        //     $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+        // } Ejercicio dani
+
         $con = null; //Cerramos la conexión
         echo $id;
     } catch (PDOException $e) {
         echo $e;
     }
+
+    for($i=0;$i<7;$i++){
+        //Horario de 8 a 10, 1:30
+        for($j=0;$j<9){
+            echo "<tr>";
+            echo "<td>".$horarios[$i]['nombre']."</td>";
+            echo "<td>".$horarios[$i]['nombre']."</td>";
+            echo "</tr>";
+        }//Fin Para
+    }//Fin Para
 
     ?>
 
