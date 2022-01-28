@@ -51,6 +51,8 @@
     //Desde la misma consulta, y seis dias mas
     //Tabla de 7 columnas, distinguiendo horarios disponibles
 
+    //Generar tabla, preguntar las horas que estan registradas en la base de datos, que seran las que no estan disponibles
+
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
         $sql = $con->prepare("SELECT fecha,hora_inicio,hora_fin FROM reservas WHERE id_instalacion=:id_instalacion");
