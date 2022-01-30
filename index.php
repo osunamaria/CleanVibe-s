@@ -26,18 +26,8 @@
 
 <body>
     <?php
-    <header>
-    <a href="index.html"><img src="img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
-    <a href="registro/index.html"><button class="sesion">Entrar</button></a>
-</header>
-
-<nav>
-    <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="publicaciones/index.html">Publiciones</a></li>
-        <li><a href="reservas/index.html">Reservas</a></li>
-    </ul>
-</nav>
+        session_start();
+        echo session_id();
     ?>
 
     <section class="container">
