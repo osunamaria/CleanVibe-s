@@ -12,6 +12,7 @@
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
         $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
+        $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
 
         $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
