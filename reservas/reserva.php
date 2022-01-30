@@ -40,53 +40,71 @@
         </ul>
     </nav>
 
-    <!-- php -------------------------------- -->
-    <?php
-    //Conectar base de datos
-    // include 
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                
 
-    $id_instalacion = $_POST['id_instalacion'];
+        <!-- php -------------------------------- -->
+        <?php
+        //Conectar base de datos
+        $servidor = "localhost";
+        $baseDatos = "cleanvibes";
+        $user = "root";
+        $pass = "";
 
-    //Luego en la tabla de reservas, me traigo las hora inicio/hora fin, distinguiendo las fechas
-    //Desde la misma consulta, y seis dias mas
-    //Tabla de 7 columnas, distinguiendo horarios disponibles
+        $id_instalacion = $_POST['id_instalacion'];
 
-    //Generar tabla, preguntar las horas que estan registradas en la base de datos, que seran las que no estan disponibles
+        echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+        echo "<th></th>";
+        echo "<th></th>";
+        echo "<th></th>";
+        echo "<th></th>";
+        echo "<th></th>";
+        echo "<th></th>";
+        echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
-    try {
-        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT fecha,hora_inicio,hora_fin FROM reservas WHERE id_instalacion=:id_instalacion");
-        $sql->bindParam(":id_instalacion", $id_instalacion);
-        $sql->execute();
-        //Array de los dias con sus fechas, 7 dias
-        $horarios = []; 
-        $horarios = "SELECT fecha,hora_inicio,hora_fin 
-            FROM reservas 
-            WHERE id_instalacion=:id_instalacion 
-            AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(fecha,'DD'))+6) 
-            AND TO_NUMBER(TO_CHAR(fecha,'DD')) => TO_NUMBER(TO_CHAR(GETDATE('DD'))";
+        //Luego en la tabla de reservas, me traigo las hora inicio/hora fin, distinguiendo las fechas
+        //Desde la misma consulta, y seis dias mas
+        //Tabla de 7 columnas, distinguiendo horarios disponibles
 
-        // while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
-        //     $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
-        // } Ejercicio dani
+        //Generar tabla, preguntar las horas que estan registradas en la base de datos, que seran las que no estan disponibles
 
-        $con = null; //Cerramos la conexión
-        echo $id;
-    } catch (PDOException $e) {
-        echo $e;
-    }
+        try {
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+            $sql = $con->prepare("SELECT fecha,hora_inicio FROM reservas WHERE id_instalacion=:id_instalacion AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(fecha,'DD'))+6) 
+            AND TO_NUMBER(TO_CHAR(fecha,'DD')) => TO_NUMBER(TO_CHAR(GETDATE('DD'))");
+            $sql->bindParam(":id_instalacion", $id_instalacion);
+            $sql->execute();
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+                $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+            }//Fin Mientras
+            
+            for($i=0;$i<7;$i++){
+                //Horario de 8 a 10, 1:30
+                for($j=0;$j<9;$j++){
+                    echo "<tr>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "</tr>";
+                }//Fin Para
+            }//Fin Para
 
-    for($i=0;$i<7;$i++){
-        //Horario de 8 a 10, 1:30
-        for($j=0;$j<9){
-            echo "<tr>";
-            echo "<td>".$horarios[$i]['nombre']."</td>";
-            echo "<td>".$horarios[$i]['nombre']."</td>";
-            echo "</tr>";
-        }//Fin Para
-    }//Fin Para
+            $con = null; //Cerramos la conexión
+        } catch (PDOException $e) {
+            echo $e;
+        }
 
-    ?>
+        ?>
+        </tbody>
+    </table>
 
     <footer>
         <div class="redes">
