@@ -13,9 +13,9 @@
         $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
         $sql->execute();
-        $id = "SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena";
-        
-        echo $id;
+
+        $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
+
         if ($id != 0 && $id != null && $id!="") {
             header("location: ../index.php");
             exit();
