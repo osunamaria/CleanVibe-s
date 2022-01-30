@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="../css/contabilidad.css">
     <title>Contabilidad</title>
 </head>
+
 <body>
     <header>
         <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
@@ -41,10 +43,10 @@
     </nav>
 
     <article class="container">
-      <form action="../php/contabilidad.php" method="POST" class="row justify-content-center mb-3 bg-secondary p-2">
-        <label for="cuentas" class="col-1">Cuentas: </label>
-        <div class="col-9 text-start">
-          <select name="cuentas" id="cuentas">
+        <form action="../php/contabilidad.php" method="POST" class="row justify-content-center mb-3 bg-secondary p-2">
+            <label for="cuentas" class="col-1">Cuentas: </label>
+            <div class="col-9 text-start">
+                <select name="cuentas" id="cuentas">
             <option value="gEvento">Gasto eventos</option>
             <option value="gInstalacion">Gasto instalaciones</option>
             <option value="gOtros">Gastos otros</option>
@@ -52,41 +54,41 @@
             <option value="iReserva">Ingresos reservas</option>
             <option value="total">Total</option>
           </select>
-        </div>
-        <div class="col-2 text-end">
-          <input type="submit" value="Buscar">
-        </div>
-      </form>
+            </div>
+            <div class="col-2 text-end">
+                <input type="submit" value="Buscar">
+            </div>
+        </form>
 
-      <table class="table table-success table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
     </article>
 
     <footer>
@@ -116,4 +118,5 @@
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

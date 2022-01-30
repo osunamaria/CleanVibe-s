@@ -1,12 +1,13 @@
-* {
+*{
     margin: 0;
     padding: 0;
 }
 
-nav {
+nav,
+article{
     margin-bottom: 5em;
 }
 
-b {
-    color: orange;
+.buscaReserva{
+    float: right;
 }
