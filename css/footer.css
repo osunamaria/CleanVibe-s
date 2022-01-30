@@ -3,23 +3,16 @@
 footer {
     background-color: rgb(46, 46, 46);
     color: #929292;
-    width: 100%;
-    height: 17em;
-    position: relative;
-    bottom: 0;
-    display: block;
+    /* width: 100%; */
+    /* height: 17em; */
+    /* position: relative; */
+    /* bottom: 0; */
+    /* display: block; */
     margin-top: 3em;
 }
 
-.redes,
-.avisos,
-.nosotros {
-    float: left;
-    margin-left: 20em;
-    padding: 2em;
-}
 
-.redes h3 {
+/* .redes h3 {
     text-align: center;
 }
 
@@ -60,4 +53,4 @@ footer hr {
 footer .copy {
     text-align: center;
     margin-top: 1em;
-}
+} */
