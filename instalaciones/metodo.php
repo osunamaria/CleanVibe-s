@@ -1,6 +1,6 @@
 <?php 
 $servidor = "localhost";
-$baseDatos = "phpmyadmin";
+$baseDatos = "clean_vibes";
 $usuario = "root";
 $pass = "root";
 
@@ -38,4 +38,3 @@ function insertarInsatalacion($tipo, $nombre, $localizacion)
     $con = null;
     return $id;
 }
-?>
