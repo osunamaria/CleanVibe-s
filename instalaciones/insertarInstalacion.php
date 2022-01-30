@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
     <?php include "metodo.php";
 
         error_log(0);
@@ -17,6 +18,7 @@
     $confirmacion = '';
     $error=false;//Control de errores
     $errores="";
+
     //Variables obtenidas por metodo post del formulario
         $tipo = $_POST['tipo'];
         $nombre = $_POST['nombre'];
@@ -44,6 +46,7 @@
             $confirmacion .= "<li>Tipo: $tipo</li>";
             $confirmacion .= "<li>Nombre: $nombre</li>";
             $confirmacion .= "<li>Localizacion: $localizacion</li>";
+            insertarInsatalacion($tipo, $nombre, $localizacion);
 
         }else{
             $confirmacion = "No se ha podido realizar la inserción";

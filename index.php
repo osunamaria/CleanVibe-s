@@ -25,26 +25,18 @@
 </head>
 
 <body>
-    <header>
-        <a href="index.html"><img src="img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
-        <a href="registro/index.html"><button class="sesion">Entrar</button></a>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="publicaciones/index.html">Publiciones</a></li>
-            <li><a href="reservas/index.html">Reservas</a></li>
-        </ul>
-    </nav>
+    <?php
+        session_start();
+        echo session_id();
+    ?>
 
     <section class="container">
-        <article class="row justify-content-center shadow p-3 mb-5 bg-secondary rounded text-light">
-            <h1 class="text-center"><b>C</b>lean <b>V</b>ibe's</h1>
+        <article class="row justify-content-center shadow p-3 mb-5 bg-secondary rounded ">
+            <h1 class="text-center">Clean Vibe's</h1>
             <p class="col-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, debitis. Voluptas tenetur nobis odio obcaecati alias incidunt ea reprehenderit ratione ipsa tempora, autem iste deserunt sit necessitatibus? Rem, quaerat praesentium!</p>
         </article>
         <article>
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
                 <i class="fas fa-th-list col-1"></i>
                 <h3 class="col-4">INSTALACIONES DEPORTIVAS</h3>
             </div>
@@ -130,45 +122,29 @@
         </article>
 
     </section>
-    <footer class="container-fluid">
-        <div class="row m-4 p-4 justify-content-center">
-            <div class="col-4">
-                <h3>Redes sociales</h3>
-                <ul class="list-unstyled">
-                    <li><i class="fab fa-instagram"></i></li>
-                    <li><i class="fab fa-twitter"></i></li>
-                    <li><i class="fab fa-facebook-square"></i></li>
-                </ul>
-            </div>
-            <div class="col-4">
-                <h3>Sobre nosotros</h3>
-                <p>somos unos crackens</p>
-            </div>
-            <div class="col-4">
-                <h3>Avisos legales</h3>
-                <ul>
-                    <li>FAQ</li>
-                    <li>Condiciones de uso</li>
-                    <li>Otras cosas</li>
-                </ul>
-            </div>
+    <footer>
+        <div class="redes">
+            <h3>Redes sociales</h3>
+            <ul>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-facebook-square"></i></li>
+            </ul>
         </div>
+        <div class="nosotros">
+            <h3>Sobre nosotros</h3>
+            <p>somos unos crackens</p>
+        </div>
+        <div class="avisos">
+            <h3>Avisos legales</h3>
+            <ul>
+                <li>FAQ</li>
+                <li>Condiciones de uso</li>
+                <li>Otras cosas</li>
+            </ul>
+        </div><br>
         <hr>
-        <p class="text-center">Copyright &copy; 2021 Todos los derechos reservados ClearVibe's S.A.</p>
-    </footer>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <img src="img/logoNaranja.png" alt="logo">
-            </a>
-            <span class="text-muted">&copy; 2021 Company, Inc</span>
-        </div>
-
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-        </ul>
+        <p class="copy">Copyright &copy; 2021 Todos los derechos reservados ClearVibe's S.A.</p>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="js/bootstrap.bundle.min.js"></script>
