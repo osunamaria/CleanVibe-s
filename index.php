@@ -25,10 +25,6 @@
 </head>
 
 <body>
-    <?php
-        // session_start();
-        // echo session_id();
-    ?>
     <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="index.php" class="me-md-auto">
