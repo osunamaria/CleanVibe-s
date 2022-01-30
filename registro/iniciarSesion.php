@@ -17,10 +17,10 @@
         
         echo $id;
         if ($id != 0 && $id != null && $id!="") {
-            header("location: ../index.html");
+            header("location: ../index.php");
             exit();
         } else {
-            echo "Datos incorrectos";
+            header("location: error.php");
         }
 
         $con = null; //Cerramos la conexión
