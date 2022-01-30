@@ -23,6 +23,5 @@
     <a href="../index.html">[Pagina principal]</a>
 
     <h2><?php echo $error;?></h2>
-    <a href="index.html">Volver</a>
 </body>
 </html>

@@ -18,26 +18,32 @@
     $error=false;//Control de errores
     $errores="";
     //Variables obtenidas por metodo post del formulario
+    //isset para controlar errores
+        
         $titulo = $_POST['titulo'];
-        $publicacion = $_POST['publicacion'];
-        $tipo = $_POST['tipo'];
+        $publicacion = isset($_POST['publicacion']);
+        $tipo = isset($_POST['tipo']);
         $contenido = $_POST['contenido'];
         $fecha = $_POST['fecha'];
 
         //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
-        if($titulo==""){
-            $errores .= "<li>Para definir la publicacion necesitamo un titulo</li>";
-            $error=true;
-        }
-
         if($publicacion==""){
             $errores .= "<li>Necesitamos saber si es una noticia o evento</li>";
+            $error=true;
+        }else{
+            $publicacion =$_POST['publicacion'];
+        }
+
+        if($titulo==""){
+            $errores .= "<li>Para definir la publicacion necesitamo un titulo</li>";
             $error=true;
         }
 
         if($tipo==""){
             $errores .= "<li>Es obligatorio definir la privacidad de la publicacion</li>";
             $error=true;
+        }else{
+            $tipo = $_POST['tipo'];
         }
 
         if($contenido==""){
@@ -61,10 +67,11 @@
         }else{
             $confirmacion = "No se han podido realizar la inserción";
             $confirmacion .= $errores;
+
         }
 
     ?>
     <p><?php print($confirmacion); ?></p>   
-    <a href="index.html">[ Insertar otra publicacion ]</a>
+    <a href="form.html">[ Insertar otra publicacion ]</a>
 </body>
 </html>

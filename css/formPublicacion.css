@@ -2,12 +2,7 @@
     margin: 0;
     padding: 0;
 }
-table{
-    text-align: center;
-}
-.nombreInstalacion{
-    visibility: hidden;
-}
+
 .guardar{
     background-color: transparent;
     border: solid 1px #6f7484;
@@ -19,6 +14,11 @@ table{
     border-radius: 10%;
     color: #f99804;
 }
+
+.eventoNoticia{
+    visibility: hidden;
+}
+
 article{
     margin-top: 5%;
     text-align: center;
@@ -35,6 +35,7 @@ table {
     margin-left: 40%;
     margin-top: 3%;
     font-size: 1.1em;
+    text-align: center;
 }
 
 td {

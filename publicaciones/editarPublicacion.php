@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <?php include "metodo.php";
+    <?php include "metodos.php";
 
     if (count($_GET) > 0) {
         $id = $_GET["varId"];
@@ -40,7 +40,7 @@
     }
     ?>
 
-    <a href="index.html">[Editar otra publicacion]</a>
+    <a href="index.php">[Editar otra publicacion]</a>
     <a href="../index.html">[Pagina principal]</a>
 
 

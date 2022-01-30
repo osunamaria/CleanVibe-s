@@ -12,7 +12,7 @@
         
     <?php include "metodo.php";
     $id=$_GET["varId"];
-    $publicacion=obtenerPublicacion($id);
+    $publicacion=obtenerTodas($id);
     ?>
 
 <a href="index.html">[Editar otra publicacion]</a>
