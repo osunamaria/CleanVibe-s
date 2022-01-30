@@ -10,13 +10,15 @@
 </head>
 
 <body>
-    <?php include "metodo.php";
+    
+    <?php include "metodo.php"
 
         error_log(0);
 
     $confirmacion = '';
     $error=false;//Control de errores
     $errores="";
+
     //Variables obtenidas por metodo post del formulario
         $tipo = $_POST['tipo'];
         $nombre = $_POST['nombre'];
