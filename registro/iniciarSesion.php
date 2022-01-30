@@ -26,7 +26,6 @@
             $_SESSION['sesion_iniciada'] = true;
             $_SESSION['username'] = $id['usuario'];
             header("location: ../index.php");
-            exit();
         } else {
             //Error inicio sesion
             header("location: error.php");
