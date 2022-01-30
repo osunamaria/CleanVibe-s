@@ -74,7 +74,7 @@
 
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("SELECT fecha,hora_inicio FROM reservas WHERE id_instalacion=:id_instalacion AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(fecha,'DD'))+6) 
+            $sql = $con->prepare("SELECT fecha,hora_inicio FROM reservas WHERE id_instalacion=:id_instalacion AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(GETDATE,'DD'))+6) 
             AND TO_NUMBER(TO_CHAR(fecha,'DD')) => TO_NUMBER(TO_CHAR(GETDATE('DD'))");
             $sql->bindParam(":id_instalacion", $id_instalacion);
             $sql->execute();
