@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- links css -->
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/headers.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/inicio.css">
     <title>Inicio</title>
@@ -26,9 +26,47 @@
 
 <body>
     <?php
-        session_start();
-        echo session_id();
+        // session_start();
+        // echo session_id();
     ?>
+    <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="index.php" class="me-md-auto">
+        <span class="fs-4"><img src="img/logoOriginal.png" class="img-fluid"></span>
+      </a>
+
+      <ul class="nav nav-pills mt-4">
+        <li class="nav-item"><a href="index.php" class="nav-link text-secondary">Inicio</a></li>
+        <li class="nav-item"><a href="publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+        <li class="nav-item"><a href="reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
+        <?php
+            // Continuar la sesión
+            session_start();
+
+            if(isset($_SESSION['sesion_iniciada']) == true ){
+                $tipo = session_id();
+                if($tipo=="presidente" || $tipo=="administrador"){
+                    echo "<li class='nav-item dropdown'>";
+                        echo "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+                            echo "Gestiones";
+                        echo "</a>";
+                        echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                            echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                            echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
+                            echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
+                            echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
+                            echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                        echo "</ul>";
+                    echo "</li>";
+                }
+            }else{
+                echo "<li class='nav-item me-md-auto'><a href='registro/index.html' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+            }//Fin si
+        ?>
+        
+      </ul>
+    </header>
+  </div>
 
     <section class="container">
         <article class="row justify-content-center shadow p-3 mb-5 bg-secondary rounded ">

@@ -1,7 +1,7 @@
 <?php
 
     $servidor = "localhost";
-    $baseDatos = "cleanvibes";
+    $baseDatos = "clean_vibes";
     $user = "root";
     $pass = "";
 
@@ -15,13 +15,6 @@
         $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
 
-<<<<<<< HEAD
-        $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
-        if($id==""){
-            echo "Vacio";
-        }else{
-            echo "Lleno";
-=======
         $persona = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
         if ($persona!="") {
@@ -37,7 +30,6 @@
         } else {
             //Error inicio sesion
             header("location: error.php");
->>>>>>> main
         }
 
         $con = null; //Cerramos la conexión
