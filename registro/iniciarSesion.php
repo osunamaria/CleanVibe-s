@@ -17,9 +17,11 @@
         $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
         if ($id != 0 && $id != null && $id!="") {
+            //Inicio sesion
             header("location: ../index.php");
             exit();
         } else {
+            //Error inicio sesion
             header("location: error.php");
         }
 
