@@ -24,7 +24,7 @@
 
     }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
 
-        echo "DNI incorrecto"
+        echo "DNI incorrecto";
 
     }else{
 
