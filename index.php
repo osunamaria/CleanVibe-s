@@ -56,7 +56,12 @@
                             echo "</ul>";
                         echo "</li>";
                     }
-                    // session_destroy(); Para confirmar que funciona
+
+                // Borrar variables de la sesion.
+                // session_unset(); 
+
+                // Destruye el resto de información sobre la sesión
+                // session_destroy();
                 }else{
                     echo "<li class='nav-item me-md-auto'><a href='registro/index.html' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
                     // session_destroy(); Para confirmar que funciona
