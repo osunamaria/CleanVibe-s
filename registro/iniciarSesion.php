@@ -36,11 +36,4 @@
     } catch (PDOException $e) {
         echo $e;
     }
-    //Si el usuario y la contraseña son iguales, inicio sesion
-    if ($usuario == $pass && $usuario != "" && $pass!=""){
-        // Si se usa debe contener sólo caracteres alfanuméricos e ir antes de session_start():
-        
-    }else{
-        header("location: error.php");
-    }//Fin Si
 ?>
