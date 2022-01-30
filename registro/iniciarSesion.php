@@ -16,7 +16,7 @@
 
         $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
-        if ($id != 0 && $id != null && $id!="") {
+        if (!$id=="") {
             //Inicio sesion
             //Sesion id seria el tipo de usuario
             session_id($id['tipo']);
