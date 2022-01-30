@@ -47,7 +47,7 @@
                 $tipo = session_id();
                 if($tipo=="presidente" || $tipo=="administrador"){
                     echo "<li class='nav-item dropdown'>";
-                        echo "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+                        echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
                             echo "Gestiones";
                         echo "</a>";
                         echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
@@ -59,11 +59,12 @@
                         echo "</ul>";
                     echo "</li>";
                 }
+                // session_destroy(); Para confirmar que funciona
             }else{
                 echo "<li class='nav-item me-md-auto'><a href='registro/index.html' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                // session_destroy(); Para confirmar que funciona
             }//Fin si
         ?>
-        
       </ul>
     </header>
   </div>
