@@ -18,20 +18,20 @@
     $error=false;//Control de errores
     $errores="";
     //Variables obtenidas por metodo post del formulario
-        $tipo = $_POST['tipo'];
         $titulo = $_POST['titulo'];
         $publicacion = $_POST['publicacion'];
+        $tipo = $_POST['tipo'];
         $contenido = $_POST['contenido'];
         $fecha = $_POST['fecha'];
 
         //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
-        if($publicacion==""){
-            $errores .= "<li>Necesitamos saber si es una noticia o evento</li>";
+        if($titulo==""){
+            $errores .= "<li>Para definir la publicacion necesitamo un titulo</li>";
             $error=true;
         }
 
-        if($titulo==""){
-            $errores .= "<li>Para definir la publicacion necesitamo un titulo</li>";
+        if($publicacion==""){
+            $errores .= "<li>Necesitamos saber si es una noticia o evento</li>";
             $error=true;
         }
 
@@ -57,7 +57,7 @@
             $confirmacion .= "<li>Tipo: $tipo</li>";
             $confirmacion .= "<li>Publicacion: $publicacion</li>";
             $confirmacion .= "<li>Contenido: $contenido</li>";
-
+            insertarPublicacion($titulo, $publicacion, $tipo, $contenido, $fecha);
         }else{
             $confirmacion = "No se han podido realizar la inserción";
             $confirmacion .= $errores;

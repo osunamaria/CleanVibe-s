@@ -11,7 +11,7 @@
 
 <body>
     
-    <?php include "metodo.php"
+    <?php include "metodo.php";
 
         error_log(0);
 
@@ -46,6 +46,7 @@
             $confirmacion .= "<li>Tipo: $tipo</li>";
             $confirmacion .= "<li>Nombre: $nombre</li>";
             $confirmacion .= "<li>Localizacion: $localizacion</li>";
+            insertarInsatalacion($tipo, $nombre, $localizacion);
 
         }else{
             $confirmacion = "No se ha podido realizar la inserción";

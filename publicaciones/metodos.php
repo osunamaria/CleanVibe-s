@@ -1,8 +1,8 @@
 <?php 
 $servidor = "localhost";
-$baseDatos = "clean_vibes";
+$baseDatos = "cleanvibes";
 $usuario = "root";
-$pass = "root";
+$pass = "";
 
 error_log(0);
 
@@ -22,7 +22,7 @@ function obtenerPublicacion($id)
     }
 }
 
-function insertarPublicacion($tipo, $publicacion, $contenido, $fecha)
+function insertarPublicacion($titulo, $publicacion, $tipo, $contenido, $fecha)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
@@ -74,7 +74,7 @@ function eliminarPublicacion($id)
     $con = null;
     return $retorno;
 }
-function editarPublicacion($id, $tipo, $publicacion, $contenido, $fecha)
+function editarPublicacion($id, $publicacion, $tipo, $contenido, $fecha)
 {
     $retorno = false;
     try {
