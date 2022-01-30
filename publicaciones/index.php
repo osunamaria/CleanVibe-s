@@ -86,8 +86,8 @@
                                     echo "<td>".$evento_noticia[$i]['tipo']."</td>";
                                     echo "<td>".$evento_noticia[$i]['contenido']."</td>";
                                     // Añadir foto de editar y eliminar fontawesaome
-                                    echo "<td><a href='editarPublicacion.php'><img src='../img/logoNaranja.png' width='16' height='16'></a></td>";
-                                    echo "<td><a href='eliminarPublicacion.php'><img src='../img/logoNaranja.png' width='16' height='16'></a></td>";
+                                    echo "<td><a href='editarPublicacion.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
+                                    echo "<td><a href='editarPublicacion.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
                                 echo "</tr>";
                             }//Fin Para
                             ?>
