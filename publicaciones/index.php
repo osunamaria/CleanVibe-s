@@ -58,6 +58,44 @@
                     <a href="form.html" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nueva publicación</a>
                 </div>
             </div>
+            <div class="row">
+                <div>
+                    <!-- Obtener todas -->
+                    <table class="fixed_headers">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Publicacion</th>
+                                <th>Tipo</th>
+                                <th>Contenido</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php include_once "metodos.php";
+                
+                            // error_reporting(0);
+                            
+                            $evento_noticia = obtenerTodas();
+                
+                            for ($i=0;$i<sizeof($evento_noticia);$i++){
+                                echo "<tr>";
+                                    echo "<td>".$evento_noticia[$i]['titulo']."</td>";
+                                    echo "<td>".$evento_noticia[$i]['publicacion']."</td>";
+                                    echo "<td>".$evento_noticia[$i]['tipo']."</td>";
+                                    echo "<td>".$evento_noticia[$i]['contenido']."</td>";
+                                    // Añadir foto de editar y eliminar fontawesaome
+                                    echo "<td><a href='editarPublicacion.php'><img src='../img/logoNaranja.png' width='16' height='16'></a></td>";
+                                    echo "<td><a href='eliminarPublicacion.php'><img src='../img/logoNaranja.png' width='16' height='16'></a></td>";
+                                echo "</tr>";
+                            }//Fin Para
+                            ?>
+                        </tbody>
+                    </table>
+                <!-- Obtener todas Fin -->
+                </div>
+            </div>
         </div>
     </article>
 

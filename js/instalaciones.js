@@ -1,7 +1,10 @@
+let contador=0;
 function crearInstalacion(){
-    document.getElementById("nombreInstalacion").style.visibility="visible";
-}
-//Comprobar si esta bien el formulario, y luego cerrarlo mostrando un mensaje de guardado
-function cerrarInstalacion(){
-    document.getElementById("nombreInstalacion").style.visibility="hidden";
+    if(contador%2==0){
+        contador++;
+        document.getElementById("nombreInstalacion").style.visibility="visible";
+    }else{
+        contador++;
+        document.getElementById("nombreInstalacion").style.visibility="hidden";
+    }
 }
