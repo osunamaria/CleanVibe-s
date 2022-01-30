@@ -10,22 +10,22 @@
 
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
+        $sql = $con->prepare("SELECT id,tipo FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
         $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
 
-        $id = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
+        $user = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
-        if ($id!="") {
+        if ($user!="") {
             //Inicio sesion
             //Sesion id seria el tipo de usuario
-            session_id($id['tipo']);
+            session_id($user['tipo']);
             session_start();
             
             // Variables de sesión:
             $_SESSION['sesion_iniciada'] = true;
-            $_SESSION['username'] = $id['usuario'];
+            $_SESSION['username'] = $usuario;
             header("location: ../index.php");
         } else {
             //Error inicio sesion
