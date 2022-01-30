@@ -10,10 +10,11 @@
 
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario");
+        $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
         $sql->execute();
-
+        $id = "SELECT id FROM socios WHERE usuario=:usuario AND contrasena=:contrasena";
+        
         echo $id;
         if ($id != 0 && $id != null && $id!="") {
             header("location: ../index.html");
@@ -21,12 +22,11 @@
         } else {
             echo "Datos incorrectos";
         }
-        
+
         $con = null; //Cerramos la conexión
     } catch (PDOException $e) {
         echo $e;
     }
-
     //Si el usuario y la contraseña son iguales, inicio sesion
     if ($usuario == $pass && $usuario != "" && $pass!=""){
         // Si se usa debe contener sólo caracteres alfanuméricos e ir antes de session_start():
