@@ -1,8 +1,10 @@
+let contador=0;
 function crearPublicacion(){
-    document.getElementById("eventoNoticia").style.visibility="visible";
-}
-//Comprobar si esta bien el formulario, y luego cerrarlo mostrando un mensaje de guardado
-
-function cerrarPublicacion(){
-    document.getElementById("eventoNoticia").style.visibility="hidden";
+    if(contador%2==0){
+        contador++;
+        document.getElementById("eventoNoticia").style.visibility="visible";
+    }else{
+        contador++;
+        document.getElementById("eventoNoticia").style.visibility="hidden";
+    }
 }

@@ -1,8 +1,8 @@
 <?php 
 $servidor = "localhost";
-$baseDatos = "clean_vibes";
+$baseDatos = "cleanvibes";
 $usuario = "root";
-$pass = "root";
+$pass = "";
 
 error_log(0);
 
