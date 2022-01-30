@@ -15,12 +15,12 @@
         $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
 
-        $user = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
+        $persona = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
-        if ($user!="") {
+        if ($persona!="") {
             //Inicio sesion
             //Sesion id seria el tipo de usuario
-            session_id($user['tipo']);
+            session_id($persona['tipo']);
             session_start();
             
             // Variables de sesión:
