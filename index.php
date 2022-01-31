@@ -55,6 +55,7 @@
                         echo "</ul>";
                     echo "</li>";
                 }
+                echo "<li class='nav-item me-md-auto'><a href='cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
                 // session_destroy(); Para confirmar que funciona
             }else{
                 echo "<li class='nav-item me-md-auto'><a href='registro/index.html' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
