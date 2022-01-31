@@ -58,7 +58,7 @@
                     }
                     echo "<li class='nav-item me-md-auto'><a href='index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
                 }else{
-                    echo "<li class='nav-item me-md-auto'><a href='registro/index.html' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                    echo "<li class='nav-item me-md-auto'><a href='registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
                 }//Fin si
             ?>
         </ul>
