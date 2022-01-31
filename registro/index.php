@@ -30,12 +30,12 @@
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="index.php" class="me-md-auto">
+        <a href="../index.php" class="me-md-auto">
             <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
         </a>
 
         <ul class="nav nav-pills mt-4">
-            <li class="nav-item"><a href="index.php" class="nav-link text-secondary">Inicio</a></li>
+            <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
             <li class="nav-item"><a href="publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
             <li class="nav-item"><a href="reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
         </ul>
