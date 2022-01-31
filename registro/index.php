@@ -13,9 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- links css -->
+    <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/registro.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- link para iconos -->
     <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
@@ -29,7 +31,7 @@
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="index.php" class="me-md-auto">
-            <span class="fs-4"><img src="img/logoOriginal.png" class="img-fluid"></span>
+            <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
         </a>
 
         <ul class="nav nav-pills mt-4">
@@ -171,6 +173,7 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
+    <script src="../js/bootstrap.bundle.min"></script>
 </body>
 
 </html>
