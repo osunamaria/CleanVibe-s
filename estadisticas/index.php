@@ -25,7 +25,7 @@
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="index.php" class="me-md-auto">
+        <a href="../index.php" class="me-md-auto">
             <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
         </a>
 
