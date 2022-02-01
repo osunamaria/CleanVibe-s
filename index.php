@@ -33,8 +33,8 @@
 
         <ul class="nav nav-pills mt-4">
             <li class="nav-item"><a href="index.php" class="nav-link text-secondary">Inicio</a></li>
-            <li class="nav-item"><a href="publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
-            <li class="nav-item"><a href="reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
+            <li class="nav-item"><a href="publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
+            <li class="nav-item"><a href="reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
             <?php
                 // Continuar la sesión
                 session_start();
@@ -47,9 +47,9 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../gestion_cuentas/index.php'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
                             echo "</ul>";
