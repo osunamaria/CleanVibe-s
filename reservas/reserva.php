@@ -62,71 +62,76 @@
         </header>
     </div>
 
-    <table class="table table-success table-striped">
-        <thead>
-            <tr>
-                
+    <div class="container">
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
 
-        <!-- php -------------------------------- -->
-        <?php
-        //Conectar base de datos
-        $servidor = "localhost";
-        $baseDatos = "cleanvibes";
-        $user = "root";
-        $pass = "";
 
-        $id_instalacion = $_POST['id_instalacion'];
+            <!-- php -------------------------------- -->
+            <?php
+            //Conectar base de datos
+            $servidor = "localhost";
+            $baseDatos = "cleanvibes";
+            $user = "root";
+            $pass = "";
 
-        echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
-        echo "<th></th>";
-        echo "<th></th>";
-        echo "<th></th>";
-        echo "<th></th>";
-        echo "<th></th>";
-        echo "<th></th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
+            $id_instalacion = $_POST['id_instalacion'];
 
-        //Luego en la tabla de reservas, me traigo las hora inicio/hora fin, distinguiendo las fechas
-        //Desde la misma consulta, y seis dias mas
-        //Tabla de 7 columnas, distinguiendo horarios disponibles
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "<th>".getdate()['weekday']." / ".getdate()['month']."</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
 
-        //Generar tabla, preguntar las horas que estan registradas en la base de datos, que seran las que no estan disponibles
+            //Luego en la tabla de reservas, me traigo las hora inicio/hora fin, distinguiendo las fechas
+            //Desde la misma consulta, y seis dias mas
+            //Tabla de 7 columnas, distinguiendo horarios disponibles
 
-        try {
-            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("SELECT fecha,hora_inicio FROM reservas WHERE id_instalacion=:id_instalacion AND TO_NUMBER(TO_CHAR(fecha,'DD')) < (TO_NUMBER(TO_CHAR(GETDATE,'DD'))+6) 
-            AND TO_NUMBER(TO_CHAR(fecha,'DD')) => TO_NUMBER(TO_CHAR(GETDATE('DD'))");
-            $sql->bindParam(":id_instalacion", $id_instalacion);
-            $sql->execute();
-            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
-                $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
-            }//Fin Mientras
-            
-            for($i=0;$i<7;$i++){
-                //Horario de 8 a 10, 1:30
-                for($j=0;$j<9;$j++){
-                    echo "<tr>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "</tr>";
+            //Generar tabla, preguntar las horas que estan registradas en la base de datos, que seran las que no estan disponibles
+
+            try {
+                $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+                $sql = $con->prepare("SELECT hora_inicio,fecha
+                                        FROM reservas 
+                                        WHERE id_instalacion=:id_instalacion 
+                                        AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
+                                        LIMIT 0,25;");
+                $sql->bindParam(":id_instalacion", $id_instalacion);
+                $sql->execute();
+                while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+                    $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+                }//Fin Mientras
+
+                for($i=0;$i<7;$i++){
+                    //Horario de 8 a 10, 1:30
+                    for($j=0;$j<9;$j++){
+                        echo "<tr>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "</tr>";
+                    }//Fin Para
                 }//Fin Para
-            }//Fin Para
 
-            $con = null; //Cerramos la conexión
-        } catch (PDOException $e) {
-            echo $e;
-        }
+                $con = null; //Cerramos la conexión
+            } catch (PDOException $e) {
+                echo $e;
+            }
 
-        ?>
-        </tbody>
-    </table>
+            ?>
+            </tbody>
+        </table>
+    </div>
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">

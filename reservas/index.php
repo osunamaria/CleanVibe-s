@@ -18,9 +18,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- links css -->
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/reservas.css">
     <title>Reservas</title>
 </head>
 
