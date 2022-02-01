@@ -19,8 +19,6 @@
 
     <!-- links css -->
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/publicaciones.css">
-    <link rel="stylesheet" href="../css/publicacion.css">
     <title>Publicaciones</title>
 </head>
 
@@ -84,7 +82,7 @@
             </div>
         </div>
 
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
             <?php include_once "verpublicaciones.php";
                 
                 // error_reporting(0);
