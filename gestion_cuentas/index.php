@@ -25,7 +25,7 @@
 
     <!-- links js -->
     <script src="../js/registro.js"></script>
-    <!-- <script src="../js/gestion_cuentas.js"></script> -->
+    <script src="../js/gestion_cuentas.js"></script>
 
 </head>
 
@@ -53,8 +53,8 @@
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
                                 echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
                             echo "</ul>";
@@ -71,14 +71,10 @@
     <section>
         <article>
             <ul>
-                <li class="subrayado">Ver usuarios</li>
-                <li>Añadir usuario</li>
-                <li>Editar usuario</li>
-                <li>Eliminar usuario</li>
+                <li id="usuarios" class="subrayado">Usuarios</li>
+                <li id="nuevos">Nuevos registros</li>
             </ul>
-        </article>
-        <article>
-            <div id="mostrar"></div>
+            <table id="tabla"></table>
         </article>
     </section>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">

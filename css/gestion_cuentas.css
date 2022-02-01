@@ -8,12 +8,13 @@ article ul {
     display: flex;
     margin-top: 3%;
     margin-left: 15%;
+    text-align: center;
 }
 
 article li {
     display: inline-block;
     position: relative;
-    width: 10em;
+    width: 8em;
     cursor: pointer;
 }
 
