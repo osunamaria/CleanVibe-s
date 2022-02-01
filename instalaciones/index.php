@@ -19,25 +19,44 @@
 </head>
 
 <body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="../index.php" class="me-md-auto">
+                <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
+            </a>
 
-    <script src="../js/instalaciones.js"></script>
+            <ul class="nav nav-pills mt-4">
+                <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
+                <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
+                <?php
+                // Continuar la sesión
+                session_start();
 
-    <header>
-        <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
-        <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Instalaciones</a></li>
-            <li><a href="#">Reservas</a></li>
-            <li><a href="#">Publicaciones</a></li>
-            <li><a href="#">Estadísticas</a></li>
-            <li><a href="#">Contabilidad</a></li>
-            <li><a href="#">Gestión de cuentas</a></li>
-        </ul>
-    </nav>
+                if(isset($_SESSION['sesion_iniciada']) == true ){
+                    $tipo = session_id();
+                    if($tipo=="presidente" || $tipo=="administrador"){
+                        echo "<li class='nav-item dropdown'>";
+                            echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+                                echo "Gestiones";
+                            echo "</a>";
+                            echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                            echo "</ul>";
+                        echo "</li>";
+                    }
+                    echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
+                }else{
+                    echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                }//Fin si
+            ?>
+            </ul>
+        </header>
+    </div>
 
     <article>
         <h1>Instalaciones</h1>
@@ -86,6 +105,9 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/instalaciones.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,15 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- link para iconos -->
-    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- links css -->
     <link rel="stylesheet" href="../css/footer.css">
-    <title>Contabilidad</title>
+    <title>Reservas</title>
 </head>
+
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -60,68 +62,9 @@
         </header>
     </div>
 
-    <article class="container">
-      <form action="../php/contabilidad.php" class="row justify-content-center mb-3 bg-secondary p-2">
-        <label for="cuentas" class="col-1">Cuentas: </label>
-        <div class="col-9 text-start">
-          <select name="cuentas" id="cuentas">
-            <option value="gEvento">Gasto eventos</option>
-            <option value="gInstalacion">Gasto instalaciones</option>
-            <option value="gOtros">Gastos otros</option>
-            <option value="iCuota">Ingresos cuotas</option>
-            <option value="iReserva">Ingresos reservas</option>
-            <option value="total">Total</option>
-          </select>
-        </div>
-        <div class="col-2 text-end">
-          <input type="submit" value="Buscar">
-        </div>
-      </form>
+    <section class="container">
 
-      <table class="table table-success table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        <!-- php ----------------------------- -->
-        <?php 
-            include "databaseManagement.inc.php";//php con metodos
-            $cuentas = $_POST["cuentas"];
-            function obtenerCuentas(){
-                try {
-                    $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-                    if($cuentas == "total"){
-                        $cuentas = "*";
-                    }//Fin Si
-                    $sql = $con->prepare("SELECT ".$cuentas." from contabilidad;");
-                    $sql->execute();
-                    $miArray = [];
-                    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
-                        $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
-                    }
-                    $con = null;
-                } catch (PDOException $e) {
-                    echo $e;
-                }
-                return $miArray;
-            }
-            $listaCuentas = obtenerCuentas();
-            for ($i=0;$i<sizeof($listaCuentas);$i++){
-                echo "<tr>";
-                echo "<td>".$listaCuentas[$i]."</td>";
-                echo "</tr>";
-            }//Fin Para
-
-            ?>
-        </tbody>
-        </table>
-    </article>
+    </section>
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
@@ -140,4 +83,5 @@
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
