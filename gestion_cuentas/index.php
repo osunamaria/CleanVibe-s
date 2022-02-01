@@ -20,6 +20,9 @@
     <!-- link para iconos -->
     <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
 
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
     <!-- links js -->
     <script src="../js/registro.js"></script>
     <!-- <script src="../js/gestion_cuentas.js"></script> -->
