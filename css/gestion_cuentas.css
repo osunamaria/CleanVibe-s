@@ -6,13 +6,18 @@
 article ul {
     list-style: none;
     display: flex;
-    margin-top: 6%;
-    margin-left: 5%;
+    margin-top: 3%;
+    margin-left: 15%;
+    text-align: center;
 }
 
 article li {
     display: inline-block;
     position: relative;
-    width: 10em;
+    width: 8em;
     cursor: pointer;
+}
+
+.subrayado {
+    border-bottom: 1px solid black;
 }

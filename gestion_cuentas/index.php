@@ -13,42 +13,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- links css -->
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/gestion_cuentas.css">
 
+    <!-- link para iconos -->
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
     <!-- links js -->
-    <!-- <script src="../js/gestion_cuentas.js"></script> -->
+    <script src="../js/registro.js"></script>
+    <script src="../js/gestion_cuentas.js"></script>
 
 </head>
 
 <body>
-    <header>
-        <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
-        <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Instalaciones</a></li>
-            <li><a href="#">Reservas</a></li>
-            <li><a href="#">Publicaciones</a></li>
-            <li><a href="#">Estadísticas</a></li>
-            <li><a href="#">Contabilidad</a></li>
-            <li><a href="#">Gestión de cuentas</a></li>
-        </ul>
-    </nav>
+<div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="../index.php" class="me-md-auto">
+                <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
+            </a>
+
+            <ul class="nav nav-pills mt-4">
+                <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
+                <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
+                <?php
+                // Continuar la sesión
+                session_start();
+
+                if(isset($_SESSION['sesion_iniciada']) == true ){
+                    $tipo = session_id();
+                    if($tipo=="presidente" || $tipo=="administrador"){
+                        echo "<li class='nav-item dropdown'>";
+                            echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+                                echo "Gestiones";
+                            echo "</a>";
+                            echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
+                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                            echo "</ul>";
+                        echo "</li>";
+                    }
+                    echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
+                }else{
+                    echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                }//Fin si
+            ?>
+            </ul>
+        </header>
+    </div>
     <section>
         <article>
             <ul>
-                <li class="subrayado">Ver usuarios</li>
-                <li>Añadir usuario</li>
-                <li>Editar usuario</li>
-                <li>Eliminar usuario</li>
+                <li id="usuarios" class="subrayado">Usuarios</li>
+                <li id="nuevos">Nuevos registros</li>
             </ul>
-        </article>
-        <article>
-            <div id="mostrar"></div>
+            <table id="tabla"></table>
         </article>
     </section>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
@@ -65,6 +91,7 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
+    <script src="../js/bootstrap.bundle.min"></script>
 </body>
 
 </html>
