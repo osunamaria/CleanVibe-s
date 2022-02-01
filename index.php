@@ -19,7 +19,6 @@
 
     <!-- links css -->
     <link rel="stylesheet" href="css/headers.css">
-    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/inicio.css">
     <title>Inicio</title>
