@@ -106,7 +106,7 @@
         </ul>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/instalaciones.js"></script>
 </body>
 
