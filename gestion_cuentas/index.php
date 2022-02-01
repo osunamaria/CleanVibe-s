@@ -82,10 +82,15 @@
                     <table class="fixed_headers">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Publicacion</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>DNI</th>
                                 <th>Tipo</th>
-                                <th>Contenido</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Número de miembros</th>
+                                <th>Cuota</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -108,8 +113,8 @@
                                         echo "<td>".$usuarios[$i]['num_miembros']."</td>";
                                         echo "<td>".$usuarios[$i]['cuota']."</td>";
                                         // Añadir foto de editar y eliminar fontawesaome
-                                        echo "<td><a href='editarPublicacion.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
-                                        echo "<td><a href='editarPublicacion.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
+                                        echo "<td><a href='editarUsuario.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
+                                        echo "<td><a href='eliminarUsuario.php.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
                                     echo "</tr>";
                                 }//Fin Para
                             ?>
