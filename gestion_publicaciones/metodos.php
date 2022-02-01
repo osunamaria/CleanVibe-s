@@ -10,13 +10,12 @@ function obtenerPublicacion($id)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-
         $sql = $con->prepare("SELECT * from evento_noticia where id=:id");
         $sql->bindParam(":id", $id); //Para evitar inyecciones SQL
         $sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
         $con = null; //Cerramos la conexión
-
+        return $row;
     } catch (PDOException $e) {
         echo $e;
     }

@@ -5,12 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/botonera.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Eliminar publicación</title>
 </head>
 <body>
+<!-- CABECERA -->
+<header>
+        <a href="../index.html"><img src="../img/logoOriginal.png" alt="Logo de Clear Vibe's" class="logo"></a>
+        <a href="../registro/index.html"><button class="sesion">Entrar</button></a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Reservas</a></li>
+            <li><a href="#">Publicaciones</a></li>
+            <li><a href="#">Estadísticas</a></li>
+            <li><a href="#">Contabilidad</a></li>
+            <li><a href="#">Gestión de cuentas</a></li>
+        </ul>
+    </nav>
+    <!-- ARTICLE -->
+    <article>  
     <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
     <?php include "metodos.php";
     $id= $_GET["varId"];
+
     $cumplido=eliminarPublicacion($id);
     $error='Se ha borrado la publicacion con el id: ' . $id;
     if(!$cumplido){
@@ -19,11 +41,13 @@
 
     ?>
 
-    <a href="index.html">[Eliminar otra publicacion]</a>
-    <a href="../index.html">[Pagina principal]</a>
+     <a href="index.php">[Eliminar otra publicacion]</a>
+     <a href="../index.php">[Pagina principal]</a>
 
-    <h2><?php echo $error;?></h2>
+     <h2><?php echo $error;?></h2>
     
+     </article>
+<!-- FOOTER -->
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

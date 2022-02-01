@@ -80,7 +80,7 @@
                             // error_reporting(0);
                             
                             $evento_noticia = obtenerTodas();
-                
+                            
                             for ($i=0;$i<sizeof($evento_noticia);$i++){
                                 echo "<tr>";
                                     echo "<td>".$evento_noticia[$i]['titulo']."</td>";
@@ -88,8 +88,8 @@
                                     echo "<td>".$evento_noticia[$i]['tipo']."</td>";
                                     echo "<td>".$evento_noticia[$i]['contenido']."</td>";
                                     // Añadir foto de editar y eliminar fontawesaome
-                                    echo "<td><a href='editarPublicacion.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
-                                    echo "<td><a href='editarPublicacion.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
+                                    echo "<td><a href='editarPublicacion.php?varId=".$evento_noticia[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                    echo "<td><a href='eliminarPublicacion.php?varId=".$evento_noticia[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
                                 echo "</tr>";
                             }//Fin Para
                             ?>
