@@ -74,7 +74,50 @@
                 <li id="usuarios" class="subrayado">Usuarios</li>
                 <li id="nuevos">Nuevos registros</li>
             </ul>
-            <table id="tabla"></table>
+        </article>
+        <article>
+            <div class="row">
+                <div>
+                    <!-- Obtener todas -->
+                    <table class="fixed_headers">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Publicacion</th>
+                                <th>Tipo</th>
+                                <th>Contenido</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php include_once "operacionesGeneralesUsuarios.php";    
+                                // error_reporting(0);
+                                
+                                $usuarios = obtenerTodos();
+                    
+                                for ($i=0;$i<sizeof($usuarios);$i++){
+                                    echo "<tr>";
+                                        echo "<td>".$usuarios[$i]['nombre']."</td>";
+                                        echo "<td>".$usuarios[$i]['apellidos']."</td>";
+                                        echo "<td>".$usuarios[$i]['dni']."</td>";
+                                        echo "<td>".$usuarios[$i]['tipo']."</td>";
+                                        echo "<td>".$usuarios[$i]['correo']."</td>";
+                                        echo "<td>".$usuarios[$i]['telefono']."</td>";
+                                        echo "<td>".$usuarios[$i]['fecnac']."</td>";
+                                        echo "<td>".$usuarios[$i]['num_miembros']."</td>";
+                                        echo "<td>".$usuarios[$i]['cuota']."</td>";
+                                        // Añadir foto de editar y eliminar fontawesaome
+                                        echo "<td><a href='editarPublicacion.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
+                                        echo "<td><a href='editarPublicacion.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
+                                    echo "</tr>";
+                                }//Fin Para
+                            ?>
+                        </tbody>
+                    </table>
+                    <!-- Obtener todas Fin -->
+                </div>
+            </div>
         </article>
     </section>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
