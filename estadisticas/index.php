@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -18,25 +18,22 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- links css -->
-    <link rel="stylesheet" href="../css/headers.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/inicio.css">
-    <title>Inicio</title>
+    <title>Reservas</title>
 </head>
 
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="../index.php" class="me-md-auto">
-                <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
-            </a>
+        <a href="index.php" class="me-md-auto">
+            <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
+        </a>
 
-            <ul class="nav nav-pills mt-4">
-                <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
-                <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
-                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
-                <?php
+        <ul class="nav nav-pills mt-4">
+            <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
+            <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+            <li class="nav-item"><a href="../reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
+            <?php
                 // Continuar la sesión
                 session_start();
 
@@ -61,18 +58,15 @@
                     echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
                 }//Fin si
             ?>
-            </ul>
+        </ul>
         </header>
     </div>
 
-    <section class="container text-center">
-        
-        <h3>Ups... Algo salió mal</h3>
-        <a href="../index.php" class="pointer">Pulsa aqui para volver.</a>
+    <section class="container">
 
     </section>
-    
-    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top fixed-bottom">
+
+    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                 <img src="../img/logoNaranja.png" alt="logo">
