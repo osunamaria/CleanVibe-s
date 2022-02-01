@@ -6,8 +6,8 @@
 article ul {
     list-style: none;
     display: flex;
-    margin-top: 6%;
-    margin-left: 5%;
+    margin-top: 3%;
+    margin-left: 15%;
 }
 
 article li {
@@ -15,4 +15,8 @@ article li {
     position: relative;
     width: 10em;
     cursor: pointer;
+}
+
+.subrayado {
+    border-bottom: 1px solid black;
 }
