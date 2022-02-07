@@ -127,37 +127,7 @@
 
                 //Cojo la fecha actual
                 $fecha_actual = date("Y-m-d");
-
-                // for($i=0;$i<7;$i++){
-                //     //Horario de 8 a 10, 1:30
-                //     //Recorro mi array, y pregunto si la fecha es la misma.
-                //     for($n=0;$n<sizeof($miArray);$n++){
-                //         //Voy cambiando la fecha
-                //         $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
-
-                //         //Si la fecha es igual, empiezo a mirar horarios
-                //         if($miArray[$n]['fecha'] == $fecha){
-                //             echo "<tr>";
-                //             for($j=0;$j<9;$j++){ 
-                //                 if($miArray[$n]['hora_inicio'] == $horario[$j]){
-                //                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
-                //                 }else{
-                //                     echo "<td class='bg-success'>".$horario[$j]."</td>";
-                //                 }//Fin Si
-                //             }//Fin Para
-                //             echo "</tr>";
-                //         }else{
-                //             echo "<tr>";
-                //             for($j=0;$j<9;$j++){
-                //                 echo "<td class='bg-success'>".$horario[$j]."</td>";
-                //             }//Fin Para
-                //             echo "</tr>";
-                //         }//Fin Si
-                //     }//Fin Para
-                // }//Fin Para
-
-                echo sizeof($miArray);
-
+                
                 //Recorriendo horas
                 for($j=0;$j<sizeof($horario);$j++){
                     echo "<tr>";
@@ -165,11 +135,17 @@
                     for($i=0;$i<7;$i++){
                         $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
 
-                        //Recorro el array
-                        for($n=0;$n<sizeof($miArray);$n++){
-                            //Interruptor para saber si esta reservada 
-                            $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];                            
-                        }//Fin Para
+                        //Recorro el array mientras me de falso
+                        //Interruptor para saber si esta reservada 
+                        $n = 0;
+                        do{
+                            echo $miArray[$n]['fecha'] ."<br>";
+                            echo $fecha ."<br>";
+                            echo $miArray[$n]['hora_inicio'] ."<br>";
+                            echo $horario[$j] ."<br>";
+                            $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
+                            $n++;
+                        }while($pistaReservada);
                         if($pistaReservada){
                             echo "<td class='bg-danger'>".$horario[$j]."</td>";
                         }else{
