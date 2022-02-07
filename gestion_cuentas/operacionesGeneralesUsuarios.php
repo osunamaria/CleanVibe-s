@@ -110,4 +110,47 @@
 
         }
     }
+    
+    function editarUsuario($id, $nombre, $apellidos, $dni, $tipo, $correo, $telefono, $num_miembros, $cuota)
+    {
+        $retorno = false;
+        try {
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $sql = $con->prepare("UPDATE usuarios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
+            $sql->bindParam(":id", $id);
+            $sql->bindParam(":nombre", $nombre);
+            $sql->bindParam(":apellidos", $apellidos);
+            $sql->bindParam(":dni", $dni);
+            $sql->bindParam(":tipo", $tipo);
+            $sql->bindParam(":correo", $correo);
+            $sql->bindParam(":telefono", $telefono);
+            $sql->bindParam(":num_miembros", $num_miembros);
+            $sql->bindParam(":cuota", $cuota);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $retorno = true;
+            }
+            $con = null;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+        return $retorno;
+    }
+
+    function eliminarUsuario($id){
+        $retorno = false;
+        try{
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $sql = $con->prepare("DELETE from usuarios where id=:id");
+            $sql->bindParam(":id", $id);
+            $sql->execute();
+            if ($sql->rowCount() > 0){
+                $retorno = true;
+            }
+            $con = null; //Cerramos la conexión
+        }catch(PDOException $e){
+            echo $e;
+        }
+        return $retorno;
+    }
 ?>

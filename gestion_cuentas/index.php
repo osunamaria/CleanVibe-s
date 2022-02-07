@@ -91,8 +91,8 @@
                                 <th>Fecha de nacimiento</th>
                                 <th>Número de miembros</th>
                                 <th>Cuota</th>
-                                <th>Editar</th>
                                 <th>Eliminar</th>
+                                <th>Editar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,8 +113,8 @@
                                         echo "<td>".$usuarios[$i]['num_miembros']."</td>";
                                         echo "<td>".$usuarios[$i]['cuota']."</td>";
                                         // Añadir foto de editar y eliminar fontawesaome
-                                        echo "<td><a href='editarUsuario.php'><i class='fas fa-trash-alt'  width='16' height='16'></i></a></td>";
-                                        echo "<td><a href='eliminarUsuario.php.php'><i class='fas fa-edit'  width='16' height='16'></i></a></td>";
+                                        echo "<td><a href='editarUsuarios.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                    echo "<td><a href='eliminarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
                                     echo "</tr>";
                                 }//Fin Para
                             ?>
