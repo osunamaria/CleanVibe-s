@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/reservas.css">
+    <link rel="stylesheet" href="../css/tablaReservas.css">
     <title>Reservas</title>
 </head>
 <body>
@@ -63,7 +64,7 @@
     </div>
 
     <div class="container">
-        <table class="table table-success table-striped">
+        <table class="table">
             <thead>
                 <tr>
 
@@ -74,7 +75,7 @@
             $servidor = "localhost";
             $baseDatos = "cleanvibes";
             $user = "root";
-            $pass = "";
+            $pass = "root";
 
             $id_instalacion = $_POST['id_instalacion'];
 
@@ -108,19 +109,74 @@
                     $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
                 }//Fin Mientras
 
-                for($i=0;$i<7;$i++){
-                    //Horario de 8 a 10, 1:30
-                    for($j=0;$j<9;$j++){
-                        echo "<tr>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "</tr>";
+                $horario = array(
+                    0 => "8:00:00",
+                    1 => "9:30:00",
+                    2 => "11:00:00",
+                    3 => "12:30:00",
+                    4 => "14:00:00",
+                    5 => "16:00:00",
+                    6 => "17:30:00",
+                    7 => "19:00:00",
+                    8 => "20:30:00"
+                );
+
+                //i: dias
+                //n: cada reserva que existe en nuestra bd
+                //j: las horas de reserva
+
+                //Cojo la fecha actual
+                $fecha_actual = date("Y-m-d");
+
+                // for($i=0;$i<7;$i++){
+                //     //Horario de 8 a 10, 1:30
+                //     //Recorro mi array, y pregunto si la fecha es la misma.
+                //     for($n=0;$n<sizeof($miArray);$n++){
+                //         //Voy cambiando la fecha
+                //         $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
+
+                //         //Si la fecha es igual, empiezo a mirar horarios
+                //         if($miArray[$n]['fecha'] == $fecha){
+                //             echo "<tr>";
+                //             for($j=0;$j<9;$j++){ 
+                //                 if($miArray[$n]['hora_inicio'] == $horario[$j]){
+                //                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
+                //                 }else{
+                //                     echo "<td class='bg-success'>".$horario[$j]."</td>";
+                //                 }//Fin Si
+                //             }//Fin Para
+                //             echo "</tr>";
+                //         }else{
+                //             echo "<tr>";
+                //             for($j=0;$j<9;$j++){
+                //                 echo "<td class='bg-success'>".$horario[$j]."</td>";
+                //             }//Fin Para
+                //             echo "</tr>";
+                //         }//Fin Si
+                //     }//Fin Para
+                // }//Fin Para
+
+                echo sizeof($miArray);
+
+                //Recorriendo horas
+                for($j=0;$j<sizeof($horario);$j++){
+                    echo "<tr>";
+                    //Recorro los dias
+                    for($i=0;$i<7;$i++){
+                        $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
+
+                        //Recorro el array
+                        for($n=0;$n<sizeof($miArray);$n++){
+                            //Interruptor para saber si esta reservada 
+                            $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];                            
+                        }//Fin Para
+                        if($pistaReservada){
+                            echo "<td class='bg-danger'>".$horario[$j]."</td>";
+                        }else{
+                            echo "<td class='bg-success'>".$horario[$j]."</td>";
+                        }//Fin Si
                     }//Fin Para
+                    echo "</tr>";
                 }//Fin Para
 
                 $con = null; //Cerramos la conexión
