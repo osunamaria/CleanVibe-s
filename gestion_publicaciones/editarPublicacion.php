@@ -49,7 +49,7 @@
             return $valor;
         }
 
-        $cumplido = editarPublicacion($id, $_POST["titulo"], $_POST["tipo"], $_POST["publicacion"], $_POST["contenido"], $_POST["fecha"]);
+        $cumplido = editarPublicacion($id, $_POST["titulo"], $_POST["publicacion"], $_POST["tipo"], $_POST["contenido"], $_POST["fecha"]);
         if ($cumplido == true) {
             header("Location: index.php?varId=" . $id);
             exit();
@@ -66,10 +66,19 @@
             <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
             
 
-            <input type="text" name="titulo" placeholder="TITULO" class="input-100" value='<?php echo $publicacion["titulo"]; ?>' required><br>
-            Noticia <input name="publicacion" id="publicacion" type="radio" value='<?php echo $publicacion["publicacion"]; ?>'> Evento <input name="publicacion" id="publicacion" type="radio" value='<?php echo $publicacion["publicacion"]; ?>'require><br>
-            Publica <input name="tipo" id="tipo" type="radio" value='<?php echo $publicacion["tipo"]; ?>'> Privada <input name="tipo" id="tipo" type="radio" value='<?php echo $publicacion["tipo"]; ?>'require><br>
-            <textarea name="contenido" id="contenido" value='<?php echo $publicacion["contenido"]; ?>' require></textarea>
+            <input type="text" name="titulo" placeholder="titulo" class="input-100" require value='<?php echo $publicacion["titulo"]; ?>'><br>
+
+            <!-- CHECKEAR REQUIRE -->
+            Evento<input type="radio" name="publicacion" class="input-100" require value='<?php $publicacion["publicacion"] = "evento"; echo $publicacion["publicacion"]; ?>'>
+            Noticia<input type="radio" name="publicacion" class="input-100" value='<?php $publicacion["publicacion"] = "noticia"; echo $publicacion["publicacion"]; ?>'><br>
+
+            Publico<input type="radio" name="tipo" class="input-100" require value='<?php $publicacion["tipo"] = "publico"; echo $publicacion["tipo"]; ?>'>
+            Privado<input type="radio" name="tipo" class="input-100" value='<?php $publicacion["tipo"] = "privado"; echo $publicacion["tipo"]; ?>' require><br>
+
+            <textarea name="contenido" id="contenido" placeholder="contenido" require value='<?php echo $publicacion["contenido"]; ?>'></textarea><br>
+
+            <input type="date" name="fecha" placeholder="fecha" class="input-100" require value='<?php echo $publicacion["fecha"]; ?>'><br>
+
             <input type="submit" value="Guardar Cambios" class="btn-enviar">
             <div id="errores"><?php echo $error; ?></div>
         </div>

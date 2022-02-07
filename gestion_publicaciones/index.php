@@ -70,6 +70,7 @@
                                 <th>Publicacion</th>
                                 <th>Tipo</th>
                                 <th>Contenido</th>
+                                <th>Fecha</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -87,6 +88,7 @@
                                     echo "<td>".$evento_noticia[$i]['publicacion']."</td>";
                                     echo "<td>".$evento_noticia[$i]['tipo']."</td>";
                                     echo "<td>".$evento_noticia[$i]['contenido']."</td>";
+                                    echo "<td>".$evento_noticia[$i]['fecha']."</td>";
                                     // Añadir foto de editar y eliminar fontawesaome
                                     echo "<td><a href='editarPublicacion.php?varId=".$evento_noticia[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
                                     echo "<td><a href='eliminarPublicacion.php?varId=".$evento_noticia[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";

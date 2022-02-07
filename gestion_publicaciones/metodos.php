@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $baseDatos = "cleanvibes";
 $usuario = "root";
-$pass = "";
+$pass = "root";
 
 error_log(0);
 
@@ -73,12 +73,12 @@ function eliminarPublicacion($id)
     $con = null;
     return $retorno;
 }
-function editarPublicacion($id, $publicacion, $tipo, $contenido, $fecha)
+function editarPublicacion($id, $titulo, $publicacion, $tipo, $contenido, $fecha)
 {
     $retorno = false;
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("UPDATE evento_noticia  set titulo=:titulo , publicacion=:publicacion, tipo=:tipo, contenido=:contenido, fecha=:fecha where id=:id;");
+        $sql = $con->prepare("UPDATE evento_noticia set titulo=:titulo , publicacion=:publicacion, tipo=:tipo, contenido=:contenido, fecha=:fecha where id=:id;");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":titulo", $titulo);
         $sql->bindParam(":publicacion", $publicacion);
