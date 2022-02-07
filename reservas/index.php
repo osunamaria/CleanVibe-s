@@ -32,7 +32,7 @@
             <ul class="nav nav-pills mt-4">
                 <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
                 <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
-                <li class="nav-item"><a href="../reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
+                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
                 <?php
                 // Continuar la sesión
                 session_start();
@@ -84,37 +84,37 @@
                         <th scope="row">Padel</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="padel2"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="padel2"></td>
                     </tr>
                     <tr>
                         <th scope="row">Tenis</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="tenis1"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="tenis1"></td>
                     </tr>
                     <tr>
                         <th scope="row">Tenis</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="tenis2"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="tenis2"></td>
                     </tr>
                     <tr>
                         <th scope="row">Baloncesto</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="baloncesto"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="baloncesto"></td>
                     </tr>
                     <tr>
                         <th scope="row">Fútbol</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="futbol"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="futbol"></td>
                     </tr>
                     <tr>
                         <th scope="row">Barbacoa</th>
                         <td></td>
                         <td></td>
-                        <td><input type="radio" class="form-check-input" id="instalacion" name="instalacion" value="barbacoa"></td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="barbacoa"></td>
                     </tr>
                 </tbody>
             </table>
