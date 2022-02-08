@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $baseDatos = "cleanvibes";
 $usuario = "root";
-$pass = "root";
+$pass = "";
 
 error_log(0);
 

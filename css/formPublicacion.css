@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    text-align: center;
+}
 
 .guardar{
     background-color: transparent;
@@ -20,14 +23,7 @@
 }
 
 article{
-    margin-top: 5%;
     text-align: center;
-}
-hr{
-    margin-left: 25%;
-    max-width: 50%;
-    margin-top: 0.2%;
-    margin-bottom: 0.2%;
 }
 
 table {
