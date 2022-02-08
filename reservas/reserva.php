@@ -75,7 +75,7 @@
             $servidor = "localhost";
             $baseDatos = "cleanvibes";
             $user = "root";
-            $pass = "root";
+            $pass = "";
 
             $id_instalacion = $_POST['id_instalacion'];
 
@@ -139,12 +139,13 @@
                         //Interruptor para saber si esta reservada 
                         $n = 0;
                         do{
-                            echo $miArray[$n]['fecha'] ."<br>";
-                            echo $fecha ."<br>";
-                            echo $miArray[$n]['hora_inicio'] ."<br>";
-                            echo $horario[$j] ."<br>";
+                            // echo $fecha ."<br>";
+                            // echo $miArray[$n]['hora_inicio'] ."<br>";
+                            // echo $horario[$j] ."<br>";
                             $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
+                            echo $miArray[$n]['fecha'] ."<br>";
                             $n++;
+                            echo $miArray[$n]['fecha'] ."<br>";
                         }while($pistaReservada);
                         if($pistaReservada){
                             echo "<td class='bg-danger'>".$horario[$j]."</td>";
