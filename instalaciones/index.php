@@ -12,15 +12,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
 
     <!-- links css -->
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/instalaciones.css">
+
+    <!-- link para iconos -->
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>Instalaciones</title>
 </head>
 
 <body>
     <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="../index.php" class="me-md-auto">
                 <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
             </a>
@@ -42,8 +48,8 @@
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
                                 echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
+                                echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
                             echo "</ul>";
@@ -55,12 +61,11 @@
                 }//Fin si
             ?>
             </ul>
-        </header>
+    </header>
     </div>
 
     <article>
         <h1>Instalaciones</h1>
-        <hr>
         <button onclick="crearInstalacion()">Crear Instalaci&oacute;n</button>
         <br><br>
         <form method="post" action="insertarInstalacion.php" id="nombreInstalacion" class="nombreInstalacion">
@@ -71,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>Miembros que pueden participar:
+                        <p>Tipo de instalaci&oacute;n:
                             <select name="tipo" id="tipo">
                             <option value="tenis">Tenis</option>
                             <option value="padel">Padel</option>
