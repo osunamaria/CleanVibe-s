@@ -32,7 +32,7 @@
 
             <ul class="nav nav-pills mt-4">
                 <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
-                <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+                <li class="nav-item"><a href="../publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
                 <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
                 <?php
                 // Continuar la sesión

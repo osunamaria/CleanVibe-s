@@ -6,19 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- linkear con fuente belleza -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <!-- linkear con fuente belleza -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
+
+    <!-- links css -->
+    <link rel="stylesheet" href="../css/headers.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/publicaciones.css">
 
     <!-- link para iconos -->
     <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-
-    <!-- links css -->
-    <link rel="stylesheet" href="../css/footer.css">
     <title>Publicaciones</title>
 </head>
 
@@ -31,8 +33,8 @@
 
         <ul class="nav nav-pills mt-4">
             <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
-            <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
-            <li class="nav-item"><a href="../reservas/index.html" class="nav-link text-secondary">Reservas</a></li>
+            <li class="nav-item"><a href="publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
+            <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
             <?php
                 // Continuar la sesión
                 session_start();
@@ -63,13 +65,10 @@
     </div>
 
     <article class="container">
-
-        <div class="p-3 bg-white">
+        <div class="tablon">
+            <h2>TABLÓN DE ANUNCIOS</h2>
             <div class="row">
-                <h3>TABLÓN DE ANUNCIOS</h3>
-            </div>
-            <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <select class="filtro" name="tema" id="tema">
                         <option value="0">Filtrar</option>
                         <option value="evento">Eventos</option>
@@ -80,7 +79,7 @@
                     <input type="submit" class="anadirAnuncio" value="Buscar"></input>
                 </div>
             </div>
-        </div>
+            <br>
 
         <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
             <?php include_once "verpublicaciones.php";
