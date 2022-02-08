@@ -108,7 +108,7 @@
 
     ?>
     <p><?php print($confirmacion); ?></p>   
-    <a href="index.html">[ Insertar otra publicacion ]</a>
+    <a href="index.php">[ Insertar otra publicacion ]</a>
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
