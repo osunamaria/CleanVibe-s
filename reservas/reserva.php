@@ -138,15 +138,24 @@
                         //Recorro el array mientras me de falso
                         //Interruptor para saber si esta reservada 
                         $n = 0;
+                        $pistaReservada = false;
                         do{
-                            // echo $fecha ."<br>";
                             // echo $miArray[$n]['hora_inicio'] ."<br>";
                             // echo $horario[$j] ."<br>";
-                            $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
-                            echo $miArray[$n]['fecha'] ."<br>";
+                            // if (strcmp($miArray[$n]['fecha'],$fecha) === 0 && strcmp($miArray[$n]['hora_inicio'],$horario[$j]) === 0){
+                            if ($miArray[$n]['fecha'] === $fecha){
+                                if($miArray[$n]['hora_inicio'] === $horario[$j]){
+                                    echo "TE LO DIJE QUE IBA <br>";
+                                    $pistaReservada = true;
+                                }else{
+                                    echo "Esto no va pisha <br>";    
+                                }
+                            }else{
+                                echo "Esto no va pisha <br>";
+                            }//Fin Si
                             $n++;
-                            echo $miArray[$n]['fecha'] ."<br>";
-                        }while($pistaReservada);
+                        }while($pistaReservada || $n<sizeof($miArray));
+
                         if($pistaReservada){
                             echo "<td class='bg-danger'>".$horario[$j]."</td>";
                         }else{
