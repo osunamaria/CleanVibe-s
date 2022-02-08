@@ -144,7 +144,7 @@
                             if($pistaReservada){
                                 echo "<td class='bg-danger'>".$horario[$j]."</td>";
                             }else{
-                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' value='".$fecha." / ".$horario[$j]."'></td>";
+                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='pista' value='".$fecha." / ".$horario[$j]."'></td>";
                             }//Fin Si
                         }//Fin Para
                         echo "</tr>";
