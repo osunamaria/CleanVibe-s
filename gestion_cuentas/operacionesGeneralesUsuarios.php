@@ -28,10 +28,14 @@
         }
     }
 
-    function obtenerTodos(){
+    function obtenerTodos($filtro){
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("SELECT * from socios;");
+            if($filtro=='nuevos'){
+                $sql = $con->prepare("SELECT * from socios WHERE confirmado = '0';");
+            }else{
+                $sql = $con->prepare("SELECT * from socios WHERE confirmado = '1';");
+            }
             $sql->execute();
             $miArray = [];
             while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente

@@ -99,3 +99,43 @@ tr:nth-child(odd) td {
 tr:hover, tr:first-child{
 	opacity: 100%;
 }
+
+.tablon {
+    width: 70em;
+    height: auto;
+    background-color: white;
+    margin: 3em 0 0 10em;
+    padding: 2em;
+}
+
+.tablon h2 {
+    font-size: xx-large;
+    margin-bottom: 1.7em;
+}
+
+.tablon .filtro {
+    padding: 0.5em 1em;
+    margin-left: 1em;
+    width: 11em;
+    padding-left: 1em;
+    border-radius: 0.5em;
+    font-size: 1em;
+}
+
+.tablon .anadirAnuncio {
+    float: right;
+    background-color: orange;
+    padding: 0.5em 1em;
+    transition: 0.4s;
+    border-radius: 2em;
+    cursor: pointer;
+    margin-right: 5em;
+    font-size: 1em;
+    color: white;
+    border: 0.2em solid orange;
+    text-decoration: none;
+}
+
+.anadirAnuncio:hover {
+    opacity: 0.6;
+}

@@ -69,58 +69,72 @@
         </header>
     </div>
     <section>
-        <article>
-            <ul>
-                <li id="usuarios" class="subrayado">Usuarios</li>
-                <li id="nuevos">Nuevos registros</li>
-            </ul>
-        </article>
-        <article>
-            <div class="row">
-                <div>
-                    <!-- Obtener todas -->
-                    <table class="fixed_headers">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>DNI</th>
-                                <th>Tipo</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Fecha de nacimiento</th>
-                                <th>Número de miembros</th>
-                                <th>Cuota</th>
-                                <th>Eliminar</th>
-                                <th>Editar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php include_once "operacionesGeneralesUsuarios.php";    
-                                // error_reporting(0);
+        <article class="container">
+        <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+            <div class="tablon">
+                <h2>Gestión de usuarios</h2>
+                <div class="row">
+                    <div class="col-3">
+                        <select class="filtro" name="tema" id="tema">
+                            <option value="usuarios">Usuarios</option>
+                            <option value="nuevos">Nuevos registros</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="anadirAnuncio" value="Buscar"></input>
+                    </div>
+            </form>
+                    <div class="col-7 justify-content-end">
+                        <a href="form.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nuevo usuario</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <!-- Obtener todas -->
+                        <table class="fixed_headers">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>DNI</th>
+                                    <th>Tipo</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Fecha de nacimiento</th>
+                                    <th>Número de miembros</th>
+                                    <th>Cuota</th>
+                                    <th>Eliminar</th>
+                                    <th>Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php include_once "operacionesGeneralesUsuarios.php";  
+
+                                    $busqueda=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
                                 
-                                $usuarios = obtenerTodos();
-                    
-                                for ($i=0;$i<sizeof($usuarios);$i++){
-                                    echo "<tr>";
-                                        echo "<td>".$usuarios[$i]['nombre']."</td>";
-                                        echo "<td>".$usuarios[$i]['apellidos']."</td>";
-                                        echo "<td>".$usuarios[$i]['dni']."</td>";
-                                        echo "<td>".$usuarios[$i]['tipo']."</td>";
-                                        echo "<td>".$usuarios[$i]['correo']."</td>";
-                                        echo "<td>".$usuarios[$i]['telefono']."</td>";
-                                        echo "<td>".$usuarios[$i]['fecnac']."</td>";
-                                        echo "<td>".$usuarios[$i]['num_miembros']."</td>";
-                                        echo "<td>".$usuarios[$i]['cuota']."</td>";
-                                        // Añadir foto de editar y eliminar fontawesaome
-                                        echo "<td><a href='editarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
-                                    echo "<td><a href='eliminarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
-                                    echo "</tr>";
-                                }//Fin Para
-                            ?>
-                        </tbody>
-                    </table>
-                    <!-- Obtener todas Fin -->
+                                    $usuarios = obtenerTodos($busqueda);
+                        
+                                    for ($i=0;$i<sizeof($usuarios);$i++){
+                                        echo "<tr>";
+                                            echo "<td>".$usuarios[$i]['nombre']."</td>";
+                                            echo "<td>".$usuarios[$i]['apellidos']."</td>";
+                                            echo "<td>".$usuarios[$i]['dni']."</td>";
+                                            echo "<td>".$usuarios[$i]['tipo']."</td>";
+                                            echo "<td>".$usuarios[$i]['correo']."</td>";
+                                            echo "<td>".$usuarios[$i]['telefono']."</td>";
+                                            echo "<td>".$usuarios[$i]['fecnac']."</td>";
+                                            echo "<td>".$usuarios[$i]['num_miembros']."</td>";
+                                            echo "<td>".$usuarios[$i]['cuota']."</td>";
+                                            // Añadir foto de editar y eliminar fontawesaome
+                                            echo "<td><a href='editarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                        echo "<td><a href='eliminarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }//Fin Para
+                                ?>
+                            </tbody>
+                        </table>
+                        <!-- Obtener todas Fin -->
+                    </div>
                 </div>
             </div>
         </article>
