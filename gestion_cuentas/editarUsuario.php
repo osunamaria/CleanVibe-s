@@ -93,82 +93,98 @@
     }
     ?>
 <article>
+
 <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Información</h4>
-        <form class="needs-validation form-register" novalidate action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-        <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
-        <input type="hidden" name="id" value="<?php echo $publicacion["id"]; ?>">
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" class="input-100" value='<?php echo $publicacion["nombre"]; ?>' required><br><br>
-              <div class="invalid-feedback">
-                Nombre incorrecto
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="apellidos" class="form-label">Apellidos</label>
-              <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" class="input-100" value='<?php echo $publicacion["apellidos"]; ?>' required><br><br>
-              <div class="invalid-feedback">
-                Apellidos incorrecto
-              </div>
-            </div>
-
-            <div class="col-12">
-                <label for="dni" class="form-label">Dni</label>
-                <input type="text" class="form-control" name="dni" placeholder="DNI" class="input-100" value='<?php echo $publicacion["dni"]; ?>' required><br><br>
+        <form class="needs-validation form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" id="formRegistro" novalidate>
+    <input type="hidden" name="id" value="<?php echo $publicacion["id"]; ?>">
+    <table>
+        <tr>
+            <td>
+                <label for="nombre">Nombre</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" value='<?php echo $publicacion["nombre"]; ?>' required>
                 <div class="invalid-feedback">
-                  Dni incorrecto
+                    Nombre incorrecto
                 </div>
-            </div>
-
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="text" name="correo" placeholder="CORREO" class="input-100" value='<?php echo $publicacion["correo"]; ?>' required><br><br>
-              <div class="invalid-feedback">
-                 Email incorrecto
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="address" class="form-label">Tipo</label>
-              Socio <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>' checked>
-              Presidente <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'>
-              Administrador <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'><br><br>
-              <div class="invalid-feedback">
-                Tipo incorrecto
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="telefono" class="form-label">Telefono</label>
-              <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" class="input-100" value='<?php echo $publicacion["telefono"]; ?>' required><br><br>
-              <div class="invalid-feedback">
-                Telefono incorrecto
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="num_miembros" class="form-label">Número de miembros</label>
-              <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" class="input-100" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
-              <div class="invalid-feedback">
-                Número de miembros incorrecto
-              </div>
-            </div>
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="number" class="form-control" name="cuota" placeholder="CUOTA" class="input-100" value='<?php echo $publicacion["cuota"]; ?>' required min="0"><br><br>
-              <div class="invalid-feedback">
-                 Cuota incorrecta
-              </div>
-            </div>
-            
-          <div id="errores"><?php echo $error; ?></div>
-          <hr class="my-4">
-
-          <input class="w-100 btn btn-primary btn-lg" type="submit" value="Guardar Cambios" class="btn-enviar">
-        </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="apellidos">Apellidos</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" value='<?php echo $publicacion["apellidos"]; ?>' required>
+                <div class="invalid-feedback">
+                    Apellidos incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="dni">DNI</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="dni" placeholder="DNI" value='<?php echo $publicacion["dni"]; ?>' required><br><br>
+                <div class="invalid-feedback">
+                    Dni incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="correo">Correo</label>
+            </td>
+            <td>
+                <input type="text" name="correo" placeholder="CORREO" value='<?php echo $publicacion["correo"]; ?>' required><br><br>
+                <div class="invalid-feedback">
+                    Email incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="telefono">Telefono</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" value='<?php echo $publicacion["telefono"]; ?>' required><br><br>
+                <div class="invalid-feedback">
+                    Telefono incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="num_miembros">Miembros de la familia</label>
+            </td>
+            <td>
+                <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
+                <div class="invalid-feedback">
+                    Número de miembros incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="tipo">Tipo</label>
+            </td>
+            <td>
+                Socio <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>' checked>
+                Presidente <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'>
+                Administrador <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'><br><br>
+                <div class="invalid-feedback">
+                    Tipo incorrecto
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Enviar">
+            </td>
+        </tr>
+    </table>
+</form>
       </div>
     </div>
     </article>
