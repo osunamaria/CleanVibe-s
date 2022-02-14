@@ -75,23 +75,27 @@
             $sql->bindParam(":cuota", $cuota);
             $sql->execute();
             $id = $con->lastInsertId();
-            $con = null; //Cerramos la conexión
-            if ($id != 0) {
-                header("Location: ../index.html");
-                exit();
-            } else {
-                echo "Datos incorrectos";
-            }
+            $con = null;
+            exit();
         } catch (PDOException $e) {
             echo $e;
         }
 
     }
     
-    function editarUsuario($id, $nombre, $apellidos, $dni, $tipo, $correo, $telefono, $num_miembros, $cuota)
+    function editarUsuario($id, $nombre, $apellidos, $dni, $tipo, $correo, $telefono, $num_miembros)
     {
         $retorno = false;
         try {
+            if($num_miembros==1){
+                $cuota=60;
+            }else if($num_miembros>1 && $num_miembros<6){
+                $cuota=70;
+            }else if($num_miembros>5 && $num_miembros<11){
+                $cuota=85;
+            }else if($num_miembros>10){
+                $cuota=90;
+            }
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             $sql = $con->prepare("UPDATE socios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
             $sql->bindParam(":id", $id);

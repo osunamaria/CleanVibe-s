@@ -46,7 +46,7 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href='index.php'>Usuarios</a></li>";
                                 echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
@@ -94,6 +94,7 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
-    <script src="../js/bootstrap.bundle.min"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

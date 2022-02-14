@@ -51,7 +51,6 @@
                                 echo "<li><a class='dropdown-item' href='gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
                             echo "</ul>";
                         echo "</li>";
                     }

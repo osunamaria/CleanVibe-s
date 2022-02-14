@@ -23,24 +23,20 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-    <!-- links js -->
-    <script src="../js/registro.js"></script>
-    <script src="../js/gestion_cuentas.js"></script>
-
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="../index.php" class="me-md-auto">
-                <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
-            </a>
+        <a href="../index.php" class="me-md-auto">
+            <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
+        </a>
 
-            <ul class="nav nav-pills mt-4">
-                <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
-                <li class="nav-item"><a href="../publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
-                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
-                <?php
+        <ul class="nav nav-pills mt-4">
+            <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
+            <li class="nav-item"><a href="../publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
+            <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
+            <?php
                 // Continuar la sesión
                 session_start();
 
@@ -52,19 +48,19 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href='index.php'>Usuarios</a></li>";
                                 echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
                             echo "</ul>";
                         echo "</li>";
                     }
-                    echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
+                    echo "<li class='nav-item me-md-auto'><a href='cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
                 }else{
-                    echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                    echo "<li class='nav-item me-md-auto'><a href='registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
                 }//Fin si
             ?>
-            </ul>
+        </ul>
         </header>
     </div>
     <section>
@@ -114,7 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php include_once "operacionesGeneralesUsuarios.php";  
+                                <?php include_once "operacionesGeneralesUsuarios.php";
 
                                     $busqueda=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
                                 
@@ -163,7 +159,8 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
-    <script src="../js/bootstrap.bundle.min"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

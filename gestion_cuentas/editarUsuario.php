@@ -26,65 +26,74 @@
 </head>
 
 <body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="../index.php" class="me-md-auto">
+                <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
+            </a>
 
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="../index.php" class="me-md-auto">
-            <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
-        </a>
+            <ul class="nav nav-pills mt-4">
+                <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
+                <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
+                <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
+                <?php
+                    // Continuar la sesión
+                    session_start();
 
-        <ul class="nav nav-pills mt-4">
-            <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
-            <li class="nav-item"><a href="../publicaciones/index.html" class="nav-link text-secondary">Publicaciones</a></li>
-            <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
-            <?php
-                // Continuar la sesión
-                session_start();
-
-                if(isset($_SESSION['sesion_iniciada']) == true ){
-                    $tipo = session_id();
-                    if($tipo=="presidente" || $tipo=="administrador"){
-                        echo "<li class='nav-item dropdown'>";
-                            echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
-                                echo "Gestiones";
-                            echo "</a>";
-                            echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
-                                echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Estadisticas</a></li>";
-                            echo "</ul>";
-                        echo "</li>";
-                    }
-                    echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
-                }else{
-                    echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
-                }//Fin si
-            ?>
-        </ul>
-    </header>
-
+                    if(isset($_SESSION['sesion_iniciada']) == true ){
+                        $tipo = session_id();
+                        if($tipo=="presidente" || $tipo=="administrador"){
+                            echo "<li class='nav-item dropdown'>";
+                                echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+                                    echo "Gestiones";
+                                echo "</a>";
+                                echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                                    echo "<li><a class='dropdown-item' href='index.php'>Usuarios</a></li>";
+                                    echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
+                                    echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
+                                    echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
+                                echo "</ul>";
+                            echo "</li>";
+                        }
+                        echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
+                    }else{
+                        echo "<li class='nav-item me-md-auto'><a href='../registro/index.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Entrar</a></li>";
+                    }//Fin si
+                ?>
+            </ul>
+        </header>
+    </div>
     <?php include "operacionesGeneralesUsuarios.php";
 
-    if (count($_GET) > 0) {
-        $id = $_GET["varId"];
-        $publicacion = obtenerUsuario($id);
-    } else {
-        $id = $_POST["id"];
-        $publicacion = obtenerUsuario($id);
-    }
-    $error = '';
-    if (count($_POST) > 0) {
-        function seguro($valor)
-        {
-            $valor = strip_tags($valor);
-            $valor = stripslashes($valor);
-            $valor = htmlspecialchars($valor);
-            return $valor;
+        if (count($_GET) > 0) {
+            $id = $_GET["varId"];
+            $publicacion = obtenerUsuario($id);
+        } else {
+            $id = $_POST["id"];
+            $publicacion = obtenerUsuario($id);
+        }
+        $error = '';
+        if (count($_POST) > 0) {
+        $tipo="";
+        $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
+        $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
+        $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
+        if($socio!=""){
+            $tipo .= $_POST["socio"];
+        }
+        if($presidente!="" && $socio!=""){
+            $tipo .= ",".$_POST["presidente"];
+        }else if($presidente!="" && $socio==""){
+            $tipo .= $_POST["presidente"];
+        }
+        if($administrador!="" && ($presidente!="" || $socio!="")){
+            $tipo .= ",".$_POST["administrador"];
+        }else if($administrador!="" && $presidente=="" && $socio==""){
+            $tipo .= $_POST["administrador"];
         }
     
-        $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $_POST["tipo"], $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"], $_POST["cuota"]);
-        if ($cumplido == true) {
+        $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
+        if ($cumplido) {
             header("Location: index.php?varId=" . $id);
             exit();
         } else {
@@ -104,9 +113,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" value='<?php echo $publicacion["nombre"]; ?>' required>
-                            <div class="invalid-feedback">
-                                Nombre incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -115,9 +121,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" value='<?php echo $publicacion["apellidos"]; ?>' required>
-                            <div class="invalid-feedback">
-                                Apellidos incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -126,9 +129,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="dni" placeholder="DNI" value='<?php echo $publicacion["dni"]; ?>' required><br><br>
-                            <div class="invalid-feedback">
-                                Dni incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -136,10 +136,7 @@
                             <label for="correo">Correo</label>
                         </td>
                         <td>
-                            <input type="text" name="correo" placeholder="CORREO" value='<?php echo $publicacion["correo"]; ?>' required><br><br>
-                            <div class="invalid-feedback">
-                                Email incorrecto
-                            </div>
+                            <input type="text" class="form-control" name="correo" placeholder="CORREO" value='<?php echo $publicacion["correo"]; ?>' required><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -148,9 +145,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" value='<?php echo $publicacion["telefono"]; ?>' required><br><br>
-                            <div class="invalid-feedback">
-                                Telefono incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -159,9 +153,6 @@
                         </td>
                         <td>
                             <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
-                            <div class="invalid-feedback">
-                                Número de miembros incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -169,12 +160,9 @@
                             <label for="tipo">Tipo</label>
                         </td>
                         <td>
-                            Socio <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>' checked>
-                            Presidente <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'>
-                            Administrador <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'><br><br>
-                            <div class="invalid-feedback">
-                                Tipo incorrecto
-                            </div>
+                            Socio <input name="socio" id="socio" type="checkbox" checked>
+                            Presidente <input name="presidente" id="presidente" type="checkbox">
+                            Administrador <input name="administrador" id="administrador" type="checkbox"><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -201,7 +189,8 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
-    <script src="../js/bootstrap.bundle.min"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
