@@ -62,12 +62,4 @@
     }
     //Como recojo tres variables juntas, las separo con el metodo explode
     // list($id_instalacion, $fecha, $hora_inicio) = explode("/", $id_reserva);
-
-    // echo $id_instalacion."<br>";
-    // echo $fecha."<br>";
-    // echo $hora_inicio."<br>";
-    echo $id_socio."<br>";
-    echo $num_socio."<br>";
-    echo $num_no_socio."<br>";
-
 ?>
