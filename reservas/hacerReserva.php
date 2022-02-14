@@ -32,6 +32,9 @@
                                 $sql->bindParam(":id_socio", $id_socio);
                                 $sql->bindParam(":fecha", $fecha);
                                 $sql->bindParam(":hora_inicio", $hora_inicio);
+                                list($horas, $min, $seg) = explode(":", $hora_inicio);
+                                $min = $min + 30
+                                $hora_fin = 
                                 $sql->bindParam(":hora_fin", $hora_inicio);//Sumar 1h y media
                                 $sql->bindParam(":num_socios", $num_socios);
                                 $sql->bindParam(":num_no_socios", $num_no_socios);
