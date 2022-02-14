@@ -64,7 +64,7 @@
     </div>
 
     <div class="container">
-        <form action="terminaReserva.php" method="POST">
+        <form action="hacerReserva.php" method="POST">
             <table class="table">
                 <thead>
                     <tr>
@@ -144,7 +144,7 @@
                             if($pistaReservada){
                                 echo "<td class='bg-danger'>".$horario[$j]."</td>";
                             }else{
-                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' value='".$fecha." / ".$horario[$j]."'></td>";
+                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='id_reserva' name='id_reserva' value='".$id_instalacion." / ".$fecha." / ".$horario[$j]."'></td>";
                             }//Fin Si
                         }//Fin Para
                         echo "</tr>";
@@ -158,7 +158,32 @@
                 ?>
                 </tbody>
             </table>
-            <input type="submit" value="Reservar">
+            
+            <!-- class="row g-3 needs-validation" novalidate -->
+            
+            <div class="row my-2">
+                <label for="id_socio" class="form-label col-2">ID Socio:</label>
+                <input type="number" class="id_socio" id="id_socio" required>
+            </div>
+            <div class="row my-2">
+                <label for="num_socio" class="form-label col-2">Num socios:</label>
+                <input type="number" class="num_socio col-4" id="num_socio" required>
+            </div>
+            <div class="row my-2">
+                <label for="num_no_socio" class="form-label col-2">Num NO socios:</label>
+                <input type="number" class="num_no_socio col-4" id="num_no_socio" required>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Acepta los términos y condiciones.
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit">Reservar</button>
+            </div>           
         </form>
     </div>
 

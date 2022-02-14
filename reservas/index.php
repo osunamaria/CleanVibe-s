@@ -77,44 +77,44 @@
                     <tr>
                         <th scope="row">Padel</th>
                         <td>Pista padel 1</td>
-                        <td></td>
+                        <td>Casiopea</td>
                         <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="1" checked></td>
                     </tr>
                     <tr>
                         <th scope="row">Padel</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="padel2"></td>
+                        <td>Pista padel 2</td>
+                        <td>Osa menor</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="2"></td>
                     </tr>
                     <tr>
                         <th scope="row">Tenis</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="tenis1"></td>
+                        <td>Pista tenis 1</td>
+                        <td>Scorpio</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="3"></td>
                     </tr>
                     <tr>
                         <th scope="row">Tenis</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="tenis2"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Baloncesto</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="baloncesto"></td>
+                        <td>Pista tenis 2</td>
+                        <td>Osa mayor</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="4"></td>
                     </tr>
                     <tr>
                         <th scope="row">Fútbol</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="futbol"></td>
+                        <td>Campo fútbol</td>
+                        <td>Capricornio</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="5"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Baloncesto</th>
+                        <td>Cancha baloncesto</td>
+                        <td>Taurus</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="6"></td>
                     </tr>
                     <tr>
                         <th scope="row">Barbacoa</th>
-                        <td></td>
-                        <td></td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="barbacoa"></td>
+                        <td>Barbacoa</td>
+                        <td>Andromeda</td>
+                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="7"></td>
                     </tr>
                 </tbody>
             </table>
