@@ -103,8 +103,14 @@
                                     <th>Fecha de nacimiento</th>
                                     <th>Número de miembros</th>
                                     <th>Cuota</th>
+                                    <?php
+                                        if($_POST["tema"]=='nuevos'){
+                                            echo "<th>Añadir</th>";
+                                        }else{
+                                            echo "<th>Editar</th>";
+                                        }
+                                    ?>
                                     <th>Eliminar</th>
-                                    <th>Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,7 +132,11 @@
                                             echo "<td>".$usuarios[$i]['num_miembros']."</td>";
                                             echo "<td>".$usuarios[$i]['cuota']."</td>";
                                             // Añadir foto de editar y eliminar fontawesaome
-                                            echo "<td><a href='editarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                            if($_POST["tema"]=='nuevos'){
+                                                echo "<td><a href='anadirUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-solid fa-check'></i></a></td>";
+                                            }else{
+                                                echo "<td><a href='editarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                            }
                                         echo "<td><a href='eliminarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
                                         echo "</tr>";
                                     }//Fin Para

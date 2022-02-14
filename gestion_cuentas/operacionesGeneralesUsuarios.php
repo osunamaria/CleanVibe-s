@@ -157,4 +157,21 @@
         }
         return $retorno;
     }
+
+    function anadirUsuario($id, $nombre, $apellidos, $dni, $tipo, $correo, $telefono, $num_miembros, $cuota)
+    {
+        $retorno = false;
+        try {
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $sql = $con->prepare("UPDATE usuarios  set confirmado=1 where id=:id;");
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $retorno = true;
+            }
+            $con = null;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+        return $retorno;
+    }
 ?>
