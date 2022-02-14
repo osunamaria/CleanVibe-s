@@ -120,7 +120,7 @@
         $retorno = false;
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-            $sql = $con->prepare("UPDATE usuarios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
+            $sql = $con->prepare("UPDATE socios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
             $sql->bindParam(":id", $id);
             $sql->bindParam(":nombre", $nombre);
             $sql->bindParam(":apellidos", $apellidos);
@@ -145,7 +145,7 @@
         $retorno = false;
         try{
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-            $sql = $con->prepare("DELETE from usuarios where id=:id");
+            $sql = $con->prepare("DELETE from socios where id=:id");
             $sql->bindParam(":id", $id);
             $sql->execute();
             if ($sql->rowCount() > 0){
@@ -163,7 +163,7 @@
         $retorno = false;
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-            $sql = $con->prepare("UPDATE usuarios  set confirmado=1 where id=:id;");
+            $sql = $con->prepare("UPDATE socios  set confirmado='1' where id=:id;");
             $sql->execute();
             if ($sql->rowCount() > 0) {
                 $retorno = true;
