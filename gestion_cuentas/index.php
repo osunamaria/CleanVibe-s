@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Gestión de usuarios</title>
 
     <!-- linkear con fuente belleza -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,7 +104,8 @@
                                     <th>Número de miembros</th>
                                     <th>Cuota</th>
                                     <?php
-                                        if($_POST["tema"]=='nuevos'){
+                                        $busqueda=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
+                                        if($busqueda=='nuevos'){
                                             echo "<th>Añadir</th>";
                                         }else{
                                             echo "<th>Editar</th>";
@@ -132,8 +133,8 @@
                                             echo "<td>".$usuarios[$i]['num_miembros']."</td>";
                                             echo "<td>".$usuarios[$i]['cuota']."</td>";
                                             // Añadir foto de editar y eliminar fontawesaome
-                                            if($_POST["tema"]=='nuevos'){
-                                                echo "<td><a href='anadirUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-solid fa-check'></i></a></td>";
+                                            if($busqueda=='nuevos'){
+                                                echo "<td><a href='confirmarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-solid fa-check'></i></a></td>";
                                             }else{
                                                 echo "<td><a href='editarUsuario.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
                                             }

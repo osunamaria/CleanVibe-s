@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar usuario</title>
+    <title>Editar usuario</title>
 
     <!-- linkear con fuente belleza -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +29,10 @@
     <?php include "operacionesGeneralesUsuarios.php";
     $id= $_GET["varId"];
 
-    $cumplido=eliminarUsuario($id);
-    $error='Se ha borrado el usuario con el id: ' . $id;
+    $cumplido=confirmarUsuario($id);
+    $error='Se ha añadido el usuario con el id: ' . $id;
     if(!$cumplido){
-        $error="Error al borrar el usuario seleccionado";
+        $error="Error al añadir el usuario seleccionado";
     }
 
     ?>

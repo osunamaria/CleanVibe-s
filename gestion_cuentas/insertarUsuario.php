@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar usuario</title>
+    <title>Insertar usuario</title>
 
     <!-- linkear con fuente belleza -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,35 +63,6 @@
             ?>
         </ul>
     </header>
-
-    <?php include "operacionesGeneralesUsuarios.php";
-
-    if (count($_GET) > 0) {
-        $id = $_GET["varId"];
-        $publicacion = obtenerUsuario($id);
-    } else {
-        $id = $_POST["id"];
-        $publicacion = obtenerUsuario($id);
-    }
-    $error = '';
-    if (count($_POST) > 0) {
-        function seguro($valor)
-        {
-            $valor = strip_tags($valor);
-            $valor = stripslashes($valor);
-            $valor = htmlspecialchars($valor);
-            return $valor;
-        }
-    
-        $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $_POST["tipo"], $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"], $_POST["cuota"]);
-        if ($cumplido == true) {
-            header("Location: index.php?varId=" . $id);
-            exit();
-        } else {
-            $error = "Datos incorrectos o no se ha actualizado nada";
-        }
-    }
-    ?>
     <article>
         <div class="container">
             <h4 class="mb-3 text-center">Información</h4>
@@ -100,10 +71,32 @@
                 <table>
                     <tr>
                         <td>
+                            <label for="nombre">Usuario</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
+                            <div class="invalid-feedback">
+                                Usuario incorrecto
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nombre">Contraseña</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
+                            <div class="invalid-feedback">
+                                Contraseña incorrecto
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <label for="nombre">Nombre</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" value='<?php echo $publicacion["nombre"]; ?>' required>
+                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
                             <div class="invalid-feedback">
                                 Nombre incorrecto
                             </div>
@@ -114,7 +107,7 @@
                             <label for="apellidos">Apellidos</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" value='<?php echo $publicacion["apellidos"]; ?>' required>
+                            <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" required>
                             <div class="invalid-feedback">
                                 Apellidos incorrecto
                             </div>
@@ -125,7 +118,7 @@
                             <label for="dni">DNI</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="dni" placeholder="DNI" value='<?php echo $publicacion["dni"]; ?>' required><br><br>
+                            <input type="text" class="form-control" name="dni" placeholder="DNI" required><br><br>
                             <div class="invalid-feedback">
                                 Dni incorrecto
                             </div>
@@ -147,7 +140,7 @@
                             <label for="telefono">Telefono</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" value='<?php echo $publicacion["telefono"]; ?>' required><br><br>
+                            <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" required><br><br>
                             <div class="invalid-feedback">
                                 Telefono incorrecto
                             </div>
@@ -158,7 +151,7 @@
                             <label for="num_miembros">Miembros de la familia</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
+                            <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" required><br><br>
                             <div class="invalid-feedback">
                                 Número de miembros incorrecto
                             </div>
@@ -169,9 +162,9 @@
                             <label for="tipo">Tipo</label>
                         </td>
                         <td>
-                            Socio <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>' checked>
-                            Presidente <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'>
-                            Administrador <input name="publicacion" id="publicacion" type="checkbox" value='<?php echo $publicacion["tipo"]; ?>'><br><br>
+                            Socio <input name="socio" id="socio" type="checkbox" checked>
+                            Presidente <input name="presidente" id="presidente" type="checkbox">
+                            Administrador <input name="administrador" id="administrador" type="checkbox"><br><br>
                             <div class="invalid-feedback">
                                 Tipo incorrecto
                             </div>
@@ -187,6 +180,35 @@
         </div>
     </div>
     </article>
+    <?php include_once "operacionesGeneralesUsuarios.php";
+
+    $error = "";
+    if (count($_POST) > 0) {
+        $avatar = $_FILES["avatar"]["name"];
+        $temp = $_FILES['avatar']['tmp_name'];
+        if (move_uploaded_file($temp, 'fotos/' . $avatar)) {
+            chmod('fotos/' . $avatar, 0777);
+        }
+        $extras="";
+        $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
+        $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
+        $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
+        if($socio!=""){
+            $extras .= $_POST["socio"];
+        }
+        if($presidente!="" && $socio!=""){
+            $extras .= ",".$_POST["presidente"];
+        }else if($presidente!="" && $socio==""){
+            $extras .= $_POST["presidente"];
+        }
+        if($administrador!="" && ($presidente!="" || $socio!="")){
+            $extras .= ",".$_POST["administrador"];
+        }else if($administrador!="" && $presidente=="" && $socio==""){
+            $extras .= $_POST["administrador"];
+        }
+        insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+    }
+    ?>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

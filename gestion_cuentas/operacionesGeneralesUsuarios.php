@@ -41,28 +41,14 @@
             while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
                 $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
             }
-            $con = null;
+            $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
             echo $e;
         }
         return $miArray;
     }
 
-    function insertarUsuario(){
-        $servidor = "localhost";
-        $baseDatos = "cleanvibes";
-        $user = "root";
-        $pass = "";
-
-        $usuario=$_POST["usuario"];
-        $contrasena= $_POST["contrasena"];
-        $nombre=$_POST["nombre"];
-        $apellidos=$_POST["apellidos"];
-        $dni=$_POST["dni"];
-        $correo=$_POST["correo"];
-        $telefono=$_POST["telefono"];
-        $fecnac=$_POST["fecnac"];
-        $num_miembros=$_POST["num_miembros"];
+    function insertarUsuario($usuario,$contrasena,$nombre,$apellidos,$dni,$tipo,$correo,$telefono, $fecnac, $num_miembros){
 
         $letra = substr($dni, -1);
         $numeros = substr($dni, 0, -1);
@@ -88,12 +74,13 @@
                     $cuota=90;
                 }
                 $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-                $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , 'socio' , :correo , :telefono ,:fecnac , :num_miembros , :cuota, 1)");
+                $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , :tipo , :correo , :telefono ,:fecnac , :num_miembros , :cuota, 1)");
                 $sql->bindParam(":usuario", $usuario);
                 $sql->bindParam(":contrasena", $contrasena);
                 $sql->bindParam(":nombre", $nombre);
                 $sql->bindParam(":apellidos", $apellidos);
                 $sql->bindParam(":dni", $dni);
+                $sql->bindParam(":tipo", $tipo);
                 $sql->bindParam(":correo", $correo);
                 $sql->bindParam(":telefono", $telefono);
                 $sql->bindParam(":fecnac", $fecnac);
@@ -101,7 +88,7 @@
                 $sql->bindParam(":cuota", $cuota);
                 $sql->execute();
                 $id = $con->lastInsertId();
-                $con = null;
+                $con = null; //Cerramos la conexión
                 if ($id != 0) {
                     header("Location: ../index.html");
                     exit();
@@ -119,7 +106,7 @@
     {
         $retorno = false;
         try {
-            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             $sql = $con->prepare("UPDATE socios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
             $sql->bindParam(":id", $id);
             $sql->bindParam(":nombre", $nombre);
@@ -134,7 +121,7 @@
             if ($sql->rowCount() > 0) {
                 $retorno = true;
             }
-            $con = null;
+            $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
             echo $e;
         }
@@ -144,7 +131,7 @@
     function eliminarUsuario($id){
         $retorno = false;
         try{
-            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             $sql = $con->prepare("DELETE from socios where id=:id");
             $sql->bindParam(":id", $id);
             $sql->execute();
@@ -158,17 +145,18 @@
         return $retorno;
     }
 
-    function anadirUsuario($id, $nombre, $apellidos, $dni, $tipo, $correo, $telefono, $num_miembros, $cuota)
+    function confirmarUsuario($id)
     {
         $retorno = false;
         try {
-            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             $sql = $con->prepare("UPDATE socios  set confirmado='1' where id=:id;");
+            $sql->bindParam(":id", $id);
             $sql->execute();
             if ($sql->rowCount() > 0) {
                 $retorno = true;
             }
-            $con = null;
+            $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
             echo $e;
         }
