@@ -144,7 +144,7 @@
                             if($pistaReservada){
                                 echo "<td class='bg-danger'>".$horario[$j]."</td>";
                             }else{
-                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='id_reserva' name='id_reserva' value='".$id_instalacion." / ".$fecha." / ".$horario[$j]."'></td>";
+                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' name='id_reserva[]' value='".$id_instalacion."/".$fecha."/".$horario[$j]."'></td>";
                             }//Fin Si
                         }//Fin Para
                         echo "</tr>";
@@ -163,15 +163,15 @@
             
             <div class="row my-2">
                 <label for="id_socio" class="form-label col-2">ID Socio:</label>
-                <input type="number" class="id_socio" id="id_socio" required>
+                <input type="number" name="id_socio" class="col-4" required>
             </div>
             <div class="row my-2">
                 <label for="num_socio" class="form-label col-2">Num socios:</label>
-                <input type="number" class="num_socio col-4" id="num_socio" required>
+                <input type="number" name="num_socio" class="col-4" required>
             </div>
             <div class="row my-2">
                 <label for="num_no_socio" class="form-label col-2">Num NO socios:</label>
-                <input type="number" class="num_no_socio col-4" id="num_no_socio" required>
+                <input type="number" name="num_no_socio" class="col-4" required>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="form-check">
