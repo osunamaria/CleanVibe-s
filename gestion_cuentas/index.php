@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<div class="container">
+    <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="../index.php" class="me-md-auto">
                 <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
@@ -52,11 +52,10 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
                                 echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                                echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
                             echo "</ul>";
                         echo "</li>";
                     }
@@ -85,7 +84,7 @@
                     </div>
             </form>
                     <div class="col-7 justify-content-end">
-                        <a href="form.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nuevo usuario</a>
+                        <a href="insertaUsuario.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nuevo usuario</a>
                     </div>
                 </div>
                 <div class="row">

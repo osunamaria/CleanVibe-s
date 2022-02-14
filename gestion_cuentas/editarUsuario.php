@@ -48,11 +48,11 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
                                 echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                                echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Estadisticas</a></li>";
                             echo "</ul>";
                         echo "</li>";
                     }

@@ -48,11 +48,10 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
+                                echo "<li><a class='dropdown-item' href=''>Usuarios</a></li>";
                                 echo "<li><a class='dropdown-item' href='../gestion_publicaciones/index.php'>Publicaciones</a></li>";
                                 echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
+                                echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
                             echo "</ul>";
                         echo "</li>";
                     }
@@ -129,7 +128,7 @@
                             <label for="correo">Correo</label>
                         </td>
                         <td>
-                            <input type="text" name="correo" placeholder="CORREO" value='<?php echo $publicacion["correo"]; ?>' required><br><br>
+                            <input type="text" name="correo" placeholder="CORREO" required><br><br>
                             <div class="invalid-feedback">
                                 Email incorrecto
                             </div>
@@ -189,22 +188,22 @@
         if (move_uploaded_file($temp, 'fotos/' . $avatar)) {
             chmod('fotos/' . $avatar, 0777);
         }
-        $extras="";
+        $tipo="";
         $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
         $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
         $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
         if($socio!=""){
-            $extras .= $_POST["socio"];
+            $tipo .= $_POST["socio"];
         }
         if($presidente!="" && $socio!=""){
-            $extras .= ",".$_POST["presidente"];
+            $tipo .= ",".$_POST["presidente"];
         }else if($presidente!="" && $socio==""){
-            $extras .= $_POST["presidente"];
+            $tipo .= $_POST["presidente"];
         }
         if($administrador!="" && ($presidente!="" || $socio!="")){
-            $extras .= ",".$_POST["administrador"];
+            $tipo .= ",".$_POST["administrador"];
         }else if($administrador!="" && $presidente=="" && $socio==""){
-            $extras .= $_POST["administrador"];
+            $tipo .= $_POST["administrador"];
         }
         insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
     }
