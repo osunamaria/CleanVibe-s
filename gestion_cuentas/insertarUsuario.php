@@ -180,7 +180,7 @@
         }else if($administrador!="" && $presidente=="" && $socio==""){
             $tipo .= $_POST["administrador"];
         }
-    
+        
         if($_POST["usuario"]=="" || $_POST["contrasena"]=="" || $_POST["nombre"]=="" || $_POST["apellidos"]=="" || $_POST["dni"]=="" || $tipo=="" || $_POST["correo"]=="" || $_POST["telefono"]=="" || $_POST["fecnac"]=="" || $_POST["num_miembros"]==""){
             
             echo "Debe rellenar todos los campos";
@@ -188,10 +188,16 @@
         }else{
 
             insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
-            
+
         }
     }
     ?>
+    <article>
+        <div class="container text-center">
+            <a href="index.php">[Seguir gestionando]</a>
+            <a href="../index.php">[Pagina principal]</a>
+        </div>
+    </article>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

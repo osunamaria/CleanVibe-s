@@ -5,8 +5,7 @@
     $user = "root";
     $pass = "";
 
-    function obtenerUsuario($id)
-    {
+    function obtenerUsuario($id){
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             /*
@@ -49,7 +48,7 @@
     }
 
     function insertarUsuario($usuario,$contrasena,$nombre,$apellidos,$dni,$tipo,$correo,$telefono, $fecnac, $num_miembros){
-
+        
         try {
             if($num_miembros==1){
                 $cuota=60;
@@ -61,7 +60,7 @@
                 $cuota=90;
             }
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , :tipo , :correo , :telefono ,:fecnac , :num_miembros , :cuota, 1)");
+            $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , :tipo , :correo , :telefono ,:fecnac , :num_miembros , :cuota, '1')");
             $sql->bindParam(":usuario", $usuario);
             $sql->bindParam(":contrasena", $contrasena);
             $sql->bindParam(":nombre", $nombre);
@@ -76,7 +75,11 @@
             $sql->execute();
             $id = $con->lastInsertId();
             $con = null;
-            exit();
+            if ($id != 0) {
+                exit();
+            } else {
+                echo "Datos incorrectos";
+            }
         } catch (PDOException $e) {
             echo $e;
         }

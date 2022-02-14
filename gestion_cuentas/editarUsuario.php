@@ -72,34 +72,6 @@
             $id = $_POST["id"];
             $publicacion = obtenerUsuario($id);
         }
-        $error = '';
-        if (count($_POST) > 0) {
-        $tipo="";
-        $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
-        $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
-        $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
-        if($socio!=""){
-            $tipo .= $_POST["socio"];
-        }
-        if($presidente!="" && $socio!=""){
-            $tipo .= ",".$_POST["presidente"];
-        }else if($presidente!="" && $socio==""){
-            $tipo .= $_POST["presidente"];
-        }
-        if($administrador!="" && ($presidente!="" || $socio!="")){
-            $tipo .= ",".$_POST["administrador"];
-        }else if($administrador!="" && $presidente=="" && $socio==""){
-            $tipo .= $_POST["administrador"];
-        }
-    
-        $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
-        if ($cumplido) {
-            header("Location: index.php?varId=" . $id);
-            exit();
-        } else {
-            $error = "Datos incorrectos o no se ha actualizado nada";
-        }
-    }
     ?>
     <article>
         <div class="container">
@@ -167,7 +139,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Enviar">
+                            <input type="submit" value="Editar">
                         </td>
                     </tr>
                 </table>
@@ -175,6 +147,35 @@
         </div>
     </div>
     </article>
+    <?php include "operacionesGeneralesUsuarios.php";
+        $error = '';
+        if (count($_POST) > 0) {
+            $tipo="";
+            $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
+            $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
+            $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
+            if($socio!=""){
+                $tipo .= $_POST["socio"];
+            }
+            if($presidente!="" && $socio!=""){
+                $tipo .= ",".$_POST["presidente"];
+            }else if($presidente!="" && $socio==""){
+                $tipo .= $_POST["presidente"];
+            }
+            if($administrador!="" && ($presidente!="" || $socio!="")){
+                $tipo .= ",".$_POST["administrador"];
+            }else if($administrador!="" && $presidente=="" && $socio==""){
+                $tipo .= $_POST["administrador"];
+            }
+            $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
+            if ($cumplido) {
+                header("Location: index.php?varId=" . $id);
+                exit();
+            } else {
+                $error = "Datos incorrectos o no se ha actualizado nada";
+            }
+        }
+    ?>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
