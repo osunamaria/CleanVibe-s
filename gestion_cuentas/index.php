@@ -84,7 +84,7 @@
                     </div>
             </form>
                     <div class="col-7 justify-content-end">
-                        <a href="insertaUsuario.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nuevo usuario</a>
+                        <a href="insertarUsuario.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nuevo usuario</a>
                     </div>
                 </div>
                 <div class="row">

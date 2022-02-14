@@ -73,10 +73,7 @@
                             <label for="nombre">Usuario</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
-                            <div class="invalid-feedback">
-                                Usuario incorrecto
-                            </div>
+                            <input type="text" class="form-control" name="usuario" placeholder="USUARIO" required>
                         </td>
                     </tr>
                     <tr>
@@ -84,10 +81,7 @@
                             <label for="nombre">Contraseña</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
-                            <div class="invalid-feedback">
-                                Contraseña incorrecto
-                            </div>
+                            <input type="text" class="form-control" name="contrasena" placeholder="CONTRASEÑA" required>
                         </td>
                     </tr>
                     <tr>
@@ -96,9 +90,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" required>
-                            <div class="invalid-feedback">
-                                Nombre incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -107,9 +98,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="apellidos" placeholder="APELLIDOS" required>
-                            <div class="invalid-feedback">
-                                Apellidos incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -118,9 +106,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="dni" placeholder="DNI" required><br><br>
-                            <div class="invalid-feedback">
-                                Dni incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -128,10 +113,7 @@
                             <label for="correo">Correo</label>
                         </td>
                         <td>
-                            <input type="text" name="correo" placeholder="CORREO" required><br><br>
-                            <div class="invalid-feedback">
-                                Email incorrecto
-                            </div>
+                            <input type="text" class="form-control" name="correo" placeholder="CORREO" required><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -140,9 +122,6 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" required><br><br>
-                            <div class="invalid-feedback">
-                                Telefono incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -151,9 +130,6 @@
                         </td>
                         <td>
                             <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" required><br><br>
-                            <div class="invalid-feedback">
-                                Número de miembros incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -164,9 +140,6 @@
                             Socio <input name="socio" id="socio" type="checkbox" checked>
                             Presidente <input name="presidente" id="presidente" type="checkbox">
                             Administrador <input name="administrador" id="administrador" type="checkbox"><br><br>
-                            <div class="invalid-feedback">
-                                Tipo incorrecto
-                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -183,11 +156,6 @@
 
     $error = "";
     if (count($_POST) > 0) {
-        $avatar = $_FILES["avatar"]["name"];
-        $temp = $_FILES['avatar']['tmp_name'];
-        if (move_uploaded_file($temp, 'fotos/' . $avatar)) {
-            chmod('fotos/' . $avatar, 0777);
-        }
         $tipo="";
         $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
         $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
@@ -205,7 +173,19 @@
         }else if($administrador!="" && $presidente=="" && $socio==""){
             $tipo .= $_POST["administrador"];
         }
-        insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+        $letra = substr($_POST["dni"], -1);
+        $numeros = substr($_POST["dni"], 0, -1);
+    
+        if($_POST["usuario"]=="" || $_POST["contrasena"]=="" || $_POST["nombre"]=="" || $_POST["apellidos"]=="" || $_POST["dni"]=="" || $tipo=="" || $_POST["correo"]=="" || $_POST["telefono"]=="" || $_POST["fecnac"]=="" || $_POST["num_miembros"]==""){
+            
+            echo "Debe rellenar todos los campos";
+
+        }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
+
+            echo "DNI incorrecto";
+        }else{
+            insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+        }
     }
     ?>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
