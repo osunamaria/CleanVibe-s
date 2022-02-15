@@ -105,10 +105,15 @@
             }else{
 
                 $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
+
                 if ($cumplido==true) {
+
                     header("Location: index.php");
+
                 } else {
+
                     $error = "Datos incorrectos o no se ha actualizado nada";
+                    
                 }
             }
         }

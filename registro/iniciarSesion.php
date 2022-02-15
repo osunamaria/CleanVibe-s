@@ -27,6 +27,7 @@
                 // Variables de sesión:
                 $_SESSION['sesion_iniciada'] = true;
                 $_SESSION['username'] = $usuario;
+                $_SESSION['id'] = $persona['id'];
                 header("location: ../index.php");   
             }else{
                 echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo";
