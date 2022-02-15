@@ -88,22 +88,8 @@
         8 => "20:30:00"
     );
 
-    
-
-    //Me traigo el id del socio que esta en la sesion
-    try {
-        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id FROM socios WHERE usuario=:usuario");
-        $sql->bindParam(":usuario", $_SESSION['username']);
-        $sql->execute();
-        $id_socio = $sql->fetch(PDO::FETCH_ASSOC);
-        $con = null; //Cerramos la conexión
-    } catch (PDOException $e) {
-        echo $e;
-    }
-
     //Cojo el id de la instalacion de la primera reserva.
-    list($id_instalacion,$n,$m) = explode("/", $id_reserva[0]);
+    list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
 
     //Depende de la pista, tendra unas condiciones especificas
     switch($id_instalacion){
@@ -119,7 +105,7 @@
                         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
                         $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                         $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $id_socio);
+                        $sql->bindParam(":id_socio", $_SESSION['id']);
                         $sql->bindParam(":fecha", $fecha);
                         $sql->bindParam(":hora_inicio", $hora_inicio);
                         //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
@@ -156,7 +142,7 @@
                         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
                         $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                         $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $id_socio);
+                        $sql->bindParam(":id_socio", $_SESSION['id']);
                         $sql->bindParam(":fecha", $fecha);
                         $sql->bindParam(":hora_inicio", $hora_inicio);
                         //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
@@ -192,7 +178,7 @@
                     $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
                     $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                     $sql->bindParam(":id_instalacion", $id_instalacion);
-                    $sql->bindParam(":id_socio", $id_socio);
+                    $sql->bindParam(":id_socio", $_SESSION['id']);
                     $sql->bindParam(":fecha", $fecha);
                     $sql->bindParam(":hora_inicio", $hora_inicio);
                     //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
@@ -228,7 +214,7 @@
                         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
                         $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                         $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $id_socio);
+                        $sql->bindParam(":id_socio", $_SESSION['id']);
                         $sql->bindParam(":fecha", $fecha);
                         $sql->bindParam(":hora_inicio", $hora_inicio);
                         //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
@@ -264,7 +250,7 @@
                         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
                         $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                         $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $id_socio);
+                        $sql->bindParam(":id_socio", $_SESSION['id']);
                         $sql->bindParam(":fecha", $fecha);
                         $sql->bindParam(":hora_inicio", $hora_inicio);
                         //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
