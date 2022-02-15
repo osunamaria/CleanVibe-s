@@ -64,15 +64,18 @@
     </div>
 
     <article class="container">
+    
         <div class="tablon">
             <h2>TABLÓN DE ANUNCIOS</h2>
             <div class="row">
                 <div class="col-3">
-                    <select class="filtro" name="tema" id="tema">
-                        <option value="0">Filtrar</option>
-                        <option value="evento">Eventos</option>
-                        <option value="noticia">Noticias</option>
-                    </select>
+                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                        <select class="filtro" name="tema" id="tema">
+                            <option value="">Filtrar</option>
+                            <option value="evento">Eventos</option>
+                            <option value="noticia">Noticias</option>
+                        </select>
+                    </form>
                 </div>
                 <div class="col-2">
                     <input type="submit" class="anadirAnuncio" value="Buscar"></input>
@@ -84,8 +87,13 @@
             <?php include_once "verpublicaciones.php";
                 
                 // error_reporting(0);
-                    
-                $evento_noticia = obtenerTodas();
+                $tema=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
+                if($tema==""){
+                    $evento_noticia = obtenerTodas();
+                }else{
+                    $evento_noticia = filtro($tema);
+                }
+                
 
                 for ($i=0;$i<sizeof($evento_noticia);$i++){
                     echo "<div class='accordion-item'>";
