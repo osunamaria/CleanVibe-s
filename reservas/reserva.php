@@ -159,12 +159,6 @@
                 </tbody>
             </table>
             
-            <!-- class="row g-3 needs-validation" novalidate -->
-            
-            <div class="row my-2">
-                <label for="id_socio" class="form-label col-2">ID Socio:</label>
-                <input type="number" name="id_socio" class="col-4" required>
-            </div>
             <div class="row my-2">
                 <label for="num_socio" class="form-label col-2">Num socios:</label>
                 <input type="number" name="num_socio" class="col-4" required>
