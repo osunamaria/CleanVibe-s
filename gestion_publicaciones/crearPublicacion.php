@@ -125,9 +125,11 @@
         }
 
     ?>
-    <p><?php print($confirmacion); ?></p>   
-    <a href="form.php">[ Insertar otra publicacion ]</a>
-    <a href="index.php">[ Volver ]</a>
+    <div class="container text-center">
+        <p><?php print($confirmacion); ?></p>   
+        <a href="form.php">[ Insertar otra publicacion ]</a>
+        <a href="index.php">[ Volver ]</a>
+    </div>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

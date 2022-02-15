@@ -73,11 +73,14 @@
     }
 
     ?>
+    <div class="container text-center">
+        <h2><?php echo $error;?></h2>
+        <a href="index.php">[Eliminar otra publicacion]</a>
+        <a href="../index.php">[Pagina principal]</a>
+    </div>
+     
 
-     <a href="index.php">[Eliminar otra publicacion]</a>
-     <a href="../index.php">[Pagina principal]</a>
-
-     <h2><?php echo $error;?></h2>
+     
     
      </article>
 <!-- FOOTER -->
