@@ -75,9 +75,7 @@
             $sql->execute();
             $id = $con->lastInsertId();
             $con = null;
-            if ($id != 0) {
-                exit();
-            } else {
+            if ($id == 0) {
                 echo "Datos incorrectos";
             }
         } catch (PDOException $e) {
@@ -100,7 +98,7 @@
                 $cuota=90;
             }
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("UPDATE socios  set nombre=:nombre apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
+            $sql = $con->prepare("UPDATE socios set nombre=:nombre, apellidos=:apellidos , dni=:dni, tipo=:tipo, correo=:correo, telefono=:telefono, num_miembros=:num_miembros, cuota=:cuota where id=:id;");
             $sql->bindParam(":id", $id);
             $sql->bindParam(":nombre", $nombre);
             $sql->bindParam(":apellidos", $apellidos);
@@ -114,10 +112,10 @@
             if ($sql->rowCount() > 0) {
                 $retorno = true;
             }
-            $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
             echo $e;
         }
+        $con = null; //Cerramos la conexión
         return $retorno;
     }
 

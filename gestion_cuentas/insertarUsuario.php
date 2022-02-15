@@ -63,6 +63,52 @@
             </ul>
         </header>
     </div>
+    <?php include_once "operacionesGeneralesUsuarios.php";
+
+    if (count($_POST) > 0) {
+        //Edad
+        list($ano,$mes,$dia) = explode("-",$_POST["fecnac"]);
+        $ano_diferencia  = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia   = date("d") - $dia;
+        if ($dia_diferencia < 0 || $mes_diferencia < 0){
+            $ano_diferencia--;
+        }
+        //Tipo de socio
+        $tipo="";
+        $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
+        $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
+        $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
+        if($socio!="" || $administrador=="" && $presidente=="" && $socio==""){
+            $tipo .= "socio";
+        }
+        if($presidente!="" && $socio!=""){
+            $tipo .= ",".$_POST["presidente"];
+        }else if($presidente!="" && $socio==""){
+            $tipo .= $_POST["presidente"];
+        }
+        if($administrador!="" && ($presidente!="" || $socio!="")){
+            $tipo .= ",".$_POST["administrador"];
+        }else if($administrador!="" && $presidente=="" && $socio==""){
+            $tipo .= $_POST["administrador"];
+        }
+        //comprobación
+        if($_POST["usuario"]=="" || $_POST["contrasena"]=="" || $_POST["nombre"]=="" || $_POST["apellidos"]=="" || $_POST["dni"]=="" || $_POST["correo"]=="" || $_POST["telefono"]=="" || $_POST["fecnac"]=="" || $_POST["num_miembros"]==""){
+            
+            echo "Debe rellenar todos los campos";
+
+        }else if($ano_diferencia<=14){
+
+            echo "Debe tener mas de 14 años";
+
+        }else{
+
+            insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
+            header("Location: index.php");
+
+        }
+    }
+    ?>
     <article>
         <div class="container">
             <h4 class="mb-3 text-center">Información</h4>
@@ -137,17 +183,17 @@
                             <label for="num_miembros">Miembros de la familia</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" required><br><br>
+                            <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" min="1" required><br><br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="tipo">Tipo</label>
+                        <label for="tipo">Tipo (Debe tener mínimo un roll, sino se le asignará socio)</label>
                         </td>
                         <td>
-                            Socio <input name="socio" id="socio" type="checkbox" checked>
-                            Presidente <input name="presidente" id="presidente" type="checkbox">
-                            Administrador <input name="administrador" id="administrador" type="checkbox"><br><br>
+                            Socio <input name="socio" id="socio" value="socio" type="checkbox">
+                            Presidente <input name="presidente" id="presidente" value="presidente" type="checkbox">
+                            Administrador <input name="administrador" id="administrador" value="administrador" type="checkbox"><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -160,44 +206,7 @@
         </div>
     </div>
     </article>
-    <?php include_once "operacionesGeneralesUsuarios.php";
 
-    if (count($_POST) > 0) {
-        $tipo="";
-        $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
-        $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
-        $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
-        if($socio!=""){
-            $tipo .= $_POST["socio"];
-        }
-        if($presidente!="" && $socio!=""){
-            $tipo .= ",".$_POST["presidente"];
-        }else if($presidente!="" && $socio==""){
-            $tipo .= $_POST["presidente"];
-        }
-        if($administrador!="" && ($presidente!="" || $socio!="")){
-            $tipo .= ",".$_POST["administrador"];
-        }else if($administrador!="" && $presidente=="" && $socio==""){
-            $tipo .= $_POST["administrador"];
-        }
-        
-        if($_POST["usuario"]=="" || $_POST["contrasena"]=="" || $_POST["nombre"]=="" || $_POST["apellidos"]=="" || $_POST["dni"]=="" || $tipo=="" || $_POST["correo"]=="" || $_POST["telefono"]=="" || $_POST["fecnac"]=="" || $_POST["num_miembros"]==""){
-            
-            echo "Debe rellenar todos los campos";
-
-        }else{
-
-            insertarUsuario($_POST["usuario"], $_POST["contrasena"], $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["fecnac"], $_POST["num_miembros"]);
-
-        }
-    }
-    ?>
-    <article>
-        <div class="container text-center">
-            <a href="index.php">[Seguir gestionando]</a>
-            <a href="../index.php">[Pagina principal]</a>
-        </div>
-    </article>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

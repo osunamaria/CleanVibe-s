@@ -72,6 +72,46 @@
             $id = $_POST["id"];
             $publicacion = obtenerUsuario($id);
         }
+        
+        //Comprobacion
+        if (count($_POST) > 0) {
+            
+            //Tipo de socio
+            $tipo="";
+            $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
+            $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
+            $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
+            if($socio!="" || $administrador=="" && $presidente=="" && $socio==""){
+                $tipo .= "socio";
+            }
+            if($presidente!="" && $socio!=""){
+                $tipo .= ",".$_POST["presidente"];
+            }else if($presidente!="" && $socio==""){
+                $tipo .= $_POST["presidente"];
+            }
+            if($administrador!="" && ($presidente!="" || $socio!="")){
+                $tipo .= ",".$_POST["administrador"];
+            }else if($administrador!="" && $presidente=="" && $socio==""){
+                $tipo .= $_POST["administrador"];
+            }
+
+            $error = '';
+
+            //comprobación
+            if($_POST["nombre"]=="" || $_POST["apellidos"]=="" || $_POST["dni"]=="" || $_POST["correo"]=="" || $_POST["telefono"]=="" || $_POST["num_miembros"]==""){
+                
+                echo "Debe rellenar todos los campos";
+
+            }else{
+
+                $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
+                if ($cumplido==true) {
+                    header("Location: index.php");
+                } else {
+                    $error = "Datos incorrectos o no se ha actualizado nada";
+                }
+            }
+        }
     ?>
     <article>
         <div class="container">
@@ -124,17 +164,17 @@
                             <label for="num_miembros">Miembros de la familia</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="num_miembros" placeholder="NUMERO DE MIEMBROS" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
+                            <input type="number" class="form-control" name="num_miembros" min="1" placeholder="NUMERO DE MIEMBROS" value='<?php echo $publicacion["num_miembros"]; ?>' required><br><br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="tipo">Tipo</label>
+                            <label for="tipo">Tipo (Debe tener mínimo un roll, sino se le asignará socio)</label>
                         </td>
                         <td>
-                            Socio <input name="socio" id="socio" type="checkbox" checked>
-                            Presidente <input name="presidente" id="presidente" type="checkbox">
-                            Administrador <input name="administrador" id="administrador" type="checkbox"><br><br>
+                            Socio <input name="socio" id="socio" value="socio" type="checkbox">
+                            Presidente <input name="presidente" id="presidente" value="presidente" type="checkbox">
+                            Administrador <input name="administrador" id="administrador" value="administrador" type="checkbox"><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -147,35 +187,6 @@
         </div>
     </div>
     </article>
-    <?php include "operacionesGeneralesUsuarios.php";
-        $error = '';
-        if (count($_POST) > 0) {
-            $tipo="";
-            $socio=array_key_exists("socio",$_POST) ? $_POST["socio"] : "";
-            $presidente=array_key_exists("presidente",$_POST) ? $_POST["presidente"] : "";
-            $administrador=array_key_exists("administrador",$_POST) ? $_POST["administrador"] : "";
-            if($socio!=""){
-                $tipo .= $_POST["socio"];
-            }
-            if($presidente!="" && $socio!=""){
-                $tipo .= ",".$_POST["presidente"];
-            }else if($presidente!="" && $socio==""){
-                $tipo .= $_POST["presidente"];
-            }
-            if($administrador!="" && ($presidente!="" || $socio!="")){
-                $tipo .= ",".$_POST["administrador"];
-            }else if($administrador!="" && $presidente=="" && $socio==""){
-                $tipo .= $_POST["administrador"];
-            }
-            $cumplido = editarUsuario($id, $_POST["nombre"], $_POST["apellidos"], $_POST["dni"], $tipo, $_POST["correo"], $_POST["telefono"], $_POST["num_miembros"]);
-            if ($cumplido) {
-                header("Location: index.php?varId=" . $id);
-                exit();
-            } else {
-                $error = "Datos incorrectos o no se ha actualizado nada";
-            }
-        }
-    ?>
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
