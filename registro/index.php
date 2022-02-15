@@ -172,7 +172,7 @@
                             <label for="contrasena">Contrase&ntilde;a</label>
                         </td>
                         <td>
-                            <input type="text" name="contrasena" id="contrasena">
+                            <input type="password" name="contrasena" id="contrasena">
                         </td>
                     </tr>
                     <tr>

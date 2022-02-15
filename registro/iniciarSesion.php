@@ -10,7 +10,7 @@
 
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,tipo FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
+        $sql = $con->prepare("SELECT id,tipo,confirmado FROM socios WHERE usuario=:usuario AND contrasena=:contrasena");
         $sql->bindParam(":usuario", $usuario);
         $sql->bindParam(":contrasena", $contrasena);
         $sql->execute();
@@ -29,7 +29,7 @@
                 $_SESSION['username'] = $usuario;
                 header("location: ../index.php");   
             }else{
-                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo"
+                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo";
             }
             
         } else {

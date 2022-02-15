@@ -17,6 +17,15 @@
 
     $letra = substr($dni, -1);
     $numeros = substr($dni, 0, -1);
+
+    //Edad
+    list($ano,$mes,$dia) = explode("-",$_POST["fecnac"]);
+    $ano_diferencia  = date("Y") - $ano;
+    $mes_diferencia = date("m") - $mes;
+    $dia_diferencia   = date("d") - $dia;
+    if ($dia_diferencia < 0 || $mes_diferencia < 0){
+        $ano_diferencia--;
+    }
   
     if($usuario=="" || $contrasena=="" || $nombre=="" || $apellidos=="" || $dni=="" || $correo=="" || $telefono=="" || $fecnac=="" || $num_miembros==""){
         
@@ -25,6 +34,10 @@
     }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
 
         echo "DNI incorrecto";
+    
+    }else if($ano_diferencia<=14){
+    
+        echo "Debes tener más de 14 años";
 
     }else{
 
@@ -39,7 +52,7 @@
                 $cuota=90;
             }
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , 'socio' , :correo , :telefono ,:fecnac , :num_miembros , :cuota, null)");
+            $sql = $con->prepare("INSERT into socios values(null, :usuario , :contrasena , :nombre , :apellidos , :dni , 'socio' , :correo , :telefono ,:fecnac , :num_miembros , :cuota, '0')");
             $sql->bindParam(":usuario", $usuario);
             $sql->bindParam(":contrasena", $contrasena);
             $sql->bindParam(":nombre", $nombre);
@@ -55,7 +68,6 @@
             $con = null;
             if ($id != 0) {
                 header("Location: ../index.html");
-                exit();
             } else {
                 echo "Datos incorrectos";
             }
