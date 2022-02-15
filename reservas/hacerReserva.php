@@ -112,7 +112,7 @@
             //Para las pistas de padel tienen que ser 4 
             if(($num_no_socio+$num_socio)==4){
                 //Procedo a hacer las reservas
-                foreach $reservas as $reserva{
+                foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
@@ -137,7 +137,7 @@
                         echo $e;
                     }
                 }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>"
+                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
             }else{
                 //Muestro error
                 echo "<h3>Para la pista de padel deben ser 4 participantes.</h3><br>";
@@ -149,7 +149,7 @@
             //Para las pistas de tenis deben ser 2 o 4
             if(($num_no_socio+$num_socio)==2||($num_no_socio+$num_socio)==4){
                 //Procedo a hacer las reservas
-                foreach $reservas as $reserva{
+                foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
@@ -174,7 +174,7 @@
                         echo $e;
                     }
                 }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>"
+                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
             }else{
                 //Muestro error
                 echo "<h3>Para la pista de tenis deben ser 2 o 4 participantes.</h3><br>";
@@ -183,9 +183,9 @@
             break;
         case 5:
             //Futbol deben de ser 10
-            if(($num_no_socio+$num_socio)==10{
+            if(($num_no_socio+$num_socio)==10){
                //Procedo a hacer las reservas
-               foreach $reservas as $reserva{
+               foreach ($reservas as $reserva){
                 //Como recojo tres variables juntas, las separo con el metodo explode
                 list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                 try {
@@ -210,7 +210,7 @@
                     echo $e;
                 }
             }//Fin foreach
-            echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>"
+            echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
             }else{
                 //Muestro error
                 echo "<h3>Para la pista de fútbol deben ser 10 participantes.</h3><br>";
@@ -219,9 +219,9 @@
             break;
         case 6:
             //Baloncesto deben de ser 10
-            if(($num_no_socio+$num_socio)==10{
+            if(($num_no_socio+$num_socio)==10){
                 //Procedo a hacer las reservas
-                foreach $reservas as $reserva{
+                foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
@@ -246,7 +246,7 @@
                         echo $e;
                     }
                 }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>"
+                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
             }else{
                 //Muestro error
                 echo "<h3>Para la pista de baloncesto deben ser 10 participantes.</h3><br>";
@@ -257,7 +257,7 @@
             //Procedo a la reserva si hay minimo un socio
             if($num_socio>0){
                 //Hago la reserva
-                foreach $reservas as $reserva{
+                foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
@@ -282,7 +282,7 @@
                         echo $e;
                     }
                 }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>"
+                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
             }else{
                 //Muestro error
                 echo "<h3>Para la barbacoa debe de haber mínimo un socio.</h3><br>";
