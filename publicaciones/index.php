@@ -47,12 +47,11 @@
                                 echo "Gestiones";
                             echo "</a>";
                             echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-                                echo "<li><a class='dropdown-item' href='#'>Usuarios</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Publicaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Instalaciones</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Contabilidad</a></li>";
-                                echo "<li><a class='dropdown-item' href='#'>Estadisticas</a></li>";
-                            echo "</ul>";
+                                    echo "<li><a class='dropdown-item' href='../gestion_cuentas/index.php'>Usuarios</a></li>";
+                                    echo "<li><a class='dropdown-item' href='index.php'>Publicaciones</a></li>";
+                                    echo "<li><a class='dropdown-item' href='../instalaciones/index.php'>Instalaciones</a></li>";
+                                    echo "<li><a class='dropdown-item' href='../contabilidad/index.php'>Contabilidad</a></li>";
+                                echo "</ul>";
                         echo "</li>";
                     }
                     echo "<li class='nav-item me-md-auto'><a href='../cerrarSesion.php' class='nav-link active bg-secondary rounded-pill' aria-current='page'>Cerrar sesión</a></li>";
