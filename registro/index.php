@@ -74,7 +74,7 @@
             </div>
         </article>
         <article>
-            <form action="insertaUsuario.php" method="POST" enctype="multipart/form-data" id="formRegistro">
+            <form action="registrar.php" method="POST" enctype="multipart/form-data" id="formRegistro">
                 <table>
                     <tr>
                         <td>

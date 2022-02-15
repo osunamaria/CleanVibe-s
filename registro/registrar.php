@@ -18,15 +18,20 @@
         $persona = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
         if ($persona!="") {
-            //Inicio sesion
-            //Sesion id seria el tipo de usuario
-            session_id($persona['tipo']);
-            session_start();
+            if($persona['confirmado']=='1'){
+                //Inicio sesion
+                //Sesion id seria el tipo de usuario
+                session_id($persona['tipo']);
+                session_start();
+                
+                // Variables de sesión:
+                $_SESSION['sesion_iniciada'] = true;
+                $_SESSION['username'] = $usuario;
+                header("location: ../index.php");   
+            }else{
+                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo"
+            }
             
-            // Variables de sesión:
-            $_SESSION['sesion_iniciada'] = true;
-            $_SESSION['username'] = $usuario;
-            header("location: ../index.php");
         } else {
             //Error inicio sesion
             header("location: error.php");
