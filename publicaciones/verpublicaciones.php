@@ -23,32 +23,25 @@ function obtenerPublicacion($id)
 }
 
 //No necesario de momento
-function obtenerTodas(){
+function obtenerTodas($tema){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id, titulo,publicacion,tipo,contenido,fecha from evento_noticia;");
-        $sql->execute();
-        $miArray = [];
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $miArray[] = $row;
+        if($tema==""){
+            $sql = $con->prepare("SELECT id,titulo,publicacion,tipo,contenido,fecha from evento_noticia;");
+            $sql->execute();
+            $miArray = [];
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $miArray[] = $row;
+            }
+        }else{
+            $sql = $con->prepare("SELECT id,titulo,publicacion,tipo,contenido,fecha from evento_noticia where publicacion like '$tema';");
+            $sql->execute();
+            $miArray = [];
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $miArray[] = $row;
+            }
         }
-    } catch (PDOException $e) {
-        echo $e;
-    }
-    $con = null;
-    return $miArray;
-}
-
-function filtro($tema){
-    try {
-        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id, titulo,publicacion,tipo,contenido,fecha from evento_noticia where publicacion=:publicacion;");
-        $sql->bindParam(":publicacion", $tema);
-        $sql->execute();
-        $miArray = [];
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $miArray[] = $row;
-        }
+        
     } catch (PDOException $e) {
         echo $e;
     }

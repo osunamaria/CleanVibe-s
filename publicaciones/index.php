@@ -67,20 +67,22 @@
     
         <div class="tablon">
             <h2>TABLÓN DE ANUNCIOS</h2>
-            <div class="row">
-                <div class="col-3">
-                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-                        <select class="filtro" name="tema" id="tema">
-                            <option value="">Filtrar</option>
-                            <option value="evento">Eventos</option>
-                            <option value="noticia">Noticias</option>
-                        </select>
-                    </form>
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-3">
+                        
+                            <select class="filtro" name="tema" id="tema">
+                                <option value="">Filtrar</option>
+                                <option value="evento">Eventos</option>
+                                <option value="noticia">Noticias</option>
+                            </select>
+                        
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="anadirAnuncio" value="Buscar"></input>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <input type="submit" class="anadirAnuncio" value="Buscar"></input>
-                </div>
-            </div>
+            </form>
             <br>
 
         <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
@@ -88,11 +90,7 @@
                 
                 // error_reporting(0);
                 $tema=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
-                if($tema==""){
-                    $evento_noticia = obtenerTodas();
-                }else{
-                    $evento_noticia = filtro($tema);
-                }
+                $evento_noticia = obtenerTodas($tema);
                 
 
                 for ($i=0;$i<sizeof($evento_noticia);$i++){
