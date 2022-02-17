@@ -98,14 +98,19 @@
                     $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                     $sql = $con->prepare("SELECT hora_inicio,fecha
                                             FROM `reservas`
-                                            WHERE id_instalacion=:id_instalacion 
-                                            AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
-                                            LIMIT 0,25;");
+                                            WHERE id_instalacion=:id_instalacion ");
+                                            // AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
+                                            // LIMIT 0,25;"
                     $sql->bindParam(":id_instalacion", $id_instalacion);
                     $sql->execute();
+                    $miArray=[];
                     while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
                         $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
                     }//Fin Mientras
+                    $con = null; //Cerramos la conexión
+                } catch (PDOException $e) {
+                    echo $e;
+                }
 
                     //Si no es una pista, tendra un horario diferente
                     if($id_instalacion!=7){
@@ -193,11 +198,6 @@
                         }//Fin Para
 
                     }//Fin Si
-
-                    $con = null; //Cerramos la conexión
-                } catch (PDOException $e) {
-                    echo $e;
-                }
 
                 ?>
                 </tbody>
