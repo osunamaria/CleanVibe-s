@@ -38,13 +38,15 @@
         <ul class="nav nav-pills mt-4">
             <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
             <li class="nav-item"><a href="../publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
-            <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
             <?php
             // Continuar la sesión
             session_start();
 
             if(isset($_SESSION['sesion_iniciada']) == true ){
                 $tipo = session_id();
+                if($tipo=="presidente" || $tipo=="administrador" || $tipo=="socio"){
+                    echo "<li class='nav-item'><a href='../reservas/index.php' class='nav-link text-secondary'>Reservas</a></li>";
+                }
                 if($tipo=="presidente" || $tipo=="administrador"){
                     echo "<li class='nav-item dropdown'>";
                         echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
