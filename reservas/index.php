@@ -19,6 +19,7 @@
 
     <!-- links css -->
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/reserva.css">
     <title>Reservas</title>
 </head>
 
@@ -64,13 +65,13 @@
 
     <section class="container">
         <form action="reserva.php" method="POST">
-            <table class="table table-success table-striped">
+            <table class="fixed_headers">
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Localización</th>
-                        <th scope="col"></th>
+                        <th scope="col">Elegir</th>
                     </tr>
                 </thead>
                 <tbody>
