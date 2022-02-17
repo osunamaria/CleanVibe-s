@@ -98,14 +98,14 @@
                     $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                     $sql = $con->prepare("SELECT hora_inicio,fecha
                                             FROM `reservas`
-                                            WHERE id_instalacion=:id_instalacion 
-                                            AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
-                                            LIMIT 0,25;");
+                                            WHERE id_instalacion=:id_instalacion ");
                     $sql->bindParam(":id_instalacion", $id_instalacion);
                     $sql->execute();
+                    $miArray=[];
                     while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
                         $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
                     }//Fin Mientras
+
 
                     //Si no es una pista, tendra un horario diferente
                     if($id_instalacion!=7){
@@ -139,10 +139,11 @@
                                 //Recorro el array mientras me de falso
                                 //Interruptor para saber si esta reservada 
                                 $n = 0;
-                                do{
+                                $pistaReservada = false;
+                                while(!$pistaReservada && $n<sizeof($miArray)){
                                     $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
                                     $n++;
-                                }while(!$pistaReservada && $n<sizeof($miArray));
+                                }//Fin Mientras
 
                                 if($pistaReservada){
                                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
@@ -178,10 +179,11 @@
                                 //Recorro el array mientras me de falso
                                 //Interruptor para saber si esta reservada 
                                 $n = 0;
-                                do{
+                                $pistaReservada = false;
+                                while(!$pistaReservada && $n<sizeof($miArray)){
                                     $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
                                     $n++;
-                                }while(!$pistaReservada && $n<sizeof($miArray));
+                                }//Fin Mientras
 
                                 if($pistaReservada){
                                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
@@ -198,7 +200,6 @@
                 } catch (PDOException $e) {
                     echo $e;
                 }
-
                 ?>
                 </tbody>
             </table>
@@ -217,7 +218,7 @@
         </form>
     </div>
 
-    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
+    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top position-absolute bottom-0 w-100">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                 <img src="../img/logoNaranja.png" alt="logo">

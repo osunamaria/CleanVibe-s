@@ -35,13 +35,15 @@
                 <ul class="nav nav-pills mt-4">
                     <li class="nav-item"><a href="../index.php" class="nav-link text-secondary">Inicio</a></li>
                     <li class="nav-item"><a href="../publicaciones/index.php" class="nav-link text-secondary">Publicaciones</a></li>
-                    <li class="nav-item"><a href="../reservas/index.php" class="nav-link text-secondary">Reservas</a></li>
                     <?php
                     // Continuar la sesión
                     session_start();
 
                     if(isset($_SESSION['sesion_iniciada']) == true ){
                         $tipo = session_id();
+                        if($tipo=="presidente" || $tipo=="administrador" || $tipo=="socio"){
+                            echo "<li class='nav-item'><a href='../reservas/index.php' class='nav-link text-secondary'>Reservas</a></li>";
+                        }
                         if($tipo=="presidente" || $tipo=="administrador"){
                             echo "<li class='nav-item dropdown'>";
                                 echo "<a class='nav-link dropdown-toggle text-secondary' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
@@ -66,21 +68,25 @@
     <article class="container">
         <div class="tablon">
             <h2>TABLÓN DE ANUNCIOS</h2>
-            <div class="row">
-                <div class="col-3">
-                    <select class="filtro" name="tema" id="tema">
-                        <option value="0">Filtrar</option>
-                        <option value="evento">Eventos</option>
-                        <option value="noticia">Noticias</option>
-                    </select>
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-3">
+                        
+                            <select class="filtro" name="tema" id="tema">
+                                <option value="">Filtrar</option>
+                                <option value="evento">Eventos</option>
+                                <option value="noticia">Noticias</option>
+                            </select>
+                        
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="anadirAnuncio" value="Buscar"></input>
+                    </div>
+                    <div class="col-7 justify-content-end">
+                        <a href="form.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nueva publicación</a>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <input type="submit" class="anadirAnuncio" value="Buscar"></input>
-                </div>
-                <div class="col-7 justify-content-end">
-                    <a href="form.php" class="anadirAnuncio"><i class="far fa-plus-square"></i> Nueva publicación</a>
-                </div>
-            </div>
+            </form>
             <div class="row">
                 <div>
                     <!-- Obtener todas -->
@@ -101,7 +107,8 @@
                 
                             // error_reporting(0);
                             
-                            $evento_noticia = obtenerTodas();
+                            $tema=array_key_exists("tema",$_POST) ? $_POST["tema"] : "";
+                            $evento_noticia = obtenerTodas($tema);
                             
                             for ($i=0;$i<sizeof($evento_noticia);$i++){
                                 echo "<tr>";
