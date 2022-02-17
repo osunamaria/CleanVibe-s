@@ -99,8 +99,6 @@
                     $sql = $con->prepare("SELECT hora_inicio,fecha
                                             FROM `reservas`
                                             WHERE id_instalacion=:id_instalacion ");
-                                            // AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
-                                            // LIMIT 0,25;"
                     $sql->bindParam(":id_instalacion", $id_instalacion);
                     $sql->execute();
                     $miArray=[];

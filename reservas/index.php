@@ -75,48 +75,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Padel</th>
-                        <td>Pista padel 1</td>
-                        <td>Casiopea</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="1" checked></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Padel</th>
-                        <td>Pista padel 2</td>
-                        <td>Osa menor</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="2"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tenis</th>
-                        <td>Pista tenis 1</td>
-                        <td>Scorpio</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="3"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tenis</th>
-                        <td>Pista tenis 2</td>
-                        <td>Osa mayor</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="4"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Fútbol</th>
-                        <td>Campo fútbol</td>
-                        <td>Capricornio</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="5"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Baloncesto</th>
-                        <td>Cancha baloncesto</td>
-                        <td>Taurus</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="6"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Barbacoa</th>
-                        <td>Barbacoa</td>
-                        <td>Andromeda</td>
-                        <td><input type="radio" class="form-check-input" id="id_instalacion" name="id_instalacion" value="7"></td>
-                    </tr>
+
+                    <?php
+                        //Conectar base de datos
+                        $servidor = "localhost";
+                        $baseDatos = "cleanvibes";
+                        $user = "root";
+                        $pass = "";
+
+                        try {
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+                            $sql = $con->prepare("SELECT id,tipo,nombre,localizacion
+                                                    FROM `instalaciones`");
+                            $sql->execute();
+                            $miArray=[];
+                            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+                                $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+                            }//Fin Mientras
+
+                            for($i=0;$i<sizeof($miArray);$i++){
+                                echo "<tr>";
+                                echo "<td>".strtoupper($miArray[$i]['tipo'])."</th>";
+                                echo "<td>".strtoupper($miArray[$i]['nombre'])."</th>";
+                                echo "<td>".strtoupper($miArray[$i]['localizacion'])."</th>";
+                                echo "<td><input type='radio' class='form-check-input' id='id_instalacion' name='id_instalacion' value='".$miArray[$i]['id']."' checked></td>";
+                                echo "</tr>";
+                            }//Fin Para
+                            $con = null; //Cerramos la conexión
+                        } catch (PDOException $e) {
+                            echo $e;
+                        }
+                    ?>
                 </tbody>
             </table>
             <input type="submit" value="Buscar reserva" class="buscaReserva">
