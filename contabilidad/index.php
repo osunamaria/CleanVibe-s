@@ -64,24 +64,8 @@
     </div>
 
     <article class="container">
-        <form action="../contabilidad.php" method="POST" class="row justify-content-center mb-3 bg-secondary p-2">
-            <label for="cuentas" class="col-1">Cuentas: </label>
-            <div class="col-9 text-start">
-                <select name="cuentas" id="cuentas">
-            <option value="gEvento">Gasto eventos</option>
-            <option value="gInstalacion">Gasto instalaciones</option>
-            <option value="gOtros">Gastos otros</option>
-            <option value="iCuota">Ingresos cuotas</option>
-            <option value="iReserva">Ingresos reservas</option>
-            <option value="total">Total</option>
-          </select>
-            </div>
-            <div class="col-2 text-end">
-                <input type="submit" value="Buscar">
-            </div>
-        </form>
 
-        <h2 class="text-center">Total</h2>
+        <h2 class="text-center mb-3 bg-secondary p-2">Total</h2>
                 
         <div class="col-12">
             <div class="row">
@@ -97,11 +81,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>300</td>
-                                <td>200</td>
-                                <td>500</td>
-                            </tr>
+                        <?php include_once "metodos.php";
+                        $contabilidad = obtenerTodas();
+                        
+                            for ($i=0;$i<sizeof($contabilidad);$i++){
+                                // Total
+                                $total = $contabilidad[$i]['ingreso_cuotas']+$contabilidad[$i]['ingreso_reservas'];
+                                echo "<tr>";
+                                    echo "<td>".$contabilidad[$i]['ingreso_cuotas']."</td>";
+                                    echo "<td>".$contabilidad[$i]['ingreso_reservas']."</td>";
+                                    echo "<td>".$total."</td>";
+                                echo "</tr>";
+                            }//Fin Para
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -119,10 +111,20 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>300</td>
-                                <td>200</td>
-                                <td>200</td>
-                                <td>700</td>
+                            <?php include_once "metodos.php";
+                        $contabilidad = obtenerTodas();
+                        
+                            for ($i=0;$i<sizeof($contabilidad);$i++){
+                                // Total
+                                $total = $contabilidad[$i]['gasto_evento'] + $contabilidad[$i]['gasto_instalacion'] + $contabilidad[$i]['gasto_otro'];
+                                echo "<tr>";
+                                    echo "<td>".$contabilidad[$i]['gasto_evento']."</td>";
+                                    echo "<td>".$contabilidad[$i]['gasto_instalacion']."</td>";
+                                    echo "<td>".$contabilidad[$i]['gasto_otro']."</td>";
+                                    echo "<td>".$total."</td>";
+                                echo "</tr>";
+                            }//Fin Para
+                        ?>
                             </tr>
                         </tbody>
                     </table>
