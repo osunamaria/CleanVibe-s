@@ -19,6 +19,7 @@
 
     <!-- links css -->
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/contabilidad.css">
     <title>Contabilidad</title>
 </head>
 
@@ -80,35 +81,54 @@
             </div>
         </form>
 
-        <table class="table table-success table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2 class="text-center">Total</h2>
+                
+        <div class="col-12">
+            <div class="row">
+                <div class="ingresos col-6 bg-success p-3">
+                    <h3 class="text-center">Ingresos</h3>
+                    <hr>
+                    <table class="fixed_headers">
+                        <thead>
+                            <tr>
+                                <th scope="col">Cuotas</th>
+                                <th scope="col">Reservas</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>300</td>
+                                <td>200</td>
+                                <td>500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="gastos col-6 bg-danger p-3">
+                    <h3 class="text-center">Gastos</h3>
+                    <hr>
+                    <table class="fixed_headers">
+                        <thead>
+                            <tr>
+                                <th scope="col">Evento</th>
+                                <th scope="col">Instalacion</th>
+                                <th scope="col">Otros</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>300</td>
+                                <td>200</td>
+                                <td>200</td>
+                                <td>700</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </article>
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
