@@ -107,10 +107,7 @@
                     while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
                         $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
                     }//Fin Mientras
-                    $con = null; //Cerramos la conexión
-                } catch (PDOException $e) {
-                    echo $e;
-                }
+
 
                     //Si no es una pista, tendra un horario diferente
                     if($id_instalacion!=7){
@@ -144,10 +141,11 @@
                                 //Recorro el array mientras me de falso
                                 //Interruptor para saber si esta reservada 
                                 $n = 0;
-                                do{
+                                $pistaReservada = false;
+                                while(!$pistaReservada && $n<sizeof($miArray)){
                                     $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
                                     $n++;
-                                }while(!$pistaReservada && $n<sizeof($miArray));
+                                }//Fin Mientras
 
                                 if($pistaReservada){
                                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
@@ -183,10 +181,11 @@
                                 //Recorro el array mientras me de falso
                                 //Interruptor para saber si esta reservada 
                                 $n = 0;
-                                do{
+                                $pistaReservada = false;
+                                while(!$pistaReservada && $n<sizeof($miArray)){
                                     $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
                                     $n++;
-                                }while(!$pistaReservada && $n<sizeof($miArray));
+                                }//Fin Mientras
 
                                 if($pistaReservada){
                                     echo "<td class='bg-danger'>".$horario[$j]."</td>";
@@ -199,6 +198,10 @@
 
                     }//Fin Si
 
+                    $con = null; //Cerramos la conexión
+                } catch (PDOException $e) {
+                    echo $e;
+                }
                 ?>
                 </tbody>
             </table>
