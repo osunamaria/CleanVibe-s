@@ -97,7 +97,7 @@
                 try {
                     $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                     $sql = $con->prepare("SELECT hora_inicio,fecha
-                                            FROM reservas 
+                                            FROM `reservas`
                                             WHERE id_instalacion=:id_instalacion 
                                             AND DAY(fecha) = DAY(NOW()) || DAY(fecha) < (DAY(NOW())+6)
                                             LIMIT 0,25;");
@@ -107,48 +107,92 @@
                         $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
                     }//Fin Mientras
 
-                    $horario = array(
-                        0 => "08:00:00",
-                        1 => "09:30:00",
-                        2 => "11:00:00",
-                        3 => "12:30:00",
-                        4 => "14:00:00",
-                        5 => "16:00:00",
-                        6 => "17:30:00",
-                        7 => "19:00:00",
-                        8 => "20:30:00"
-                    );
+                    //Si no es una pista, tendra un horario diferente
+                    if($id_instalacion!=7){
 
-                    //i: dias
-                    //n: cada reserva que existe en nuestra bd
-                    //j: las horas de reserva
+                        $horario = array(
+                            0 => "08:00:00",
+                            1 => "09:30:00",
+                            2 => "11:00:00",
+                            3 => "12:30:00",
+                            4 => "14:00:00",
+                            5 => "16:00:00",
+                            6 => "17:30:00",
+                            7 => "19:00:00",
+                            8 => "20:30:00"
+                        );
 
-                    //Cojo la fecha actual
-                    $fecha_actual = date("Y-m-d");
-                    
-                    //Recorriendo horas
-                    for($j=0;$j<sizeof($horario);$j++){
-                        echo "<tr>";
-                        //Recorro los dias
-                        for($i=0;$i<7;$i++){
-                            $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
+                        //i: dias
+                        //n: cada reserva que existe en nuestra bd
+                        //j: las horas de reserva
 
-                            //Recorro el array mientras me de falso
-                            //Interruptor para saber si esta reservada 
-                            $n = 0;
-                            do{
-                                $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
-                                $n++;
-                            }while(!$pistaReservada && $n<sizeof($miArray));
+                        //Cojo la fecha actual
+                        $fecha_actual = date("Y-m-d");
 
-                            if($pistaReservada){
-                                echo "<td class='bg-danger'>".$horario[$j]."</td>";
-                            }else{
-                                echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='id_reserva[]' name='id_reserva[]' value='".$id_instalacion."/".$fecha."/".$horario[$j]."'></td>";
-                            }//Fin Si
+                        //Recorriendo horas
+                        for($j=0;$j<sizeof($horario);$j++){
+                            echo "<tr>";
+                            //Recorro los dias
+                            for($i=0;$i<7;$i++){
+                                $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
+
+                                //Recorro el array mientras me de falso
+                                //Interruptor para saber si esta reservada 
+                                $n = 0;
+                                do{
+                                    $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
+                                    $n++;
+                                }while(!$pistaReservada && $n<sizeof($miArray));
+
+                                if($pistaReservada){
+                                    echo "<td class='bg-danger'>".$horario[$j]."</td>";
+                                }else{
+                                    echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='id_reserva[]' name='id_reserva[]' value='".$id_instalacion."/".$fecha."/".$horario[$j]."'></td>";
+                                }//Fin Si
+                            }//Fin Para
+                            echo "</tr>";
                         }//Fin Para
-                        echo "</tr>";
-                    }//Fin Para
+                    }else{
+                    
+                        $horario = array(
+                            0 => "08:00:00",
+                            1 => "12:00:00",
+                            2 => "16:00:00",
+                            3 => "20:00:00"
+                        );
+
+                        //i: dias
+                        //n: cada reserva que existe en nuestra bd
+                        //j: las horas de reserva
+
+                        //Cojo la fecha actual
+                        $fecha_actual = date("Y-m-d");
+
+                        //Recorriendo horas
+                        for($j=0;$j<sizeof($horario);$j++){
+                            echo "<tr>";
+                            //Recorro los dias
+                            for($i=0;$i<7;$i++){
+                                $fecha = date("Y-m-d",strtotime($fecha_actual."+ ".$i." days"));
+
+                                //Recorro el array mientras me de falso
+                                //Interruptor para saber si esta reservada 
+                                $n = 0;
+                                do{
+                                    $pistaReservada = $miArray[$n]['fecha'] == $fecha && $miArray[$n]['hora_inicio'] == $horario[$j];
+                                    $n++;
+                                }while(!$pistaReservada && $n<sizeof($miArray));
+
+                                if($pistaReservada){
+                                    echo "<td class='bg-danger'>".$horario[$j]."</td>";
+                                }else{
+                                    echo "<td class='bg-success'>".$horario[$j]."<input type='checkbox' id='id_reserva[]' name='id_reserva[]' value='".$id_instalacion."/".$fecha."/".$horario[$j]."'></td>";
+                                }//Fin Si
+                            }//Fin Para
+                            echo "</tr>";
+                        }//Fin Para
+
+                    }//Fin Si
 
                     $con = null; //Cerramos la conexión
                 } catch (PDOException $e) {
@@ -161,11 +205,11 @@
             
             <div class="row my-2">
                 <label for="num_socio" class="form-label col-2">Num socios:</label>
-                <input type="number" name="num_socios" id="num_socio" class="col-4" required>
+                <input type="number" name="num_socios" id="num_socio" class="col-4" min="0" required>
             </div>
             <div class="row my-2">
                 <label for="num_no_socio" class="form-label col-2">Num NO socios:</label>
-                <input type="number" name="num_no_socios" id="num_no_socio" class="col-4" required>
+                <input type="number" name="num_no_socios" id="num_no_socio" class="col-4" min="0" required>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <button class="btn btn-primary" type="submit">Reservar</button>
