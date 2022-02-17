@@ -65,7 +65,35 @@
 
     <article class="container">
 
-        <h2 class="text-center mb-3 bg-secondary p-2">Total</h2>
+        <!-- Para poder ver el total de un vistazo -->
+        <?php include_once "metodos.php";
+
+            $contabilidad = obtenerTodas();
+            
+            for ($i=0;$i<sizeof($contabilidad);$i++){
+                //Gastos
+                $total_gasto = $contabilidad[$i]['gasto_evento'] + $contabilidad[$i]['gasto_instalacion'] + $contabilidad[$i]['gasto_otro'];
+                //Ingresos
+                $total_ingreso = $contabilidad[$i]['ingreso_cuotas']+$contabilidad[$i]['ingreso_reservas'];
+            }
+            
+            //Total
+            $total = $total_ingreso - $total_gasto;
+
+            //Diferencia positiva o negativa
+            if($total_ingreso>$total_gasto){
+                $signo = "+";
+                $back = "bg-success";
+            }else if($total_ingreso<$total_gasto){
+                $signo = "-";
+                $back = "bg-danger";
+            }else{
+                $signo = "";
+                $back = "bg-secondary";
+            }
+            
+            echo "<h2 class='gastos text-center mb-3 $back p-2'>Total = " . $signo . " " . $total . "</h2>";
+        ?>
                 
         <div class="col-12">
             <div class="row">
@@ -86,11 +114,10 @@
                         
                             for ($i=0;$i<sizeof($contabilidad);$i++){
                                 // Total
-                                $total = $contabilidad[$i]['ingreso_cuotas']+$contabilidad[$i]['ingreso_reservas'];
                                 echo "<tr>";
                                     echo "<td>".$contabilidad[$i]['ingreso_cuotas']."</td>";
                                     echo "<td>".$contabilidad[$i]['ingreso_reservas']."</td>";
-                                    echo "<td>".$total."</td>";
+                                    echo "<td>".$total_ingreso."</td>";
                                 echo "</tr>";
                             }//Fin Para
                         ?>
@@ -116,12 +143,11 @@
                         
                             for ($i=0;$i<sizeof($contabilidad);$i++){
                                 // Total
-                                $total = $contabilidad[$i]['gasto_evento'] + $contabilidad[$i]['gasto_instalacion'] + $contabilidad[$i]['gasto_otro'];
                                 echo "<tr>";
                                     echo "<td>".$contabilidad[$i]['gasto_evento']."</td>";
                                     echo "<td>".$contabilidad[$i]['gasto_instalacion']."</td>";
                                     echo "<td>".$contabilidad[$i]['gasto_otro']."</td>";
-                                    echo "<td>".$total."</td>";
+                                    echo "<td>".$total_gasto."</td>";
                                 echo "</tr>";
                             }//Fin Para
                         ?>
