@@ -43,6 +43,10 @@ input[type=submit] {
     margin-left: 30%;
 }
 
+.formIni input[type=password]{
+    margin-left: 30%;
+}
+
 .segundoBoton {
     margin-bottom: 81.4%;
 }

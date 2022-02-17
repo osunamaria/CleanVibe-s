@@ -17,7 +17,7 @@ function obtenerPublicacion($id)
         $con = null; //Cerramos la conexión
         return $row;
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
 }
 
@@ -34,7 +34,7 @@ function insertarPublicacion($titulo, $publicacion, $tipo, $contenido, $fecha)
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $id;
@@ -50,7 +50,7 @@ function obtenerTodas(){
             $miArray[] = $row;
         }
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $miArray;
@@ -68,7 +68,7 @@ function eliminarPublicacion($id)
             $retorno = true;
         }
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $retorno;
@@ -90,7 +90,7 @@ function editarPublicacion($id, $titulo, $publicacion, $tipo, $contenido, $fecha
             $retorno = true;
         }
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $retorno;

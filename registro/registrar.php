@@ -29,15 +29,18 @@
   
     if($usuario=="" || $contrasena=="" || $nombre=="" || $apellidos=="" || $dni=="" || $correo=="" || $telefono=="" || $fecnac=="" || $num_miembros==""){
         
-        echo "Debe rellenar todos los campos";
+        echo "Debe rellenar todos los campos<br><br>";
+        echo "<a href='index.php'>[Volver]</a>";
 
     }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
 
-        echo "DNI incorrecto";
+        echo "DNI incorrecto<br><br>";
+        echo "<a href='index.php'>[Volver]</a>";
     
     }else if($ano_diferencia<=14){
     
-        echo "Debes tener más de 14 años";
+        echo "Debes tener más de 14 años<br><br>";
+        echo "<a href='index.php'>[Volver]</a>";
 
     }else{
 
@@ -67,12 +70,13 @@
             $id = $con->lastInsertId();
             $con = null;
             if ($id != 0) {
-                header("Location: ../index.html");
+                header("Location: ../index.php");
             } else {
-                echo "Datos incorrectos";
+                echo "Datos incorrectos<br><br>";
+                echo "<a href='index.php'>[Volver]</a>";
             }
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
 
     }
