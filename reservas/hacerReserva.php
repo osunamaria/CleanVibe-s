@@ -72,12 +72,12 @@
         $baseDatos = "cleanvibes";
         $user = "root";
         $pass = "";
-        
+
         //Recojo un array con las reservas, en caso de que sean varias
-        $reservas=$_POST["id_reserva"];
-        $num_socio = $_POST['num_socio'];
-        $num_no_socio = $_POST['num_no_socio'];
-        
+        $reservas = $_POST["id_reserva"];
+        $num_socios = $_POST['num_socios'];
+        $num_no_socios = $_POST['num_no_socios'];
+
         $horario = array(
             0 => "08:00:00",
             1 => "09:30:00",
@@ -89,22 +89,22 @@
             7 => "19:00:00",
             8 => "20:30:00"
         );
-    
+
         //Cojo el id de la instalacion de la primera reserva.
         list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
-    
+
         //Depende de la pista, tendra unas condiciones especificas
         switch($id_instalacion){
             case 1:
             case 2:
                 //Para las pistas de padel tienen que ser 4 
-                if(($num_no_socio+$num_socio)==4){
+                if(($num_no_socios+$num_socios)==4){
                     //Procedo a hacer las reservas
                     foreach ($reservas as $reserva){
                         //Como recojo tres variables juntas, las separo con el metodo explode
                         list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                         try {
-                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                             $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                             $sql->bindParam(":id_instalacion", $id_instalacion);
                             $sql->bindParam(":id_socio", $_SESSION['id']);
@@ -135,13 +135,13 @@
             case 3:
             case 4:
                 //Para las pistas de tenis deben ser 2 o 4
-                if(($num_no_socio+$num_socio)==2||($num_no_socio+$num_socio)==4){
+                if(($num_no_socios+$num_socios)==2||($num_no_socios+$num_socios)==4){
                     //Procedo a hacer las reservas
                     foreach ($reservas as $reserva){
                         //Como recojo tres variables juntas, las separo con el metodo explode
                         list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                         try {
-                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                             $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                             $sql->bindParam(":id_instalacion", $id_instalacion);
                             $sql->bindParam(":id_socio", $_SESSION['id']);
@@ -171,13 +171,13 @@
                 break;
             case 5:
                 //Futbol deben de ser 10
-                if(($num_no_socio+$num_socio)==10){
+                if(($num_no_socios+$num_socios)==10){
                    //Procedo a hacer las reservas
                    foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
-                        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                         $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                         $sql->bindParam(":id_instalacion", $id_instalacion);
                         $sql->bindParam(":id_socio", $_SESSION['id']);
@@ -207,13 +207,13 @@
                 break;
             case 6:
                 //Baloncesto deben de ser 10
-                if(($num_no_socio+$num_socio)==10){
+                if(($num_no_socios+$num_socios)==10){
                     //Procedo a hacer las reservas
                     foreach ($reservas as $reserva){
                         //Como recojo tres variables juntas, las separo con el metodo explode
                         list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                         try {
-                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                             $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                             $sql->bindParam(":id_instalacion", $id_instalacion);
                             $sql->bindParam(":id_socio", $_SESSION['id']);
@@ -243,13 +243,13 @@
                 break;
             case 7:
                 //Procedo a la reserva si hay minimo un socio
-                if($num_socio>0){
+                if($num_socios>0){
                     //Hago la reserva
                     foreach ($reservas as $reserva){
                         //Como recojo tres variables juntas, las separo con el metodo explode
                         list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                         try {
-                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
                             $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
                             $sql->bindParam(":id_instalacion", $id_instalacion);
                             $sql->bindParam(":id_socio", $_SESSION['id']);
