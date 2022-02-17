@@ -65,40 +65,115 @@
     <div class="container">
 
 <?php
-    //Conectar base de datos
-    $servidor = "localhost";
-    $baseDatos = "cleanvibes";
-    $user = "root";
-    $pass = "";
-
-    //Recojo un array con las reservas, en caso de que sean varias
-    $reservas=$_POST["id_reserva"];
-    $num_socio = $_POST['num_socio'];
-    $num_no_socio = $_POST['num_no_socio'];
-
-    $horario = array(
-        0 => "08:00:00",
-        1 => "09:30:00",
-        2 => "11:00:00",
-        3 => "12:30:00",
-        4 => "14:00:00",
-        5 => "16:00:00",
-        6 => "17:30:00",
-        7 => "19:00:00",
-        8 => "20:30:00"
-    );
-
-    //Cojo el id de la instalacion de la primera reserva.
-    list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
-
-    //Depende de la pista, tendra unas condiciones especificas
-    switch($id_instalacion){
-        case 1:
-        case 2:
-            //Para las pistas de padel tienen que ser 4 
-            if(($num_no_socio+$num_socio)==4){
-                //Procedo a hacer las reservas
-                foreach ($reservas as $reserva){
+    //Si la sesión esta iniciada lo hago
+    if(isset($_SESSION['sesion_iniciada']) == true ){
+        //Conectar base de datos
+        $servidor = "localhost";
+        $baseDatos = "cleanvibes";
+        $user = "root";
+        $pass = "";
+        
+        //Recojo un array con las reservas, en caso de que sean varias
+        $reservas=$_POST["id_reserva"];
+        $num_socio = $_POST['num_socio'];
+        $num_no_socio = $_POST['num_no_socio'];
+        
+        $horario = array(
+            0 => "08:00:00",
+            1 => "09:30:00",
+            2 => "11:00:00",
+            3 => "12:30:00",
+            4 => "14:00:00",
+            5 => "16:00:00",
+            6 => "17:30:00",
+            7 => "19:00:00",
+            8 => "20:30:00"
+        );
+    
+        //Cojo el id de la instalacion de la primera reserva.
+        list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
+    
+        //Depende de la pista, tendra unas condiciones especificas
+        switch($id_instalacion){
+            case 1:
+            case 2:
+                //Para las pistas de padel tienen que ser 4 
+                if(($num_no_socio+$num_socio)==4){
+                    //Procedo a hacer las reservas
+                    foreach ($reservas as $reserva){
+                        //Como recojo tres variables juntas, las separo con el metodo explode
+                        list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
+                        try {
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
+                            $sql->bindParam(":id_instalacion", $id_instalacion);
+                            $sql->bindParam(":id_socio", $_SESSION['id']);
+                            $sql->bindParam(":fecha", $fecha);
+                            $sql->bindParam(":hora_inicio", $hora_inicio);
+                            //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
+                            if(array_search($hora_inicio, $horario)==8){
+                                $hora_fin = "21:30:00";
+                            }else{
+                                $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
+                            }//Fin Si
+                            $sql->bindParam(":hora_fin", $hora_fin);
+                            $sql->bindParam(":num_socios", $num_socios);
+                            $sql->bindParam(":num_no_socios", $num_no_socios);
+                            $sql->execute();
+                            $con = null;
+                        } catch (PDOException $e) {
+                            echo $e;
+                        }
+                    }//Fin foreach
+                    echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                }else{
+                    //Muestro error
+                    echo "<h3>Para la pista de padel deben ser 4 participantes.</h3><br>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
+                }//Fin Si
+                break;
+            case 3:
+            case 4:
+                //Para las pistas de tenis deben ser 2 o 4
+                if(($num_no_socio+$num_socio)==2||($num_no_socio+$num_socio)==4){
+                    //Procedo a hacer las reservas
+                    foreach ($reservas as $reserva){
+                        //Como recojo tres variables juntas, las separo con el metodo explode
+                        list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
+                        try {
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
+                            $sql->bindParam(":id_instalacion", $id_instalacion);
+                            $sql->bindParam(":id_socio", $_SESSION['id']);
+                            $sql->bindParam(":fecha", $fecha);
+                            $sql->bindParam(":hora_inicio", $hora_inicio);
+                            //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
+                            if(array_search($hora_inicio, $horario)==8){
+                                $hora_fin = "21:30:00";
+                            }else{
+                                $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
+                            }//Fin Si
+                            $sql->bindParam(":hora_fin", $hora_fin);
+                            $sql->bindParam(":num_socios", $num_socios);
+                            $sql->bindParam(":num_no_socios", $num_no_socios);
+                            $sql->execute();
+                            $con = null;
+                        } catch (PDOException $e) {
+                            echo $e;
+                        }
+                    }//Fin foreach
+                    echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                }else{
+                    //Muestro error
+                    echo "<h3>Para la pista de tenis deben ser 2 o 4 participantes.</h3><br>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
+                }//Fin Si
+                break;
+            case 5:
+                //Futbol deben de ser 10
+                if(($num_no_socio+$num_socio)==10){
+                   //Procedo a hacer las reservas
+                   foreach ($reservas as $reserva){
                     //Como recojo tres variables juntas, las separo con el metodo explode
                     list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
                     try {
@@ -124,162 +199,94 @@
                     }
                 }//Fin foreach
                 echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
-            }else{
-                //Muestro error
-                echo "<h3>Para la pista de padel deben ser 4 participantes.</h3><br>";
-                echo "<a href='index.php'>Volver a página de reservas</a>";
-            }//Fin Si
-            break;
-        case 3:
-        case 4:
-            //Para las pistas de tenis deben ser 2 o 4
-            if(($num_no_socio+$num_socio)==2||($num_no_socio+$num_socio)==4){
-                //Procedo a hacer las reservas
-                foreach ($reservas as $reserva){
-                    //Como recojo tres variables juntas, las separo con el metodo explode
-                    list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
-                    try {
-                        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-                        $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
-                        $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $_SESSION['id']);
-                        $sql->bindParam(":fecha", $fecha);
-                        $sql->bindParam(":hora_inicio", $hora_inicio);
-                        //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
-                        if(array_search($hora_inicio, $horario)==8){
-                            $hora_fin = "21:30:00";
-                        }else{
-                            $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
-                        }//Fin Si
-                        $sql->bindParam(":hora_fin", $hora_fin);
-                        $sql->bindParam(":num_socios", $num_socios);
-                        $sql->bindParam(":num_no_socios", $num_no_socios);
-                        $sql->execute();
-                        $con = null;
-                    } catch (PDOException $e) {
-                        echo $e;
-                    }
-                }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
-            }else{
-                //Muestro error
-                echo "<h3>Para la pista de tenis deben ser 2 o 4 participantes.</h3><br>";
-                echo "<a href='index.php'>Volver a página de reservas</a>";
-            }//Fin Si
-            break;
-        case 5:
-            //Futbol deben de ser 10
-            if(($num_no_socio+$num_socio)==10){
-               //Procedo a hacer las reservas
-               foreach ($reservas as $reserva){
-                //Como recojo tres variables juntas, las separo con el metodo explode
-                list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
-                try {
-                    $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-                    $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
-                    $sql->bindParam(":id_instalacion", $id_instalacion);
-                    $sql->bindParam(":id_socio", $_SESSION['id']);
-                    $sql->bindParam(":fecha", $fecha);
-                    $sql->bindParam(":hora_inicio", $hora_inicio);
-                    //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
-                    if(array_search($hora_inicio, $horario)==8){
-                        $hora_fin = "21:30:00";
-                    }else{
-                        $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
-                    }//Fin Si
-                    $sql->bindParam(":hora_fin", $hora_fin);
-                    $sql->bindParam(":num_socios", $num_socios);
-                    $sql->bindParam(":num_no_socios", $num_no_socios);
-                    $sql->execute();
-                    $con = null;
-                } catch (PDOException $e) {
-                    echo $e;
+                }else{
+                    //Muestro error
+                    echo "<h3>Para la pista de fútbol deben ser 10 participantes.</h3><br>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
+                }//Fin Si
+                break;
+            case 6:
+                //Baloncesto deben de ser 10
+                if(($num_no_socio+$num_socio)==10){
+                    //Procedo a hacer las reservas
+                    foreach ($reservas as $reserva){
+                        //Como recojo tres variables juntas, las separo con el metodo explode
+                        list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
+                        try {
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
+                            $sql->bindParam(":id_instalacion", $id_instalacion);
+                            $sql->bindParam(":id_socio", $_SESSION['id']);
+                            $sql->bindParam(":fecha", $fecha);
+                            $sql->bindParam(":hora_inicio", $hora_inicio);
+                            //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
+                            if(array_search($hora_inicio, $horario)==8){
+                                $hora_fin = "21:30:00";
+                            }else{
+                                $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
+                            }//Fin Si
+                            $sql->bindParam(":hora_fin", $hora_fin);
+                            $sql->bindParam(":num_socios", $num_socios);
+                            $sql->bindParam(":num_no_socios", $num_no_socios);
+                            $sql->execute();
+                            $con = null;
+                        } catch (PDOException $e) {
+                            echo $e;
+                        }
+                    }//Fin foreach
+                    echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                }else{
+                    //Muestro error
+                    echo "<h3>Para la pista de baloncesto deben ser 10 participantes.</h3><br>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
+                }//Fin Si
+                break;
+            case 7:
+                //Procedo a la reserva si hay minimo un socio
+                if($num_socio>0){
+                    //Hago la reserva
+                    foreach ($reservas as $reserva){
+                        //Como recojo tres variables juntas, las separo con el metodo explode
+                        list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
+                        try {
+                            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+                            $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
+                            $sql->bindParam(":id_instalacion", $id_instalacion);
+                            $sql->bindParam(":id_socio", $_SESSION['id']);
+                            $sql->bindParam(":fecha", $fecha);
+                            $sql->bindParam(":hora_inicio", $hora_inicio);
+                            //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
+                            if(array_search($hora_inicio, $horario)==8){
+                                $hora_fin = "21:30:00";
+                            }else{
+                                $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
+                            }//Fin Si
+                            $sql->bindParam(":hora_fin", $hora_fin);
+                            $sql->bindParam(":num_socios", $num_socios);
+                            $sql->bindParam(":num_no_socios", $num_no_socios);
+                            $sql->execute();
+                            $con = null;
+                        } catch (PDOException $e) {
+                            echo $e;
+                        }
+                    }//Fin foreach
+                    echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                }else{
+                    //Muestro error
+                    echo "<h3>Para la barbacoa debe de haber mínimo un socio.</h3><br>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
                 }
-            }//Fin foreach
-            echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
-            }else{
+                break;
+            default:
                 //Muestro error
-                echo "<h3>Para la pista de fútbol deben ser 10 participantes.</h3><br>";
+                echo "<h3>El ID de la instalación no se encuentra en nuestra base de datos.</h3><br>";
                 echo "<a href='index.php'>Volver a página de reservas</a>";
-            }//Fin Si
-            break;
-        case 6:
-            //Baloncesto deben de ser 10
-            if(($num_no_socio+$num_socio)==10){
-                //Procedo a hacer las reservas
-                foreach ($reservas as $reserva){
-                    //Como recojo tres variables juntas, las separo con el metodo explode
-                    list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
-                    try {
-                        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-                        $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
-                        $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $_SESSION['id']);
-                        $sql->bindParam(":fecha", $fecha);
-                        $sql->bindParam(":hora_inicio", $hora_inicio);
-                        //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
-                        if(array_search($hora_inicio, $horario)==8){
-                            $hora_fin = "21:30:00";
-                        }else{
-                            $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
-                        }//Fin Si
-                        $sql->bindParam(":hora_fin", $hora_fin);
-                        $sql->bindParam(":num_socios", $num_socios);
-                        $sql->bindParam(":num_no_socios", $num_no_socios);
-                        $sql->execute();
-                        $con = null;
-                    } catch (PDOException $e) {
-                        echo $e;
-                    }
-                }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
-            }else{
-                //Muestro error
-                echo "<h3>Para la pista de baloncesto deben ser 10 participantes.</h3><br>";
-                echo "<a href='index.php'>Volver a página de reservas</a>";
-            }//Fin Si
-            break;
-        case 7:
-            //Procedo a la reserva si hay minimo un socio
-            if($num_socio>0){
-                //Hago la reserva
-                foreach ($reservas as $reserva){
-                    //Como recojo tres variables juntas, las separo con el metodo explode
-                    list($id_instalacion, $fecha, $hora_inicio) = explode("/", $reserva);
-                    try {
-                        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-                        $sql = $con->prepare("INSERT into reservas values(:id_instalacion,:id_socio,:fecha,:hora_inicio,:hora_fin,:num_socios,:num_no_socios)");
-                        $sql->bindParam(":id_instalacion", $id_instalacion);
-                        $sql->bindParam(":id_socio", $_SESSION['id']);
-                        $sql->bindParam(":fecha", $fecha);
-                        $sql->bindParam(":hora_inicio", $hora_inicio);
-                        //hora_fin sera la siguiente hora_inicio, y si es la ultima, sera 1 hora y media más
-                        if(array_search($hora_inicio, $horario)==8){
-                            $hora_fin = "21:30:00";
-                        }else{
-                            $hora_fin = $horario[array_search($hora_inicio, $horario)+1];
-                        }//Fin Si
-                        $sql->bindParam(":hora_fin", $hora_fin);
-                        $sql->bindParam(":num_socios", $num_socios);
-                        $sql->bindParam(":num_no_socios", $num_no_socios);
-                        $sql->execute();
-                        $con = null;
-                    } catch (PDOException $e) {
-                        echo $e;
-                    }
-                }//Fin foreach
-                echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
-            }else{
-                //Muestro error
-                echo "<h3>Para la barbacoa debe de haber mínimo un socio.</h3><br>";
-                echo "<a href='index.php'>Volver a página de reservas</a>";
-            }
-            break;
-        default:
-            //Muestro error
-            echo "<h3>El ID de la instalación no se encuentra en nuestra base de datos.</h3><br>";
-            echo "<a href='index.php'>Volver a página de reservas</a>";
-    }//Fin Segun Sea
+        }//Fin Segun Sea
+    }else{
+        //Si no esta iniciada, le aviso
+        echo "<h3>Debe iniciar sesión para hacer la reserva.</h3><br>";
+        echo "<a href='index.php'>Volver a página de reservas</a>";
+    }//Fin Si
 ?>
 
     </div>
