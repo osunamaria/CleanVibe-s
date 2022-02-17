@@ -30,16 +30,18 @@
                 $_SESSION['id'] = $persona['id'];
                 header("location: ../index.php");   
             }else{
-                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo";
+                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo<br><br>";
+                echo "<a href='index.php'>[Volver]</a>";
             }
             
         } else {
             //Error inicio sesion
-            header("location: error.php");
+            echo "Datos incorrectos<br><br>";
+            echo "<a href='index.php'>[Volver]</a>";
         }
 
         $con = null; //Cerramos la conexión
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
 ?>

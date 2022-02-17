@@ -132,7 +132,7 @@
             <li class="m-5"><i class="fab fa-facebook-square"></i></li>
         </ul>
     </footer>
-    <script src="../js/bootstrap.bundle.min"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

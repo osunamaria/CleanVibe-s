@@ -23,7 +23,7 @@
             $con = null; //Cerramos la conexión
             return $row;
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
     }
 
@@ -42,7 +42,7 @@
             }
             $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
         return $miArray;
     }
@@ -79,7 +79,7 @@
                 echo "Datos incorrectos";
             }
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
 
     }
@@ -113,7 +113,7 @@
                 $retorno = true;
             }
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
         $con = null; //Cerramos la conexión
         return $retorno;
@@ -131,7 +131,7 @@
             }
             $con = null; //Cerramos la conexión
         }catch(PDOException $e){
-            echo $e;
+            header("location: ../php/error.php");
         }
         return $retorno;
     }
@@ -149,7 +149,7 @@
             }
             $con = null; //Cerramos la conexión
         } catch (PDOException $e) {
-            echo $e;
+            header("location: ../php/error.php");
         }
         return $retorno;
     }

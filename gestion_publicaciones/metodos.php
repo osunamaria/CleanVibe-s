@@ -17,7 +17,7 @@ function obtenerPublicacion($id)
         $con = null; //Cerramos la conexión
         return $row;
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
 }
 
@@ -34,21 +34,31 @@ function insertarPublicacion($titulo, $publicacion, $tipo, $contenido, $fecha)
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $id;
 }
 //No necesario de momento
-function obtenerTodas(){
+function obtenerTodas($tema){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id, titulo,publicacion,tipo,contenido,fecha from evento_noticia;");
-        $sql->execute();
-        $miArray = [];
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $miArray[] = $row;
+        if($tema==""){
+            $sql = $con->prepare("SELECT id,titulo,publicacion,tipo,contenido,fecha from evento_noticia;");
+            $sql->execute();
+            $miArray = [];
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $miArray[] = $row;
+            }
+        }else{
+            $sql = $con->prepare("SELECT id,titulo,publicacion,tipo,contenido,fecha from evento_noticia where publicacion like '$tema';");
+            $sql->execute();
+            $miArray = [];
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $miArray[] = $row;
+            }
         }
+        
     } catch (PDOException $e) {
         echo $e;
     }
@@ -68,7 +78,7 @@ function eliminarPublicacion($id)
             $retorno = true;
         }
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $retorno;
@@ -90,7 +100,7 @@ function editarPublicacion($id, $titulo, $publicacion, $tipo, $contenido, $fecha
             $retorno = true;
         }
     } catch (PDOException $e) {
-        echo $e;
+        header("location: ../php/error.php");
     }
     $con = null;
     return $retorno;
