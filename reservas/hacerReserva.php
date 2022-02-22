@@ -91,13 +91,24 @@
             8 => "20:30:00"
         );
 
-        //Cojo el id de la instalacion de la primera reserva.
-        list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
+        try {
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+            $sql = $con->prepare("SELECT tipo
+                                    FROM `instalaciones`
+                                    WHERE id_instalacion=:id_instalacion");
+            //Cojo el id de la instalacion de la primera reserva.
+            list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
+            $sql->bindParam(":id_instalacion", $id_instalacion);
+            $sql->execute();
+            $tipo = $sql->fetch(PDO::FETCH_ASSOC); //Recojo el tipo de instalacion
+            $con = null;
+        } catch (PDOException $e) {
+            header("location: ../php/error.php");
+        }
 
         //Depende de la pista, tendra unas condiciones especificas
-        switch($id_instalacion){
-            case 1:
-            case 2:
+        switch($tipo){
+            case "padel":
                 //Para las pistas de padel tienen que ser 4 
                 if(($num_no_socios+$num_socios)==4){
                     //Procedo a hacer las reservas
@@ -133,8 +144,7 @@
                     echo "<a href='index.php'>Volver a página de reservas</a>";
                 }//Fin Si
                 break;
-            case 3:
-            case 4:
+            case "tenis":
                 //Para las pistas de tenis deben ser 2 o 4
                 if(($num_no_socios+$num_socios)==2||($num_no_socios+$num_socios)==4){
                     //Procedo a hacer las reservas
@@ -170,7 +180,7 @@
                     echo "<a href='index.php'>Volver a página de reservas</a>";
                 }//Fin Si
                 break;
-            case 5:
+            case "futbol":
                 //Futbol deben de ser 10
                 if(($num_no_socios+$num_socios)==10){
                    //Procedo a hacer las reservas
@@ -206,7 +216,7 @@
                     echo "<a href='index.php'>Volver a página de reservas</a>";
                 }//Fin Si
                 break;
-            case 6:
+            case "baloncesto":
                 //Baloncesto deben de ser 10
                 if(($num_no_socios+$num_socios)==10){
                     //Procedo a hacer las reservas
@@ -242,7 +252,7 @@
                     echo "<a href='index.php'>Volver a página de reservas</a>";
                 }//Fin Si
                 break;
-            case 7:
+            case "barbacoa":
                 //Procedo a la reserva si hay minimo un socio
                 if($num_socios>0){
                     //Hago la reserva
@@ -280,7 +290,7 @@
                 break;
             default:
                 //Muestro error
-                echo "<h3>El ID de la instalación no se encuentra en nuestra base de datos.</h3><br>";
+                echo "<h3>El tipo de la instalación no se encuentra en nuestra base de datos.</h3><br>";
                 echo "<a href='index.php'>Volver a página de reservas</a>";
         }//Fin Segun Sea
     }else{

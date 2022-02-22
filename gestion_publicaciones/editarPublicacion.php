@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>Editar Publicaciones</title>
 </head>
-
+<div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="../index.php" class="me-md-auto">
                 <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
@@ -62,7 +62,7 @@
             ?>
             </ul>
     </header>
-
+    </div>
 <body>
 
     <?php include "metodos.php";
@@ -120,7 +120,7 @@
     </form>
     </article>
 
-    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
+    <footer class="fixed-bottom d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                 <img src="../img/logoNaranja.png" alt="logo">
