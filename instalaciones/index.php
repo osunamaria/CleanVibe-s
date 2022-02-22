@@ -71,26 +71,28 @@
         <br><br>
         <form method="post" action="insertarInstalacion.php" id="nombreInstalacion" class="nombreInstalacion">
             <!-- Nombre de la instalacion -->
-            <table>
-                <tr>
-                    <td>Nombre de la instalaci&oacute;n<input id="nombre" name="nombre" type="text"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Tipo de instalaci&oacute;n:
-                            <select name="tipo" id="tipo">
-                            <option value="tenis">Tenis</option>
-                            <option value="padel">Padel</option>
-                            <option value="futbol">Futbol</option>
-                            <option value="padel">Baloncesto</option>
-                            <option value="futbol">Barbacoa</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Introduzca la localización <input name="localizacion" id="localizacion" type="text"></td>
-                </tr>
-            </table>
+            <div class="container">
+                <table>
+                    <tr>
+                        <td>Nombre de la instalaci&oacute;n<input id="nombre" name="nombre" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Tipo de instalaci&oacute;n:
+                                <select name="tipo" id="tipo">
+                                <option value="tenis">Tenis</option>
+                                <option value="padel">Padel</option>
+                                <option value="futbol">Futbol</option>
+                                <option value="padel">Baloncesto</option>
+                                <option value="futbol">Barbacoa</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Introduzca la localización <input name="localizacion" id="localizacion" type="text"></td>
+                    </tr>
+                </table>
+            </div>
             <br>
             <input class="guardar" type="submit" value="Guardar">
         </form>
