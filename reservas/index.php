@@ -104,7 +104,7 @@
                             }//Fin Para
                             $con = null; //Cerramos la conexión
                         } catch (PDOException $e) {
-                            echo $e;
+                            header("location: ../php/error.php");
                         }
                     ?>
                 </tbody>

@@ -123,7 +123,7 @@
                             $sql->execute();
                             $con = null;
                         } catch (PDOException $e) {
-                            echo $e;
+                            header("location: ../php/error.php");
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
@@ -160,7 +160,7 @@
                             $sql->execute();
                             $con = null;
                         } catch (PDOException $e) {
-                            echo $e;
+                            header("location: ../php/error.php");
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
@@ -196,7 +196,7 @@
                         $sql->execute();
                         $con = null;
                     } catch (PDOException $e) {
-                        echo $e;
+                        header("location: ../php/error.php");
                     }
                 }//Fin foreach
                 echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
@@ -232,7 +232,7 @@
                             $sql->execute();
                             $con = null;
                         } catch (PDOException $e) {
-                            echo $e;
+                            header("location: ../php/error.php");
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
@@ -268,7 +268,7 @@
                             $sql->execute();
                             $con = null;
                         } catch (PDOException $e) {
-                            echo $e;
+                            header("location: ../php/error.php");
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
