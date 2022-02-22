@@ -101,7 +101,7 @@
             <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
             
 
-            <input type="text" name="titulo" placeholder="titulo" class="input-100" required value='<?php echo $publicacion["titulo"]; ?>'><br><br>
+            <input type="text" name="titulo" placeholder='<?php echo $publicacion["titulo"]; ?>' class="input-100" required value='<?php echo $publicacion["titulo"]; ?>'><br><br>
 
             <!-- CHECKEAR REQUIRE -->
             Evento<input type="radio" name="publicacion" class="input-100" required value='<?php $publicacion["publicacion"] = "evento"; echo $publicacion["publicacion"]; ?>'>
@@ -110,9 +110,9 @@
             Publico<input type="radio" name="tipo" class="input-100" value='<?php $publicacion["tipo"] = "publico"; echo $publicacion["tipo"]; ?>'>
             Privado<input type="radio" name="tipo" class="input-100" value='<?php $publicacion["tipo"] = "privado"; echo $publicacion["tipo"]; ?>' required><br><br>
 
-            <textarea name="contenido" id="contenido" placeholder="contenido" required value='<?php echo $publicacion["contenido"]; ?>'></textarea><br><br>
+            <textarea name="contenido" id="contenido" placeholder='<?php echo $publicacion["contenido"]; ?>' required value='<?php echo $publicacion["contenido"]; ?>'></textarea><br><br>
 
-            <input type="date" name="fecha" placeholder="fecha" class="input-100" required value='<?php echo $publicacion["fecha"]; ?>'><br><br>
+            <input type="date" name="fecha" placeholder='<?php echo $publicacion["fecha"]; ?>' class="input-100" required value='<?php echo $publicacion["fecha"]; ?>'><br><br>
 
             <input type="submit" value="Guardar Cambios" class="btn-enviar">
             <div id="errores"><?php echo $error; ?></div>
