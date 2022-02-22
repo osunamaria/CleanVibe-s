@@ -107,7 +107,7 @@
         }
 
         //Depende de la pista, tendra unas condiciones especificas
-        switch($tipo_instalacion[0]){
+        switch($tipo_instalacion['tipo']){
             case "padel":
                 //Para las pistas de padel tienen que ser 4 
                 if(($num_no_socios+$num_socios)==4){
@@ -291,8 +291,6 @@
             default:
                 //Muestro error
                 echo "<h3>El tipo de la instalación no se encuentra en nuestra base de datos.</h3><br>";
-                echo gettype($tipo_instalacion)."<br>";
-                echo strval($tipo_instalacion)."<br>";
                 echo "<a href='index.php'>Volver a página de reservas</a>";
         }//Fin Segun Sea
     }else{
