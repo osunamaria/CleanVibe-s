@@ -24,6 +24,7 @@
 </head>
 <body>
 <!-- CABECERA -->
+<div class="container">
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="../index.php" class="me-md-auto">
                 <span class="fs-4"><img src="../img/logoOriginal.png" class="img-fluid"></span>
@@ -61,6 +62,7 @@
             ?>
             </ul>
     </header>
+    </div>
     <!-- ARTICLE -->
     <article>  
     <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->

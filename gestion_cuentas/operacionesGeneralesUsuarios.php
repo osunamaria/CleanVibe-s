@@ -28,6 +28,22 @@
     }
 
     function obtenerTodos($filtro){
+        try {
+            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+            if($filtro=='nuevos'){
+                $sql = $con->prepare("SELECT * from socios WHERE confirmado = '0';");
+            }else{
+                $sql = $con->prepare("SELECT * from socios WHERE confirmado = '1';");
+            }
+            $sql->execute();
+            $miArray = [];
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { //Haciendo uso de PDO iremos creando el array dinámicamente
+                $miArray[] = $row; //https://www.it-swarm-es.com/es/php/rellenar-php-array-desde-while-loop/972445501/
+            }
+            $con = null; //Cerramos la conexión
+        } catch (PDOException $e) {
+            header("location: ../php/error.php");
+        }
         return $miArray;
     }
 
