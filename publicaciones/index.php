@@ -74,7 +74,7 @@
                     <div class="col-3">
                         
                             <select class="filtro" name="tema" id="tema">
-                                <option value="">Filtrar</option>
+                                <option value="">Todos</option>
                                 <option value="evento">Eventos</option>
                                 <option value="noticia">Noticias</option>
                             </select>
