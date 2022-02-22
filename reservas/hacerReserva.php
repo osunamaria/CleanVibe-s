@@ -107,7 +107,7 @@
         }
 
         //Depende de la pista, tendra unas condiciones especificas
-        switch($tipo_instalacion){
+        switch($tipo_instalacion[0]){
             case "padel":
                 //Para las pistas de padel tienen que ser 4 
                 if(($num_no_socios+$num_socios)==4){
