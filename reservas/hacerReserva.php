@@ -100,14 +100,14 @@
             list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
             $sql->bindParam(":id_instalacion", $id_instalacion);
             $sql->execute();
-            $tipo = $sql->fetch(PDO::FETCH_ASSOC); //Recojo el tipo de instalacion
+            $tipo_instalacion = $sql->fetch(PDO::FETCH_ASSOC); //Recojo el tipo de instalacion
             $con = null;
         } catch (PDOException $e) {
             header("location: ../php/error.php");
         }
 
         //Depende de la pista, tendra unas condiciones especificas
-        switch($tipo){
+        switch($tipo_instalacion){
             case "padel":
                 //Para las pistas de padel tienen que ser 4 
                 if(($num_no_socios+$num_socios)==4){
