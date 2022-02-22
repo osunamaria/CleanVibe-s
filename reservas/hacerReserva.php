@@ -291,6 +291,7 @@
             default:
                 //Muestro error
                 echo "<h3>El tipo de la instalación no se encuentra en nuestra base de datos.</h3><br>";
+                echo gettype($tipo_instalacion);
                 echo "<a href='index.php'>Volver a página de reservas</a>";
         }//Fin Segun Sea
     }else{
