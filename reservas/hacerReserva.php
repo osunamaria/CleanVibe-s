@@ -138,6 +138,7 @@
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
                 }else{
                     //Muestro error
                     echo "<h3>Para la pista de padel deben ser 4 participantes.</h3><br>";
@@ -174,6 +175,7 @@
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
                 }else{
                     //Muestro error
                     echo "<h3>Para la pista de tenis deben ser 2 o 4 participantes.</h3><br>";
@@ -210,6 +212,7 @@
                     }
                 }//Fin foreach
                 echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                echo "<a href='index.php'>Volver a página de reservas</a>";
                 }else{
                     //Muestro error
                     echo "<h3>Para la pista de fútbol deben ser 10 participantes.</h3><br>";
@@ -246,6 +249,7 @@
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
                 }else{
                     //Muestro error
                     echo "<h3>Para la pista de baloncesto deben ser 10 participantes.</h3><br>";
@@ -282,6 +286,7 @@
                         }
                     }//Fin foreach
                     echo "<h3>RESERVA REALIZADA CON ÉXITO. GRACIAS!</h3>";
+                    echo "<a href='index.php'>Volver a página de reservas</a>";
                 }else{
                     //Muestro error
                     echo "<h3>Para la barbacoa debe de haber mínimo un socio.</h3><br>";
