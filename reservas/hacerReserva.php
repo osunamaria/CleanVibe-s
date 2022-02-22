@@ -95,7 +95,7 @@
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
             $sql = $con->prepare("SELECT tipo
                                     FROM `instalaciones`
-                                    WHERE id_instalacion=:id_instalacion");
+                                    WHERE id=:id_instalacion");
             //Cojo el id de la instalacion de la primera reserva.
             list($id_instalacion,$n,$m) = explode("/", $reservas[0]);
             $sql->bindParam(":id_instalacion", $id_instalacion);
